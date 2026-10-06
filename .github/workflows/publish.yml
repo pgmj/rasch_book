@@ -1,0 +1,32 @@
+# Publishes the book to GitHub Pages from the committed _freeze/ folder.
+# R is not installed here: frozen chapters are not re-executed. Render locally
+# and commit _freeze/ before pushing a changed chapter.
+#
+# One-time setup: run `quarto publish gh-pages` locally once, which creates the
+# gh-pages branch, then set Pages to deploy from that branch.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: main
+
+name: Quarto Publish
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render and publish
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,72 @@
+# Rasch Measurement Explorations
+#
+# Render locally with `quarto render`. Chapters are frozen (freeze: auto), so a
+# chapter's R code re-runs only when its source changes. Commit the _freeze/
+# folder: the GitHub Pages workflow publishes from it and never runs R.
+#
+# Long simulations do not run at render time. They live in scripts/<topic>/
+# and save results that chapters read with readRDS().
+
+project:
+  type: book
+  output-dir: _book
+  execute-dir: project
+  # Prebuilt, self-contained revealjs decks, copied from presentations/
+  resources:
+    - slides/
+
+book:
+  title: "Rasch Measurement Explorations"
+  subtitle: "Simulation studies from the development of easyRasch2"
+  author: "Magnus Johansson"
+  date: today
+  date-format: iso
+  site-url: https://pgmj.github.io/rasch_book/
+  repo-url: https://github.com/pgmj/rasch_book
+  repo-actions: [source, issue]
+  search: true
+  page-navigation: true
+  chapters:
+    - index.qmd
+    # Parts follow the order of a Rasch analysis. Planned parts are commented
+    # out until a chapter is promoted from easyRasch2/dev.
+    - part: "Item fit"
+      chapters:
+        - chapters/restscore-asymptotic-null.qmd
+        - chapters/sx2-infit.qmd
+    - part: "Dimensionality"
+      chapters:
+        - chapters/ttest-protocol-exact-null.qmd
+    # - part: "Local dependence"
+    # - part: "Differential item functioning"
+    # - part: "Reliability and targeting"
+    - part: "Person-level change"
+      chapters:
+        - chapters/rci-exact-null.qmd
+    - presentations.qmd
+    - references.qmd
+
+bibliography: references.bib
+csl: apa.csl
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    df-print: kable
+    fig-format: png
+    fig-dpi: 200
+    fig-width: 8
+    fig-height: 5
+
+execute:
+  freeze: auto
+  warning: false
+  message: false
+  echo: true

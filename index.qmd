@@ -1,0 +1,49 @@
+# Preface {.unnumbered}
+
+This book collects the simulation studies and methods notes written while
+developing the R package [easyRasch2](https://pgmj.github.io/easyRasch2/). Each
+chapter starts from a question that came up when choosing a default, a cutoff or
+a statistic for the package, and reports what the simulations showed. Most of
+them will never become journal articles, but the results are useful beyond the
+package, and they should be possible to find, check and cite.
+
+## How the chapters work
+
+Every chapter is self-contained and can be read on its own. Where one study
+depends on another, the dependency is a cross-reference to that chapter.
+
+Each chapter opens with a box giving its status, the easyRasch2 and R versions
+it was computed with, and a suggested citation. The status is one of:
+
+- **Complete.** The study answers its question and the results are not expected
+  to change.
+- **Preliminary.** The design is settled, but parts are still running or being
+  checked.
+- **Superseded.** A later chapter replaces it, and the box says which.
+
+The dates under each chapter title are when it was first published and last
+modified. A revision that changes a result is listed in the chapter's revision
+history, with what changed and why. Edits to wording are not listed. The full
+history of every chapter is in the
+[GitHub repository](https://github.com/pgmj/rasch_book), linked from the
+"View source" button on each page.
+
+## Reproducibility
+
+The code that produces each table and figure is in the chapter, folded by
+default. Simulations that take more than a few minutes do not run when the book
+is built. They are in the `scripts/` folder of the repository, one subfolder per
+topic, and the chapter says which script produced which result. Some chapters
+call internal easyRasch2 functions with `easyRasch2:::`. These are not part of
+the package's public interface and may change between versions.
+
+## Citing
+
+Cite a chapter as a chapter in this book, with its last revised date. Each
+chapter's opening box gives the suggested citation.
+
+## Feedback
+
+Corrections and questions are welcome as
+[GitHub issues](https://github.com/pgmj/rasch_book/issues). The "Report an
+issue" button on each page opens one for that chapter.

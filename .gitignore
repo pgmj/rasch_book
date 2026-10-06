@@ -1,0 +1,9 @@
+/.quarto/
+/_book/
+.Rproj.user/
+.Rhistory
+.DS_Store
+*_files/
+!_freeze/**
+
+**/*.quarto_ipynb

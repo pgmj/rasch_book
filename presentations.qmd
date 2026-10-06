@@ -1,0 +1,27 @@
+# Presentations {.unnumbered}
+
+Slides presenting findings from the chapters. Each deck opens full screen in
+your browser. Press `F` for full screen, `S` for speaker view and `Esc` for an
+overview of all slides.
+
+## An exact null for two Rasch protocols
+
+*2026-09-23.* The reliable change index and the PCA/t-test of unidimensionality,
+covering the [RCI chapter](chapters/rci-exact-null.qmd) and the
+[PCA/t-test chapter](chapters/ttest-protocol-exact-null.qmd).
+
+[Open slides](slides/rasch-exact-null.html){.btn .btn-outline-primary target="_blank"}
+[PDF](slides/rasch-exact-null.pdf){.btn .btn-outline-secondary target="_blank"}
+
+<iframe src="slides/rasch-exact-null.html" loading="lazy" title="Slides: An exact null for two Rasch protocols" style="width: 100%; aspect-ratio: 16 / 10; border: 1px solid #ccc;"></iframe>
+
+## Simulation-based cutoffs for Rasch item fit
+
+*2026-09-23.* Iterations, multiplicity correction and decision stability for
+conditional infit cutoffs. The chapters behind this deck have not been added to
+the book yet.
+
+[Open slides](slides/rasch-itemfit-fwer.html){.btn .btn-outline-primary target="_blank"}
+[PDF](slides/rasch-itemfit-fwer.pdf){.btn .btn-outline-secondary target="_blank"}
+
+<iframe src="slides/rasch-itemfit-fwer.html" loading="lazy" title="Slides: Simulation-based cutoffs for Rasch item fit" style="width: 100%; aspect-ratio: 16 / 10; border: 1px solid #ccc;"></iframe>

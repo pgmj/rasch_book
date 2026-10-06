@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use material from this book, please cite it as below. Cite individual chapters as chapters in the book."
+type: report
+title: "Rasch Measurement Explorations: Simulation studies from the development of easyRasch2"
+authors:
+  - family-names: Johansson
+    given-names: Magnus
+url: "https://pgmj.github.io/rasch_book/"
+repository-code: "https://github.com/pgmj/rasch_book"
+# Add after the first Zenodo release:
+# doi: 10.5281/zenodo.XXXXXXX
