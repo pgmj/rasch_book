@@ -342,8 +342,7 @@ ggplot(d_fig, aes(r, alpha)) +
   geom_hline(yintercept = 0.05, linetype = "dashed", colour = "grey40") +
   geom_step(direction = "mid") +
   facet_wrap(~ label, scales = "free_x") +
-  labs(x = "Total score across all items", y = "Exact type I error of 1.96") +
-  theme_bw() + easyRasch2:::er2_axis_margins()
+  labs(x = "Total score across all items", y = "Exact type I error of 1.96")
 ```
 
 The sawtooth is discreteness. Adjacent total scores differ in how many attainable
@@ -480,7 +479,6 @@ ggplot(subset(d_cnt, prop <= 8), aes(prop, dens, colour = label)) +
   geom_step(direction = "mid") +
   labs(x = "Observed significant tests (%)", y = "Exact probability",
        colour = NULL) +
-  theme_bw() + easyRasch2:::er2_axis_margins() +
   theme(legend.position = "bottom")
 ```
 

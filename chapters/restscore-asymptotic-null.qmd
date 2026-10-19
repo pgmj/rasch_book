@@ -309,12 +309,18 @@ If sparse restscore tails matter, items far from the sample mean should be the
 worst calibrated, and more so under mistargeting.
 
 ```{r byitem}
+#| fig-width: 8
 #| fig-height: 6
+# readable panel labels, shared with the quantile plot below
+set_lab <- c(dich = "20 dichotomous items", poly = "9 items, 4 categories")
+mu_lab <- function(mu) ifelse(mu == 0, "μ = 0 (targeted)", "μ = 1.5 (mistargeted)")
+
 long |>
   group_by(set, mu, n, item, location) |>
   summarise(rate = 100 * mean(p < .05), .groups = "drop") |>
   mutate(rel_location = location - mu,
-         mu = paste("μ =", mu)) |>
+         set = set_lab[set],
+         mu = mu_lab(mu)) |>
   ggplot(aes(rel_location, rate, colour = factor(n))) +
   geom_hline(yintercept = 5, linetype = "dashed", colour = "grey40") +
   geom_line() +
@@ -322,7 +328,7 @@ long |>
   facet_grid(set ~ mu, scales = "free_x") +
   labs(x = "Item location relative to person mean (logits)",
        y = "Per-item rejection rate (%)", colour = "n") +
-  theme_minimal()
+  theme(legend.position = "bottom")
 ```
 
 ### Distribution of z
@@ -330,23 +336,56 @@ long |>
 Quantile plot against the standard normal, pooled over items, for the smallest
 and largest n. Points on the diagonal mean the reference distribution is right.
 
-```{r qq}
-#| fig-height: 5
-long |>
+```{r qq-data}
+#| include: false
+set.seed(2026)                         # fixed sample of points to plot
+qq <- long |>
   filter(n %in% range(NS)) |>
   group_by(set, mu, n) |>
   mutate(theoretical = qnorm(ppoints(n()))[rank(z, ties.method = "first")]) |>
   slice_sample(n = 5000) |>
   ungroup() |>
-  mutate(cell = paste0(set, ", μ = ", mu)) |>
-  ggplot(aes(theoretical, z, colour = factor(n))) +
-  geom_abline(linetype = "dashed", colour = "grey40") +
-  geom_point(size = 0.4, alpha = 0.4) +
-  facet_wrap(~cell) +
-  coord_equal() +
-  labs(x = "N(0, 1) quantile", y = "Observed z", colour = "n") +
-  theme_minimal()
+  mutate(set = factor(set_lab[set], levels = set_lab),
+         mu = mu_lab(mu))
+QQ_LIM <- 4.5
+qq_cut <- qq |> filter(abs(z) > QQ_LIM | !is.finite(z))
+qq_out <- nrow(qq_cut)
+qq_cut_pos <- all(qq_cut$z > 0)
+qq_cut_gmin <- min(qq_cut$obs)
+qq_cut_n150 <- sum(qq_cut$n == 150)
 ```
+
+```{r}
+#| label: fig-rs-qq
+#| fig-width: 8
+#| fig-height: 8
+#| fig-cap: "Quantile plot of the item-restscore z against the standard normal,
+#|   pooled over items, at the smallest and largest sample size. The dashed
+#|   line is where the points would lie if the standard normal were the right
+#|   reference. Each panel shows a random sample of 5000 points per sample
+#|   size."
+#| fig-alt: "Four square panels, rows for the dichotomous and polytomous item
+#|   sets and columns for the targeted and mistargeted samples, each plotting
+#|   observed z against standard normal quantiles for n = 150 and n = 2000. In
+#|   every panel the points lie above the dashed diagonal in the lower tail and
+#|   bend above it in the upper tail, most for n = 150 and for the dichotomous
+#|   items, so z is shifted upwards and skewed to the right rather than standard
+#|   normal."
+ggplot(qq, aes(theoretical, z, colour = factor(n))) +
+  geom_abline(linetype = "dashed", colour = "grey40") +
+  geom_point(size = 0.6, alpha = 0.4) +
+  facet_wrap(vars(set, mu), ncol = 2) +
+  coord_equal(xlim = c(-QQ_LIM, QQ_LIM), ylim = c(-QQ_LIM, QQ_LIM)) +
+  scale_colour_manual(values = c("150" = "#2a78d6", "2000" = "#eb6834")) +
+  labs(x = "N(0, 1) quantile", y = "Observed z", colour = "n") +
+  theme(legend.position = "bottom") +
+  guides(colour = guide_legend(override.aes = list(size = 3, alpha = 1)))
+```
+
+Both axes are cut at ±`r QQ_LIM`, which leaves out `r qq_out` of the
+`r format(nrow(qq), big.mark = " ")` plotted points. `r if (qq_cut_pos) "All of them are in the upper tail" else "They are in both tails"`,
+from items with an observed gamma between `r sprintf("%.2f", qq_cut_gmin)` and
+1, and `r if (qq_cut_n150 == qq_out) "all of them are" else paste(qq_cut_n150, "of them are")` at n = 150.
 
 ## Interpretation {#sec-rs-interpretation}
 

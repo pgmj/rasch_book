@@ -25,3 +25,17 @@ modified_note <- function() {
   sprintf(" (last modified %s %d, %s)", month.name[as.integer(format(modified, "%m"))],
           as.integer(format(modified, "%d")), format(modified, "%Y"))
 }
+
+# House ggplot theme, as in easyRasch2: theme_bw() with room between the axis
+# titles and the tick labels (er2_axis_margins()) and between facet panels.
+# Set as the default for every chapter, so chapters add only plot-specific
+# tweaks such as legend position.
+theme_book <- function(base_size = 12) {
+  ggplot2::theme_bw(base_size = base_size) +
+    ggplot2::theme(
+      axis.title.x = ggplot2::element_text(margin = ggplot2::margin(t = 12)),
+      axis.title.y = ggplot2::element_text(margin = ggplot2::margin(r = 12)),
+      panel.spacing = ggplot2::unit(0.7, "cm")
+    )
+}
+ggplot2::theme_set(theme_book())

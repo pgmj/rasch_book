@@ -152,7 +152,6 @@ variant_plot <- function(d, ylab, band = NULL) {
     scale_shape_manual(values = v_shp, labels = v_lab, name = NULL) +
     facet_wrap(~ set) +
     labs(x = "Sample size", y = ylab) +
-    theme_minimal(base_size = 11) +
     theme(legend.position = "bottom", panel.grid.minor = element_blank())
 }
 ```
@@ -331,7 +330,6 @@ rate_plot <- function(d, ylab, ylim = c(0, 100)) {
     scale_linetype_manual(values = lty, labels = lab, name = NULL) +
     scale_y_continuous(limits = ylim) +
     labs(x = "Sample size", y = ylab) +
-    theme_minimal(base_size = 11) +
     theme(legend.position = "bottom", panel.grid.minor = element_blank())
 }
 
