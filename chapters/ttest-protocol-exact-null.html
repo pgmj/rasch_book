@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -101,9 +101,9 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b626d73c4c936ccc3cb08be7d45d1df6.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-fd0503e23dce65854c81c5baaade3bdf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -523,7 +523,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Status:</strong> complete<br> <strong>Computed with:</strong> easyRasch2 1.3.1.9002, R 4.6.1<br> <strong>Slides:</strong> <a href="../slides/rasch-exact-null.html" target="_blank">An exact null for two Rasch protocols</a><br> <strong>Cite as:</strong> Johansson, M. (2026). An exact null for the PCA/t-test unidimensionality protocol. In <em>Rasch Measurement Explorations</em>. <a href="https://pgmj.github.io/rasch_book/chapters/ttest-protocol-exact-null.html" class="uri">https://pgmj.github.io/rasch_book/chapters/ttest-protocol-exact-null.html</a></p>
+<p><strong>Status:</strong> complete<br> <strong>Computed with:</strong> easyRasch2 1.4.0, R 4.6.1<br> <strong>Slides:</strong> <a href="../slides/rasch-exact-null.html" target="_blank">An exact null for two Rasch protocols</a><br> <strong>Cite as:</strong> Johansson, M. (2026). An exact null for the PCA/t-test unidimensionality protocol. In <em>Rasch Measurement Explorations</em>. <a href="https://pgmj.github.io/rasch_book/chapters/ttest-protocol-exact-null.html" class="uri">https://pgmj.github.io/rasch_book/chapters/ttest-protocol-exact-null.html</a></p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-tip no-icon callout-titled">
@@ -837,8 +837,7 @@ window.Quarto = {
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.05</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"grey40"</span>) <span class="sc">+</span></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_step</span>(<span class="at">direction =</span> <span class="st">"mid"</span>) <span class="sc">+</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> label, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Total score across all items"</span>, <span class="at">y =</span> <span class="st">"Exact type I error of 1.96"</span>) <span class="sc">+</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> easyRasch2<span class="sc">:::</span><span class="fu">er2_axis_margins</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Total score across all items"</span>, <span class="at">y =</span> <span class="st">"Exact type I error of 1.96"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-tt-alpha" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three panels, one per scale, plotting exact type I error against total score. Each panel shows a flat zero region at both ends of the score range and a ragged sawtooth in between that mostly falls below the dashed 0.05 reference line. The dichotomous panel has the widest zero regions and the lowest sawtooth.">
@@ -1131,8 +1130,7 @@ Figure&nbsp;3.1: Exact size of the 1.96 rule by total score, under a perfectly u
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_step</span>(<span class="at">direction =</span> <span class="st">"mid"</span>) <span class="sc">+</span></span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed significant tests (%)"</span>, <span class="at">y =</span> <span class="st">"Exact probability"</span>,</span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> easyRasch2<span class="sc">:::</span><span class="fu">er2_axis_margins</span>() <span class="sc">+</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-tt-count" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three overlaid distributions of the observed proportion of significant tests, one per scale, each roughly bell shaped and centered between one and four percent. All three lie almost entirely to the left of a dashed vertical line at five percent.">
@@ -2113,271 +2111,269 @@ Tennant, A., &amp; Pallant, J. (2006). Unidimensionality matters. <em>Rasch Meas
 <span id="cb9-344"><a href="#cb9-344" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.05</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"grey40"</span>) <span class="sc">+</span></span>
 <span id="cb9-345"><a href="#cb9-345" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_step</span>(<span class="at">direction =</span> <span class="st">"mid"</span>) <span class="sc">+</span></span>
 <span id="cb9-346"><a href="#cb9-346" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> label, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
-<span id="cb9-347"><a href="#cb9-347" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Total score across all items"</span>, <span class="at">y =</span> <span class="st">"Exact type I error of 1.96"</span>) <span class="sc">+</span></span>
-<span id="cb9-348"><a href="#cb9-348" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> easyRasch2<span class="sc">:::</span><span class="fu">er2_axis_margins</span>()</span>
-<span id="cb9-349"><a href="#cb9-349" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-350"><a href="#cb9-350" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-351"><a href="#cb9-351" aria-hidden="true" tabindex="-1"></a>The sawtooth is discreteness. Adjacent total scores differ in how many attainable</span>
-<span id="cb9-352"><a href="#cb9-352" aria-hidden="true" tabindex="-1"></a>splits they have and where those splits fall relative to the cutoff, so the size</span>
-<span id="cb9-353"><a href="#cb9-353" aria-hidden="true" tabindex="-1"></a>of the test alternates rather than varying smoothly. The RCI chapter found the same</span>
-<span id="cb9-354"><a href="#cb9-354" aria-hidden="true" tabindex="-1"></a>structure in the conditional critical value, which formed an arch across the</span>
-<span id="cb9-355"><a href="#cb9-355" aria-hidden="true" tabindex="-1"></a>score range rather than a constant.</span>
-<span id="cb9-356"><a href="#cb9-356" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-357"><a href="#cb9-357" aria-hidden="true" tabindex="-1"></a>@fig-tt-alpha also shows that the conservatism is not a uniform shrinkage. Around</span>
-<span id="cb9-358"><a href="#cb9-358" aria-hidden="true" tabindex="-1"></a>the middle of the scale the size peaks at 0.062, 0.062 and 0.054 in the three</span>
-<span id="cb9-359"><a href="#cb9-359" aria-hidden="true" tabindex="-1"></a>panels, so the test is mildly anti-conservative there. Under the $N(0, 1.4)$</span>
-<span id="cb9-360"><a href="#cb9-360" aria-hidden="true" tabindex="-1"></a>weighting, 20%, 6% and 10% of respondents hold a total score whose size exceeds</span>
-<span id="cb9-361"><a href="#cb9-361" aria-hidden="true" tabindex="-1"></a>0.05. The whole of the deficit comes from the ends, where attainable scores run</span>
-<span id="cb9-362"><a href="#cb9-362" aria-hidden="true" tabindex="-1"></a>out and the size falls to zero. Averaging over the score distribution is what</span>
-<span id="cb9-363"><a href="#cb9-363" aria-hidden="true" tabindex="-1"></a>the protocol does when it pools respondents into one proportion, and that</span>
-<span id="cb9-364"><a href="#cb9-364" aria-hidden="true" tabindex="-1"></a>average is what has to be compared with 5%, but a reader should know that the</span>
-<span id="cb9-365"><a href="#cb9-365" aria-hidden="true" tabindex="-1"></a>pooled figure is combining two opposite behaviours rather than describing a</span>
-<span id="cb9-366"><a href="#cb9-366" aria-hidden="true" tabindex="-1"></a>test that is uniformly too strict.</span>
-<span id="cb9-367"><a href="#cb9-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-368"><a href="#cb9-368" aria-hidden="true" tabindex="-1"></a><span class="fu">## Asymmetry and centering {#sec-tt-asymmetry}</span></span>
-<span id="cb9-369"><a href="#cb9-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-370"><a href="#cb9-370" aria-hidden="true" tabindex="-1"></a><span class="in">```{r asym}</span></span>
-<span id="cb9-371"><a href="#cb9-371" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb9-372"><a href="#cb9-372" aria-hidden="true" tabindex="-1"></a>sel <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">3</span>)</span>
-<span id="cb9-373"><a href="#cb9-373" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">data.frame</span>(res<span class="sc">$</span>config[sel], res<span class="sc">$</span>subtests[sel], <span class="fu">round</span>(res<span class="sc">$</span>lo[sel], <span class="dv">3</span>),</span>
-<span id="cb9-374"><a href="#cb9-374" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">round</span>(res<span class="sc">$</span>hi[sel], <span class="dv">3</span>), <span class="fu">round</span>(res<span class="sc">$</span>asym[sel], <span class="dv">3</span>),</span>
-<span id="cb9-375"><a href="#cb9-375" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">round</span>(res<span class="sc">$</span>gap[sel], <span class="dv">3</span>)),</span>
-<span id="cb9-376"><a href="#cb9-376" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Scale"</span>, <span class="st">"Split"</span>, <span class="st">"Lower"</span>, <span class="st">"Upper"</span>, <span class="st">"Asym."</span>,</span>
-<span id="cb9-377"><a href="#cb9-377" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Gap (logits)"</span>),</span>
-<span id="cb9-378"><a href="#cb9-378" aria-hidden="true" tabindex="-1"></a>      <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb9-379"><a href="#cb9-379" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-380"><a href="#cb9-380" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-381"><a href="#cb9-381" aria-hidden="true" tabindex="-1"></a>The RCI chapter (@sec-rci-validation) corrected an earlier belief that two-sided simulated critical values</span>
-<span id="cb9-382"><a href="#cb9-382" aria-hidden="true" tabindex="-1"></a>were asymmetric: under the change null the two occasions are exchangeable, so the</span>
-<span id="cb9-383"><a href="#cb9-383" aria-hidden="true" tabindex="-1"></a>difference is symmetric about zero however skewed $\hat\theta$ is, and</span>
-<span id="cb9-384"><a href="#cb9-384" aria-hidden="true" tabindex="-1"></a>exchangeability fails only when the occasions differ in missingness. Subtests</span>
-<span id="cb9-385"><a href="#cb9-385" aria-hidden="true" tabindex="-1"></a>break exchangeability by construction, because they differ in length, targeting</span>
-<span id="cb9-386"><a href="#cb9-386" aria-hidden="true" tabindex="-1"></a>and information. A balanced interleaved split is nearly symmetric, so the change</span>
-<span id="cb9-387"><a href="#cb9-387" aria-hidden="true" tabindex="-1"></a>result transfers there. An unbalanced or difficulty-confounded split is not. The</span>
-<span id="cb9-388"><a href="#cb9-388" aria-hidden="true" tabindex="-1"></a>ten easiest items against the ten hardest gives correct two-sided values of</span>
-<span id="cb9-389"><a href="#cb9-389" aria-hidden="true" tabindex="-1"></a>-2.001 and 1.578, so the upper value is stricter than 1.96 while the lower is</span>
-<span id="cb9-390"><a href="#cb9-390" aria-hidden="true" tabindex="-1"></a>more lenient. A principal component of residuals often separates items by</span>
-<span id="cb9-391"><a href="#cb9-391" aria-hidden="true" tabindex="-1"></a>location as well as by content, which makes that row the relevant one.</span>
-<span id="cb9-392"><a href="#cb9-392" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-393"><a href="#cb9-393" aria-hidden="true" tabindex="-1"></a>The last column is $\max_r |E<span class="co">[</span><span class="ot">\hat\theta_A - \hat\theta_B \mid r</span><span class="co">]</span>|$ under a</span>
-<span id="cb9-394"><a href="#cb9-394" aria-hidden="true" tabindex="-1"></a>perfectly unidimensional model. On a 4/16 split it reaches 0.557 logits, purely</span>
-<span id="cb9-395"><a href="#cb9-395" aria-hidden="true" tabindex="-1"></a>from the difference in WLE bias between a four-item and a sixteen-item subtest.</span>
-<span id="cb9-396"><a href="#cb9-396" aria-hidden="true" tabindex="-1"></a>That is model-implied signal with no multidimensionality behind it. Reporting</span>
-<span id="cb9-397"><a href="#cb9-397" aria-hidden="true" tabindex="-1"></a>quantity and units at every surface, as the RCI chapter insists, matters here: the</span>
-<span id="cb9-398"><a href="#cb9-398" aria-hidden="true" tabindex="-1"></a>gap is in logits, the t is unitless, and only the second is being compared with</span>
-<span id="cb9-399"><a href="#cb9-399" aria-hidden="true" tabindex="-1"></a>1.96.</span>
-<span id="cb9-400"><a href="#cb9-400" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-401"><a href="#cb9-401" aria-hidden="true" tabindex="-1"></a><span class="fu">## What happens at the count level {#sec-tt-count}</span></span>
-<span id="cb9-402"><a href="#cb9-402" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-403"><a href="#cb9-403" aria-hidden="true" tabindex="-1"></a><span class="in">```{r count}</span></span>
-<span id="cb9-404"><a href="#cb9-404" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb9-405"><a href="#cb9-405" aria-hidden="true" tabindex="-1"></a>count_null <span class="ot">&lt;-</span> <span class="cf">function</span>(label, k, ncat, idxA, n, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">sigma =</span> <span class="fl">1.4</span>) {</span>
-<span id="cb9-406"><a href="#cb9-406" aria-hidden="true" tabindex="-1"></a>  thr <span class="ot">&lt;-</span> <span class="fu">mk</span>(k, ncat); g <span class="ot">&lt;-</span> <span class="fu">split_grid</span>(thr, idxA); cn <span class="ot">&lt;-</span> <span class="fu">cond_null</span>(g, <span class="dv">0</span>)</span>
-<span id="cb9-407"><a href="#cb9-407" aria-hidden="true" tabindex="-1"></a>  fr <span class="ot">&lt;-</span> <span class="fu">score_weights</span>(thr, mu, sigma); fr <span class="ot">&lt;-</span> fr <span class="sc">/</span> <span class="fu">sum</span>(fr)</span>
-<span id="cb9-408"><a href="#cb9-408" aria-hidden="true" tabindex="-1"></a>  a  <span class="ot">&lt;-</span> <span class="fu">alpha_by_r</span>(cn, <span class="fl">1.96</span>)</span>
-<span id="cb9-409"><a href="#cb9-409" aria-hidden="true" tabindex="-1"></a>  nr <span class="ot">&lt;-</span> <span class="fu">round</span>(n <span class="sc">*</span> fr); p_i <span class="ot">&lt;-</span> <span class="fu">rep</span>(a, <span class="at">times =</span> nr)</span>
-<span id="cb9-410"><a href="#cb9-410" aria-hidden="true" tabindex="-1"></a>  d  <span class="ot">&lt;-</span> <span class="fu">pois_binom</span>(p_i); cnt <span class="ot">&lt;-</span> <span class="fu">seq_along</span>(d) <span class="sc">-</span> <span class="dv">1</span>L; m <span class="ot">&lt;-</span> <span class="fu">length</span>(p_i)</span>
-<span id="cb9-411"><a href="#cb9-411" aria-hidden="true" tabindex="-1"></a>  mean_p <span class="ot">&lt;-</span> <span class="fu">sum</span>(d <span class="sc">*</span> cnt) <span class="sc">/</span> m</span>
-<span id="cb9-412"><a href="#cb9-412" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">config =</span> label, <span class="at">n =</span> m,</span>
-<span id="cb9-413"><a href="#cb9-413" aria-hidden="true" tabindex="-1"></a>             <span class="at">mean_p =</span> <span class="dv">100</span> <span class="sc">*</span> mean_p,</span>
-<span id="cb9-414"><a href="#cb9-414" aria-hidden="true" tabindex="-1"></a>             <span class="at">q95    =</span> <span class="dv">100</span> <span class="sc">*</span> cnt[<span class="fu">which</span>(<span class="fu">cumsum</span>(d) <span class="sc">&gt;=</span> <span class="fl">0.95</span>)[<span class="dv">1</span>L]] <span class="sc">/</span> m,</span>
-<span id="cb9-415"><a href="#cb9-415" aria-hidden="true" tabindex="-1"></a>             <span class="at">p_over =</span> <span class="fu">sum</span>(d[cnt <span class="sc">/</span> m <span class="sc">&gt;</span> <span class="fl">0.05</span>]),</span>
-<span id="cb9-416"><a href="#cb9-416" aria-hidden="true" tabindex="-1"></a>             <span class="at">sd_pb  =</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(d <span class="sc">*</span> cnt<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> <span class="fu">sum</span>(d <span class="sc">*</span> cnt)<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb9-417"><a href="#cb9-417" aria-hidden="true" tabindex="-1"></a>             <span class="at">sd_bin =</span> <span class="fu">sqrt</span>(m <span class="sc">*</span> mean_p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> mean_p)),</span>
-<span id="cb9-418"><a href="#cb9-418" aria-hidden="true" tabindex="-1"></a>             <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb9-419"><a href="#cb9-419" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-420"><a href="#cb9-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-421"><a href="#cb9-421" aria-hidden="true" tabindex="-1"></a>cfgs <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="st">"20 items, 4 cat, 10/10"</span>, <span class="dv">20</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)),</span>
-<span id="cb9-422"><a href="#cb9-422" aria-hidden="true" tabindex="-1"></a>             <span class="fu">list</span>(<span class="st">"12 items, 4 cat, 6/6"</span>,   <span class="dv">12</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">12</span>, <span class="at">by =</span> <span class="dv">2</span>)),</span>
-<span id="cb9-423"><a href="#cb9-423" aria-hidden="true" tabindex="-1"></a>             <span class="fu">list</span>(<span class="st">"20 items, 2 cat, 10/10"</span>, <span class="dv">20</span>, <span class="dv">2</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)),</span>
-<span id="cb9-424"><a href="#cb9-424" aria-hidden="true" tabindex="-1"></a>             <span class="fu">list</span>(<span class="st">"40 items, 4 cat, 20/20"</span>, <span class="dv">40</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">40</span>, <span class="at">by =</span> <span class="dv">2</span>)))</span>
-<span id="cb9-425"><a href="#cb9-425" aria-hidden="true" tabindex="-1"></a>cts <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(cfgs, <span class="cf">function</span>(cf)</span>
-<span id="cb9-426"><a href="#cb9-426" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(<span class="fu">c</span>(<span class="dv">200</span>, <span class="dv">500</span>, <span class="dv">1000</span>), <span class="cf">function</span>(n)</span>
-<span id="cb9-427"><a href="#cb9-427" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count_null</span>(cf[[<span class="dv">1</span>]], cf[[<span class="dv">2</span>]], cf[[<span class="dv">3</span>]], cf[[<span class="dv">4</span>]], n)))))</span>
-<span id="cb9-428"><a href="#cb9-428" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-429"><a href="#cb9-429" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">data.frame</span>(cts<span class="sc">$</span>config, cts<span class="sc">$</span>n, <span class="fu">round</span>(cts<span class="sc">$</span>mean_p, <span class="dv">2</span>), <span class="fu">round</span>(cts<span class="sc">$</span>q95, <span class="dv">2</span>),</span>
-<span id="cb9-430"><a href="#cb9-430" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">round</span>(cts<span class="sc">$</span>p_over, <span class="dv">4</span>), <span class="fu">round</span>(cts<span class="sc">$</span>sd_pb, <span class="dv">2</span>), <span class="fu">round</span>(cts<span class="sc">$</span>sd_bin, <span class="dv">2</span>)),</span>
-<span id="cb9-431"><a href="#cb9-431" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Scale"</span>, <span class="st">"n"</span>, <span class="st">"Mean (%)"</span>, <span class="st">"95th (%)"</span>, <span class="st">"P(&gt;5%)"</span>,</span>
-<span id="cb9-432"><a href="#cb9-432" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"SD PB"</span>, <span class="st">"SD bin"</span>),</span>
-<span id="cb9-433"><a href="#cb9-433" aria-hidden="true" tabindex="-1"></a>      <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb9-434"><a href="#cb9-434" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-435"><a href="#cb9-435" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-436"><a href="#cb9-436" aria-hidden="true" tabindex="-1"></a>At $n = 1000$, observing more than 5% significant tests is an event of</span>
-<span id="cb9-437"><a href="#cb9-437" aria-hidden="true" tabindex="-1"></a>probability 0.0007, 0.0000, 0.0000 and 0.044 under a perfectly unidimensional</span>
-<span id="cb9-438"><a href="#cb9-438" aria-hidden="true" tabindex="-1"></a>model. The protocol treats 5% as the boundary of acceptability. The exact null</span>
-<span id="cb9-439"><a href="#cb9-439" aria-hidden="true" tabindex="-1"></a>puts it in the upper tail.</span>
-<span id="cb9-440"><a href="#cb9-440" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-441"><a href="#cb9-441" aria-hidden="true" tabindex="-1"></a>**The binomial family is fine.** Conditioning on the observed scores makes the count</span>
-<span id="cb9-442"><a href="#cb9-442" aria-hidden="true" tabindex="-1"></a>Poisson-binomial rather than binomial, since each respondent carries their own</span>
-<span id="cb9-443"><a href="#cb9-443" aria-hidden="true" tabindex="-1"></a>$\alpha_r$. The last two columns show the two standard deviations agree to</span>
-<span id="cb9-444"><a href="#cb9-444" aria-hidden="true" tabindex="-1"></a>within a percent throughout. The heterogeneity in $\alpha_r$ is too small</span>
-<span id="cb9-445"><a href="#cb9-445" aria-hidden="true" tabindex="-1"></a>relative to its mean to move the variance, because</span>
-<span id="cb9-446"><a href="#cb9-446" aria-hidden="true" tabindex="-1"></a>$\mathrm{Var}_{\text{PB}} = n\bar\alpha - \sum \alpha_i^2$ differs from</span>
-<span id="cb9-447"><a href="#cb9-447" aria-hidden="true" tabindex="-1"></a>$n\bar\alpha(1-\bar\alpha)$ by $n\,\mathrm{Var}(\alpha_i)$, which is order</span>
-<span id="cb9-448"><a href="#cb9-448" aria-hidden="true" tabindex="-1"></a>$10^{-4}$ against a mean of order $10^{-2}$. Marginally, with person locations</span>
-<span id="cb9-449"><a href="#cb9-449" aria-hidden="true" tabindex="-1"></a>drawn iid from a latent density, the count is binomial in any case.</span>
-<span id="cb9-450"><a href="#cb9-450" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-451"><a href="#cb9-451" aria-hidden="true" tabindex="-1"></a>So the distributional shape @hagell2014 investigates is not where the</span>
-<span id="cb9-452"><a href="#cb9-452" aria-hidden="true" tabindex="-1"></a>protocol goes wrong. All five of the interval methods compared there are being applied to</span>
-<span id="cb9-453"><a href="#cb9-453" aria-hidden="true" tabindex="-1"></a>roughly the right distribution and compared against the wrong number.</span>
-<span id="cb9-454"><a href="#cb9-454" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-457"><a href="#cb9-457" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-458"><a href="#cb9-458" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-tt-count</span></span>
-<span id="cb9-459"><a href="#cb9-459" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb9-460"><a href="#cb9-460" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
-<span id="cb9-461"><a href="#cb9-461" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 3.8</span></span>
-<span id="cb9-462"><a href="#cb9-462" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Exact null distribution of the observed proportion of significant</span></span>
-<span id="cb9-463"><a href="#cb9-463" aria-hidden="true" tabindex="-1"></a><span class="co">#|   t-tests at $n = 500$, under a perfectly unidimensional Rasch model with a</span></span>
-<span id="cb9-464"><a href="#cb9-464" aria-hidden="true" tabindex="-1"></a><span class="co">#|   $N(0, 1.4)$ latent density. The dashed line is the protocol's 5% benchmark."</span></span>
-<span id="cb9-465"><a href="#cb9-465" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: "Three overlaid distributions of the observed proportion of</span></span>
-<span id="cb9-466"><a href="#cb9-466" aria-hidden="true" tabindex="-1"></a><span class="co">#|   significant tests, one per scale, each roughly bell shaped and centered</span></span>
-<span id="cb9-467"><a href="#cb9-467" aria-hidden="true" tabindex="-1"></a><span class="co">#|   between one and four percent. All three lie almost entirely to the left of</span></span>
-<span id="cb9-468"><a href="#cb9-468" aria-hidden="true" tabindex="-1"></a><span class="co">#|   a dashed vertical line at five percent."</span></span>
-<span id="cb9-469"><a href="#cb9-469" aria-hidden="true" tabindex="-1"></a>dist_one <span class="ot">&lt;-</span> <span class="cf">function</span>(label, k, ncat, idxA, <span class="at">n =</span> <span class="dv">500</span>) {</span>
-<span id="cb9-470"><a href="#cb9-470" aria-hidden="true" tabindex="-1"></a>  thr <span class="ot">&lt;-</span> <span class="fu">mk</span>(k, ncat); g <span class="ot">&lt;-</span> <span class="fu">split_grid</span>(thr, idxA)</span>
-<span id="cb9-471"><a href="#cb9-471" aria-hidden="true" tabindex="-1"></a>  fr <span class="ot">&lt;-</span> <span class="fu">score_weights</span>(thr, <span class="dv">0</span>, <span class="fl">1.4</span>); fr <span class="ot">&lt;-</span> fr <span class="sc">/</span> <span class="fu">sum</span>(fr)</span>
-<span id="cb9-472"><a href="#cb9-472" aria-hidden="true" tabindex="-1"></a>  p_i <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">alpha_by_r</span>(<span class="fu">cond_null</span>(g, <span class="dv">0</span>), <span class="fl">1.96</span>), <span class="at">times =</span> <span class="fu">round</span>(n <span class="sc">*</span> fr))</span>
-<span id="cb9-473"><a href="#cb9-473" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">pois_binom</span>(p_i)</span>
-<span id="cb9-474"><a href="#cb9-474" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">label =</span> label, <span class="at">prop =</span> <span class="dv">100</span> <span class="sc">*</span> (<span class="fu">seq_along</span>(d) <span class="sc">-</span> <span class="dv">1</span>L) <span class="sc">/</span> <span class="fu">length</span>(p_i),</span>
-<span id="cb9-475"><a href="#cb9-475" aria-hidden="true" tabindex="-1"></a>             <span class="at">dens =</span> d)</span>
-<span id="cb9-476"><a href="#cb9-476" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-477"><a href="#cb9-477" aria-hidden="true" tabindex="-1"></a>d_cnt <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb9-478"><a href="#cb9-478" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dist_one</span>(<span class="st">"20 items, 4 cat, 10/10"</span>, <span class="dv">20</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)),</span>
-<span id="cb9-479"><a href="#cb9-479" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dist_one</span>(<span class="st">"12 items, 4 cat, 6/6"</span>,   <span class="dv">12</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">12</span>, <span class="at">by =</span> <span class="dv">2</span>)),</span>
-<span id="cb9-480"><a href="#cb9-480" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dist_one</span>(<span class="st">"20 items, 2 cat, 10/10"</span>, <span class="dv">20</span>, <span class="dv">2</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)))</span>
-<span id="cb9-481"><a href="#cb9-481" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-482"><a href="#cb9-482" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(d_cnt, prop <span class="sc">&lt;=</span> <span class="dv">8</span>), <span class="fu">aes</span>(prop, dens, <span class="at">colour =</span> label)) <span class="sc">+</span></span>
-<span id="cb9-483"><a href="#cb9-483" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">5</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"grey40"</span>) <span class="sc">+</span></span>
-<span id="cb9-484"><a href="#cb9-484" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_step</span>(<span class="at">direction =</span> <span class="st">"mid"</span>) <span class="sc">+</span></span>
-<span id="cb9-485"><a href="#cb9-485" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed significant tests (%)"</span>, <span class="at">y =</span> <span class="st">"Exact probability"</span>,</span>
-<span id="cb9-486"><a href="#cb9-486" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb9-487"><a href="#cb9-487" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> easyRasch2<span class="sc">:::</span><span class="fu">er2_axis_margins</span>() <span class="sc">+</span></span>
-<span id="cb9-488"><a href="#cb9-488" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
-<span id="cb9-489"><a href="#cb9-489" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-347"><a href="#cb9-347" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Total score across all items"</span>, <span class="at">y =</span> <span class="st">"Exact type I error of 1.96"</span>)</span>
+<span id="cb9-348"><a href="#cb9-348" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-349"><a href="#cb9-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-350"><a href="#cb9-350" aria-hidden="true" tabindex="-1"></a>The sawtooth is discreteness. Adjacent total scores differ in how many attainable</span>
+<span id="cb9-351"><a href="#cb9-351" aria-hidden="true" tabindex="-1"></a>splits they have and where those splits fall relative to the cutoff, so the size</span>
+<span id="cb9-352"><a href="#cb9-352" aria-hidden="true" tabindex="-1"></a>of the test alternates rather than varying smoothly. The RCI chapter found the same</span>
+<span id="cb9-353"><a href="#cb9-353" aria-hidden="true" tabindex="-1"></a>structure in the conditional critical value, which formed an arch across the</span>
+<span id="cb9-354"><a href="#cb9-354" aria-hidden="true" tabindex="-1"></a>score range rather than a constant.</span>
+<span id="cb9-355"><a href="#cb9-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-356"><a href="#cb9-356" aria-hidden="true" tabindex="-1"></a>@fig-tt-alpha also shows that the conservatism is not a uniform shrinkage. Around</span>
+<span id="cb9-357"><a href="#cb9-357" aria-hidden="true" tabindex="-1"></a>the middle of the scale the size peaks at 0.062, 0.062 and 0.054 in the three</span>
+<span id="cb9-358"><a href="#cb9-358" aria-hidden="true" tabindex="-1"></a>panels, so the test is mildly anti-conservative there. Under the $N(0, 1.4)$</span>
+<span id="cb9-359"><a href="#cb9-359" aria-hidden="true" tabindex="-1"></a>weighting, 20%, 6% and 10% of respondents hold a total score whose size exceeds</span>
+<span id="cb9-360"><a href="#cb9-360" aria-hidden="true" tabindex="-1"></a>0.05. The whole of the deficit comes from the ends, where attainable scores run</span>
+<span id="cb9-361"><a href="#cb9-361" aria-hidden="true" tabindex="-1"></a>out and the size falls to zero. Averaging over the score distribution is what</span>
+<span id="cb9-362"><a href="#cb9-362" aria-hidden="true" tabindex="-1"></a>the protocol does when it pools respondents into one proportion, and that</span>
+<span id="cb9-363"><a href="#cb9-363" aria-hidden="true" tabindex="-1"></a>average is what has to be compared with 5%, but a reader should know that the</span>
+<span id="cb9-364"><a href="#cb9-364" aria-hidden="true" tabindex="-1"></a>pooled figure is combining two opposite behaviours rather than describing a</span>
+<span id="cb9-365"><a href="#cb9-365" aria-hidden="true" tabindex="-1"></a>test that is uniformly too strict.</span>
+<span id="cb9-366"><a href="#cb9-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-367"><a href="#cb9-367" aria-hidden="true" tabindex="-1"></a><span class="fu">## Asymmetry and centering {#sec-tt-asymmetry}</span></span>
+<span id="cb9-368"><a href="#cb9-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-369"><a href="#cb9-369" aria-hidden="true" tabindex="-1"></a><span class="in">```{r asym}</span></span>
+<span id="cb9-370"><a href="#cb9-370" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb9-371"><a href="#cb9-371" aria-hidden="true" tabindex="-1"></a>sel <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">3</span>)</span>
+<span id="cb9-372"><a href="#cb9-372" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">data.frame</span>(res<span class="sc">$</span>config[sel], res<span class="sc">$</span>subtests[sel], <span class="fu">round</span>(res<span class="sc">$</span>lo[sel], <span class="dv">3</span>),</span>
+<span id="cb9-373"><a href="#cb9-373" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">round</span>(res<span class="sc">$</span>hi[sel], <span class="dv">3</span>), <span class="fu">round</span>(res<span class="sc">$</span>asym[sel], <span class="dv">3</span>),</span>
+<span id="cb9-374"><a href="#cb9-374" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">round</span>(res<span class="sc">$</span>gap[sel], <span class="dv">3</span>)),</span>
+<span id="cb9-375"><a href="#cb9-375" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Scale"</span>, <span class="st">"Split"</span>, <span class="st">"Lower"</span>, <span class="st">"Upper"</span>, <span class="st">"Asym."</span>,</span>
+<span id="cb9-376"><a href="#cb9-376" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Gap (logits)"</span>),</span>
+<span id="cb9-377"><a href="#cb9-377" aria-hidden="true" tabindex="-1"></a>      <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-378"><a href="#cb9-378" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-379"><a href="#cb9-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-380"><a href="#cb9-380" aria-hidden="true" tabindex="-1"></a>The RCI chapter (@sec-rci-validation) corrected an earlier belief that two-sided simulated critical values</span>
+<span id="cb9-381"><a href="#cb9-381" aria-hidden="true" tabindex="-1"></a>were asymmetric: under the change null the two occasions are exchangeable, so the</span>
+<span id="cb9-382"><a href="#cb9-382" aria-hidden="true" tabindex="-1"></a>difference is symmetric about zero however skewed $\hat\theta$ is, and</span>
+<span id="cb9-383"><a href="#cb9-383" aria-hidden="true" tabindex="-1"></a>exchangeability fails only when the occasions differ in missingness. Subtests</span>
+<span id="cb9-384"><a href="#cb9-384" aria-hidden="true" tabindex="-1"></a>break exchangeability by construction, because they differ in length, targeting</span>
+<span id="cb9-385"><a href="#cb9-385" aria-hidden="true" tabindex="-1"></a>and information. A balanced interleaved split is nearly symmetric, so the change</span>
+<span id="cb9-386"><a href="#cb9-386" aria-hidden="true" tabindex="-1"></a>result transfers there. An unbalanced or difficulty-confounded split is not. The</span>
+<span id="cb9-387"><a href="#cb9-387" aria-hidden="true" tabindex="-1"></a>ten easiest items against the ten hardest gives correct two-sided values of</span>
+<span id="cb9-388"><a href="#cb9-388" aria-hidden="true" tabindex="-1"></a>-2.001 and 1.578, so the upper value is stricter than 1.96 while the lower is</span>
+<span id="cb9-389"><a href="#cb9-389" aria-hidden="true" tabindex="-1"></a>more lenient. A principal component of residuals often separates items by</span>
+<span id="cb9-390"><a href="#cb9-390" aria-hidden="true" tabindex="-1"></a>location as well as by content, which makes that row the relevant one.</span>
+<span id="cb9-391"><a href="#cb9-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-392"><a href="#cb9-392" aria-hidden="true" tabindex="-1"></a>The last column is $\max_r |E<span class="co">[</span><span class="ot">\hat\theta_A - \hat\theta_B \mid r</span><span class="co">]</span>|$ under a</span>
+<span id="cb9-393"><a href="#cb9-393" aria-hidden="true" tabindex="-1"></a>perfectly unidimensional model. On a 4/16 split it reaches 0.557 logits, purely</span>
+<span id="cb9-394"><a href="#cb9-394" aria-hidden="true" tabindex="-1"></a>from the difference in WLE bias between a four-item and a sixteen-item subtest.</span>
+<span id="cb9-395"><a href="#cb9-395" aria-hidden="true" tabindex="-1"></a>That is model-implied signal with no multidimensionality behind it. Reporting</span>
+<span id="cb9-396"><a href="#cb9-396" aria-hidden="true" tabindex="-1"></a>quantity and units at every surface, as the RCI chapter insists, matters here: the</span>
+<span id="cb9-397"><a href="#cb9-397" aria-hidden="true" tabindex="-1"></a>gap is in logits, the t is unitless, and only the second is being compared with</span>
+<span id="cb9-398"><a href="#cb9-398" aria-hidden="true" tabindex="-1"></a>1.96.</span>
+<span id="cb9-399"><a href="#cb9-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-400"><a href="#cb9-400" aria-hidden="true" tabindex="-1"></a><span class="fu">## What happens at the count level {#sec-tt-count}</span></span>
+<span id="cb9-401"><a href="#cb9-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-402"><a href="#cb9-402" aria-hidden="true" tabindex="-1"></a><span class="in">```{r count}</span></span>
+<span id="cb9-403"><a href="#cb9-403" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb9-404"><a href="#cb9-404" aria-hidden="true" tabindex="-1"></a>count_null <span class="ot">&lt;-</span> <span class="cf">function</span>(label, k, ncat, idxA, n, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">sigma =</span> <span class="fl">1.4</span>) {</span>
+<span id="cb9-405"><a href="#cb9-405" aria-hidden="true" tabindex="-1"></a>  thr <span class="ot">&lt;-</span> <span class="fu">mk</span>(k, ncat); g <span class="ot">&lt;-</span> <span class="fu">split_grid</span>(thr, idxA); cn <span class="ot">&lt;-</span> <span class="fu">cond_null</span>(g, <span class="dv">0</span>)</span>
+<span id="cb9-406"><a href="#cb9-406" aria-hidden="true" tabindex="-1"></a>  fr <span class="ot">&lt;-</span> <span class="fu">score_weights</span>(thr, mu, sigma); fr <span class="ot">&lt;-</span> fr <span class="sc">/</span> <span class="fu">sum</span>(fr)</span>
+<span id="cb9-407"><a href="#cb9-407" aria-hidden="true" tabindex="-1"></a>  a  <span class="ot">&lt;-</span> <span class="fu">alpha_by_r</span>(cn, <span class="fl">1.96</span>)</span>
+<span id="cb9-408"><a href="#cb9-408" aria-hidden="true" tabindex="-1"></a>  nr <span class="ot">&lt;-</span> <span class="fu">round</span>(n <span class="sc">*</span> fr); p_i <span class="ot">&lt;-</span> <span class="fu">rep</span>(a, <span class="at">times =</span> nr)</span>
+<span id="cb9-409"><a href="#cb9-409" aria-hidden="true" tabindex="-1"></a>  d  <span class="ot">&lt;-</span> <span class="fu">pois_binom</span>(p_i); cnt <span class="ot">&lt;-</span> <span class="fu">seq_along</span>(d) <span class="sc">-</span> <span class="dv">1</span>L; m <span class="ot">&lt;-</span> <span class="fu">length</span>(p_i)</span>
+<span id="cb9-410"><a href="#cb9-410" aria-hidden="true" tabindex="-1"></a>  mean_p <span class="ot">&lt;-</span> <span class="fu">sum</span>(d <span class="sc">*</span> cnt) <span class="sc">/</span> m</span>
+<span id="cb9-411"><a href="#cb9-411" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">config =</span> label, <span class="at">n =</span> m,</span>
+<span id="cb9-412"><a href="#cb9-412" aria-hidden="true" tabindex="-1"></a>             <span class="at">mean_p =</span> <span class="dv">100</span> <span class="sc">*</span> mean_p,</span>
+<span id="cb9-413"><a href="#cb9-413" aria-hidden="true" tabindex="-1"></a>             <span class="at">q95    =</span> <span class="dv">100</span> <span class="sc">*</span> cnt[<span class="fu">which</span>(<span class="fu">cumsum</span>(d) <span class="sc">&gt;=</span> <span class="fl">0.95</span>)[<span class="dv">1</span>L]] <span class="sc">/</span> m,</span>
+<span id="cb9-414"><a href="#cb9-414" aria-hidden="true" tabindex="-1"></a>             <span class="at">p_over =</span> <span class="fu">sum</span>(d[cnt <span class="sc">/</span> m <span class="sc">&gt;</span> <span class="fl">0.05</span>]),</span>
+<span id="cb9-415"><a href="#cb9-415" aria-hidden="true" tabindex="-1"></a>             <span class="at">sd_pb  =</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(d <span class="sc">*</span> cnt<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> <span class="fu">sum</span>(d <span class="sc">*</span> cnt)<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb9-416"><a href="#cb9-416" aria-hidden="true" tabindex="-1"></a>             <span class="at">sd_bin =</span> <span class="fu">sqrt</span>(m <span class="sc">*</span> mean_p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> mean_p)),</span>
+<span id="cb9-417"><a href="#cb9-417" aria-hidden="true" tabindex="-1"></a>             <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-418"><a href="#cb9-418" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-419"><a href="#cb9-419" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-420"><a href="#cb9-420" aria-hidden="true" tabindex="-1"></a>cfgs <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="st">"20 items, 4 cat, 10/10"</span>, <span class="dv">20</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)),</span>
+<span id="cb9-421"><a href="#cb9-421" aria-hidden="true" tabindex="-1"></a>             <span class="fu">list</span>(<span class="st">"12 items, 4 cat, 6/6"</span>,   <span class="dv">12</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">12</span>, <span class="at">by =</span> <span class="dv">2</span>)),</span>
+<span id="cb9-422"><a href="#cb9-422" aria-hidden="true" tabindex="-1"></a>             <span class="fu">list</span>(<span class="st">"20 items, 2 cat, 10/10"</span>, <span class="dv">20</span>, <span class="dv">2</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)),</span>
+<span id="cb9-423"><a href="#cb9-423" aria-hidden="true" tabindex="-1"></a>             <span class="fu">list</span>(<span class="st">"40 items, 4 cat, 20/20"</span>, <span class="dv">40</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">40</span>, <span class="at">by =</span> <span class="dv">2</span>)))</span>
+<span id="cb9-424"><a href="#cb9-424" aria-hidden="true" tabindex="-1"></a>cts <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(cfgs, <span class="cf">function</span>(cf)</span>
+<span id="cb9-425"><a href="#cb9-425" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(<span class="fu">c</span>(<span class="dv">200</span>, <span class="dv">500</span>, <span class="dv">1000</span>), <span class="cf">function</span>(n)</span>
+<span id="cb9-426"><a href="#cb9-426" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count_null</span>(cf[[<span class="dv">1</span>]], cf[[<span class="dv">2</span>]], cf[[<span class="dv">3</span>]], cf[[<span class="dv">4</span>]], n)))))</span>
+<span id="cb9-427"><a href="#cb9-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-428"><a href="#cb9-428" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">data.frame</span>(cts<span class="sc">$</span>config, cts<span class="sc">$</span>n, <span class="fu">round</span>(cts<span class="sc">$</span>mean_p, <span class="dv">2</span>), <span class="fu">round</span>(cts<span class="sc">$</span>q95, <span class="dv">2</span>),</span>
+<span id="cb9-429"><a href="#cb9-429" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">round</span>(cts<span class="sc">$</span>p_over, <span class="dv">4</span>), <span class="fu">round</span>(cts<span class="sc">$</span>sd_pb, <span class="dv">2</span>), <span class="fu">round</span>(cts<span class="sc">$</span>sd_bin, <span class="dv">2</span>)),</span>
+<span id="cb9-430"><a href="#cb9-430" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Scale"</span>, <span class="st">"n"</span>, <span class="st">"Mean (%)"</span>, <span class="st">"95th (%)"</span>, <span class="st">"P(&gt;5%)"</span>,</span>
+<span id="cb9-431"><a href="#cb9-431" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"SD PB"</span>, <span class="st">"SD bin"</span>),</span>
+<span id="cb9-432"><a href="#cb9-432" aria-hidden="true" tabindex="-1"></a>      <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-433"><a href="#cb9-433" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-434"><a href="#cb9-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-435"><a href="#cb9-435" aria-hidden="true" tabindex="-1"></a>At $n = 1000$, observing more than 5% significant tests is an event of</span>
+<span id="cb9-436"><a href="#cb9-436" aria-hidden="true" tabindex="-1"></a>probability 0.0007, 0.0000, 0.0000 and 0.044 under a perfectly unidimensional</span>
+<span id="cb9-437"><a href="#cb9-437" aria-hidden="true" tabindex="-1"></a>model. The protocol treats 5% as the boundary of acceptability. The exact null</span>
+<span id="cb9-438"><a href="#cb9-438" aria-hidden="true" tabindex="-1"></a>puts it in the upper tail.</span>
+<span id="cb9-439"><a href="#cb9-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-440"><a href="#cb9-440" aria-hidden="true" tabindex="-1"></a>**The binomial family is fine.** Conditioning on the observed scores makes the count</span>
+<span id="cb9-441"><a href="#cb9-441" aria-hidden="true" tabindex="-1"></a>Poisson-binomial rather than binomial, since each respondent carries their own</span>
+<span id="cb9-442"><a href="#cb9-442" aria-hidden="true" tabindex="-1"></a>$\alpha_r$. The last two columns show the two standard deviations agree to</span>
+<span id="cb9-443"><a href="#cb9-443" aria-hidden="true" tabindex="-1"></a>within a percent throughout. The heterogeneity in $\alpha_r$ is too small</span>
+<span id="cb9-444"><a href="#cb9-444" aria-hidden="true" tabindex="-1"></a>relative to its mean to move the variance, because</span>
+<span id="cb9-445"><a href="#cb9-445" aria-hidden="true" tabindex="-1"></a>$\mathrm{Var}_{\text{PB}} = n\bar\alpha - \sum \alpha_i^2$ differs from</span>
+<span id="cb9-446"><a href="#cb9-446" aria-hidden="true" tabindex="-1"></a>$n\bar\alpha(1-\bar\alpha)$ by $n\,\mathrm{Var}(\alpha_i)$, which is order</span>
+<span id="cb9-447"><a href="#cb9-447" aria-hidden="true" tabindex="-1"></a>$10^{-4}$ against a mean of order $10^{-2}$. Marginally, with person locations</span>
+<span id="cb9-448"><a href="#cb9-448" aria-hidden="true" tabindex="-1"></a>drawn iid from a latent density, the count is binomial in any case.</span>
+<span id="cb9-449"><a href="#cb9-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-450"><a href="#cb9-450" aria-hidden="true" tabindex="-1"></a>So the distributional shape @hagell2014 investigates is not where the</span>
+<span id="cb9-451"><a href="#cb9-451" aria-hidden="true" tabindex="-1"></a>protocol goes wrong. All five of the interval methods compared there are being applied to</span>
+<span id="cb9-452"><a href="#cb9-452" aria-hidden="true" tabindex="-1"></a>roughly the right distribution and compared against the wrong number.</span>
+<span id="cb9-453"><a href="#cb9-453" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-456"><a href="#cb9-456" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-457"><a href="#cb9-457" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-tt-count</span></span>
+<span id="cb9-458"><a href="#cb9-458" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb9-459"><a href="#cb9-459" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb9-460"><a href="#cb9-460" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 3.8</span></span>
+<span id="cb9-461"><a href="#cb9-461" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Exact null distribution of the observed proportion of significant</span></span>
+<span id="cb9-462"><a href="#cb9-462" aria-hidden="true" tabindex="-1"></a><span class="co">#|   t-tests at $n = 500$, under a perfectly unidimensional Rasch model with a</span></span>
+<span id="cb9-463"><a href="#cb9-463" aria-hidden="true" tabindex="-1"></a><span class="co">#|   $N(0, 1.4)$ latent density. The dashed line is the protocol's 5% benchmark."</span></span>
+<span id="cb9-464"><a href="#cb9-464" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: "Three overlaid distributions of the observed proportion of</span></span>
+<span id="cb9-465"><a href="#cb9-465" aria-hidden="true" tabindex="-1"></a><span class="co">#|   significant tests, one per scale, each roughly bell shaped and centered</span></span>
+<span id="cb9-466"><a href="#cb9-466" aria-hidden="true" tabindex="-1"></a><span class="co">#|   between one and four percent. All three lie almost entirely to the left of</span></span>
+<span id="cb9-467"><a href="#cb9-467" aria-hidden="true" tabindex="-1"></a><span class="co">#|   a dashed vertical line at five percent."</span></span>
+<span id="cb9-468"><a href="#cb9-468" aria-hidden="true" tabindex="-1"></a>dist_one <span class="ot">&lt;-</span> <span class="cf">function</span>(label, k, ncat, idxA, <span class="at">n =</span> <span class="dv">500</span>) {</span>
+<span id="cb9-469"><a href="#cb9-469" aria-hidden="true" tabindex="-1"></a>  thr <span class="ot">&lt;-</span> <span class="fu">mk</span>(k, ncat); g <span class="ot">&lt;-</span> <span class="fu">split_grid</span>(thr, idxA)</span>
+<span id="cb9-470"><a href="#cb9-470" aria-hidden="true" tabindex="-1"></a>  fr <span class="ot">&lt;-</span> <span class="fu">score_weights</span>(thr, <span class="dv">0</span>, <span class="fl">1.4</span>); fr <span class="ot">&lt;-</span> fr <span class="sc">/</span> <span class="fu">sum</span>(fr)</span>
+<span id="cb9-471"><a href="#cb9-471" aria-hidden="true" tabindex="-1"></a>  p_i <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">alpha_by_r</span>(<span class="fu">cond_null</span>(g, <span class="dv">0</span>), <span class="fl">1.96</span>), <span class="at">times =</span> <span class="fu">round</span>(n <span class="sc">*</span> fr))</span>
+<span id="cb9-472"><a href="#cb9-472" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">pois_binom</span>(p_i)</span>
+<span id="cb9-473"><a href="#cb9-473" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">label =</span> label, <span class="at">prop =</span> <span class="dv">100</span> <span class="sc">*</span> (<span class="fu">seq_along</span>(d) <span class="sc">-</span> <span class="dv">1</span>L) <span class="sc">/</span> <span class="fu">length</span>(p_i),</span>
+<span id="cb9-474"><a href="#cb9-474" aria-hidden="true" tabindex="-1"></a>             <span class="at">dens =</span> d)</span>
+<span id="cb9-475"><a href="#cb9-475" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-476"><a href="#cb9-476" aria-hidden="true" tabindex="-1"></a>d_cnt <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb9-477"><a href="#cb9-477" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dist_one</span>(<span class="st">"20 items, 4 cat, 10/10"</span>, <span class="dv">20</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)),</span>
+<span id="cb9-478"><a href="#cb9-478" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dist_one</span>(<span class="st">"12 items, 4 cat, 6/6"</span>,   <span class="dv">12</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">12</span>, <span class="at">by =</span> <span class="dv">2</span>)),</span>
+<span id="cb9-479"><a href="#cb9-479" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dist_one</span>(<span class="st">"20 items, 2 cat, 10/10"</span>, <span class="dv">20</span>, <span class="dv">2</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)))</span>
+<span id="cb9-480"><a href="#cb9-480" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-481"><a href="#cb9-481" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(d_cnt, prop <span class="sc">&lt;=</span> <span class="dv">8</span>), <span class="fu">aes</span>(prop, dens, <span class="at">colour =</span> label)) <span class="sc">+</span></span>
+<span id="cb9-482"><a href="#cb9-482" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">5</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"grey40"</span>) <span class="sc">+</span></span>
+<span id="cb9-483"><a href="#cb9-483" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_step</span>(<span class="at">direction =</span> <span class="st">"mid"</span>) <span class="sc">+</span></span>
+<span id="cb9-484"><a href="#cb9-484" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed significant tests (%)"</span>, <span class="at">y =</span> <span class="st">"Exact probability"</span>,</span>
+<span id="cb9-485"><a href="#cb9-485" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb9-486"><a href="#cb9-486" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb9-487"><a href="#cb9-487" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-488"><a href="#cb9-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-489"><a href="#cb9-489" aria-hidden="true" tabindex="-1"></a><span class="fu">## Extreme-score handling does not rescue it {#sec-tt-extremes}</span></span>
 <span id="cb9-490"><a href="#cb9-490" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-491"><a href="#cb9-491" aria-hidden="true" tabindex="-1"></a><span class="fu">## Extreme-score handling does not rescue it {#sec-tt-extremes}</span></span>
-<span id="cb9-492"><a href="#cb9-492" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-493"><a href="#cb9-493" aria-hidden="true" tabindex="-1"></a>The lookup above uses WLE, which is finite at extreme scores. Software using</span>
-<span id="cb9-494"><a href="#cb9-494" aria-hidden="true" tabindex="-1"></a>maximum likelihood person estimates has to drop respondents extreme on either</span>
-<span id="cb9-495"><a href="#cb9-495" aria-hidden="true" tabindex="-1"></a>subtest, so the check is whether that changes the size.</span>
-<span id="cb9-496"><a href="#cb9-496" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-497"><a href="#cb9-497" aria-hidden="true" tabindex="-1"></a><span class="in">```{r extremes}</span></span>
-<span id="cb9-498"><a href="#cb9-498" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb9-499"><a href="#cb9-499" aria-hidden="true" tabindex="-1"></a>joint_w <span class="ot">&lt;-</span> <span class="cf">function</span>(thr_all, idxA, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">sigma =</span> <span class="fl">1.4</span>, <span class="at">nq =</span> <span class="dv">121</span>L) {</span>
-<span id="cb9-500"><a href="#cb9-500" aria-hidden="true" tabindex="-1"></a>  A <span class="ot">&lt;-</span> thr_all[idxA]; B <span class="ot">&lt;-</span> thr_all[<span class="sc">-</span>idxA]</span>
-<span id="cb9-501"><a href="#cb9-501" aria-hidden="true" tabindex="-1"></a>  q <span class="ot">&lt;-</span> <span class="fu">seq</span>(mu <span class="sc">-</span> <span class="dv">5</span> <span class="sc">*</span> sigma, mu <span class="sc">+</span> <span class="dv">5</span> <span class="sc">*</span> sigma, <span class="at">length.out =</span> nq)</span>
-<span id="cb9-502"><a href="#cb9-502" aria-hidden="true" tabindex="-1"></a>  w <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(q, mu, sigma); w <span class="ot">&lt;-</span> w <span class="sc">/</span> <span class="fu">sum</span>(w)</span>
-<span id="cb9-503"><a href="#cb9-503" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Reduce</span>(<span class="st">`</span><span class="at">+</span><span class="st">`</span>, <span class="fu">Map</span>(<span class="cf">function</span>(t, wt) wt <span class="sc">*</span> <span class="fu">outer</span>(<span class="fu">score_dist</span>(A, t), <span class="fu">score_dist</span>(B, t)),</span>
-<span id="cb9-504"><a href="#cb9-504" aria-hidden="true" tabindex="-1"></a>                  q, w))</span>
-<span id="cb9-505"><a href="#cb9-505" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-506"><a href="#cb9-506" aria-hidden="true" tabindex="-1"></a>chk <span class="ot">&lt;-</span> <span class="cf">function</span>(label, k, ncat, idxA, <span class="at">mu =</span> <span class="dv">0</span>) {</span>
-<span id="cb9-507"><a href="#cb9-507" aria-hidden="true" tabindex="-1"></a>  thr <span class="ot">&lt;-</span> <span class="fu">mk</span>(k, ncat); g <span class="ot">&lt;-</span> <span class="fu">split_grid</span>(thr, idxA)</span>
-<span id="cb9-508"><a href="#cb9-508" aria-hidden="true" tabindex="-1"></a>  W <span class="ot">&lt;-</span> <span class="fu">joint_w</span>(thr, idxA, mu); W <span class="ot">&lt;-</span> W <span class="sc">/</span> <span class="fu">sum</span>(W)</span>
-<span id="cb9-509"><a href="#cb9-509" aria-hidden="true" tabindex="-1"></a>  sig <span class="ot">&lt;-</span> <span class="fu">abs</span>(g<span class="sc">$</span>t) <span class="sc">&gt;</span> <span class="fl">1.96</span></span>
-<span id="cb9-510"><a href="#cb9-510" aria-hidden="true" tabindex="-1"></a>  keep <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">TRUE</span>, <span class="fu">nrow</span>(W), <span class="fu">ncol</span>(W))</span>
-<span id="cb9-511"><a href="#cb9-511" aria-hidden="true" tabindex="-1"></a>  keep[<span class="fu">c</span>(<span class="dv">1</span>L, <span class="fu">nrow</span>(W)), ] <span class="ot">&lt;-</span> <span class="cn">FALSE</span>; keep[, <span class="fu">c</span>(<span class="dv">1</span>L, <span class="fu">ncol</span>(W))] <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
-<span id="cb9-512"><a href="#cb9-512" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">config =</span> label, <span class="at">all =</span> <span class="fu">sum</span>(W <span class="sc">*</span> sig),</span>
-<span id="cb9-513"><a href="#cb9-513" aria-hidden="true" tabindex="-1"></a>             <span class="at">pct_ex =</span> <span class="dv">100</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(W[keep])),</span>
-<span id="cb9-514"><a href="#cb9-514" aria-hidden="true" tabindex="-1"></a>             <span class="at">dropped =</span> <span class="fu">sum</span>(W[keep] <span class="sc">*</span> sig[keep]) <span class="sc">/</span> <span class="fu">sum</span>(W[keep]))</span>
-<span id="cb9-515"><a href="#cb9-515" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-516"><a href="#cb9-516" aria-hidden="true" tabindex="-1"></a>ex <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb9-517"><a href="#cb9-517" aria-hidden="true" tabindex="-1"></a>  <span class="fu">chk</span>(<span class="st">"12 items, 4 cat, 6/6"</span>,       <span class="dv">12</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">12</span>, <span class="at">by =</span> <span class="dv">2</span>)),</span>
-<span id="cb9-518"><a href="#cb9-518" aria-hidden="true" tabindex="-1"></a>  <span class="fu">chk</span>(<span class="st">"20 items, 4 cat, 10/10"</span>,     <span class="dv">20</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)),</span>
-<span id="cb9-519"><a href="#cb9-519" aria-hidden="true" tabindex="-1"></a>  <span class="fu">chk</span>(<span class="st">"20 items, 4 cat, 4/16"</span>,      <span class="dv">20</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">5</span>)),</span>
-<span id="cb9-520"><a href="#cb9-520" aria-hidden="true" tabindex="-1"></a>  <span class="fu">chk</span>(<span class="st">"40 items, 4 cat, 20/20"</span>,     <span class="dv">40</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">40</span>, <span class="at">by =</span> <span class="dv">2</span>)),</span>
-<span id="cb9-521"><a href="#cb9-521" aria-hidden="true" tabindex="-1"></a>  <span class="fu">chk</span>(<span class="st">"20 items, 2 cat, 10/10"</span>,     <span class="dv">20</span>, <span class="dv">2</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)),</span>
-<span id="cb9-522"><a href="#cb9-522" aria-hidden="true" tabindex="-1"></a>  <span class="fu">chk</span>(<span class="st">"20 items, 4 cat, off target"</span>, <span class="dv">20</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>), <span class="at">mu =</span> <span class="sc">-</span><span class="dv">2</span>))</span>
-<span id="cb9-523"><a href="#cb9-523" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">data.frame</span>(ex<span class="sc">$</span>config, <span class="fu">round</span>(ex<span class="sc">$</span>all, <span class="dv">4</span>), <span class="fu">round</span>(ex<span class="sc">$</span>pct_ex, <span class="dv">1</span>),</span>
-<span id="cb9-524"><a href="#cb9-524" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">round</span>(ex<span class="sc">$</span>dropped, <span class="dv">4</span>)),</span>
-<span id="cb9-525"><a href="#cb9-525" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Scale"</span>, <span class="st">"alpha, all"</span>, <span class="st">"Extreme (%)"</span>,</span>
-<span id="cb9-526"><a href="#cb9-526" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"alpha, dropped"</span>),</span>
-<span id="cb9-527"><a href="#cb9-527" aria-hidden="true" tabindex="-1"></a>      <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb9-528"><a href="#cb9-528" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-529"><a href="#cb9-529" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-530"><a href="#cb9-530" aria-hidden="true" tabindex="-1"></a>Dropping extremes moves the size by two or three thousandths. The finding is not</span>
-<span id="cb9-531"><a href="#cb9-531" aria-hidden="true" tabindex="-1"></a>an artifact of the person estimator's behaviour at the boundary.</span>
+<span id="cb9-491"><a href="#cb9-491" aria-hidden="true" tabindex="-1"></a>The lookup above uses WLE, which is finite at extreme scores. Software using</span>
+<span id="cb9-492"><a href="#cb9-492" aria-hidden="true" tabindex="-1"></a>maximum likelihood person estimates has to drop respondents extreme on either</span>
+<span id="cb9-493"><a href="#cb9-493" aria-hidden="true" tabindex="-1"></a>subtest, so the check is whether that changes the size.</span>
+<span id="cb9-494"><a href="#cb9-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-495"><a href="#cb9-495" aria-hidden="true" tabindex="-1"></a><span class="in">```{r extremes}</span></span>
+<span id="cb9-496"><a href="#cb9-496" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb9-497"><a href="#cb9-497" aria-hidden="true" tabindex="-1"></a>joint_w <span class="ot">&lt;-</span> <span class="cf">function</span>(thr_all, idxA, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">sigma =</span> <span class="fl">1.4</span>, <span class="at">nq =</span> <span class="dv">121</span>L) {</span>
+<span id="cb9-498"><a href="#cb9-498" aria-hidden="true" tabindex="-1"></a>  A <span class="ot">&lt;-</span> thr_all[idxA]; B <span class="ot">&lt;-</span> thr_all[<span class="sc">-</span>idxA]</span>
+<span id="cb9-499"><a href="#cb9-499" aria-hidden="true" tabindex="-1"></a>  q <span class="ot">&lt;-</span> <span class="fu">seq</span>(mu <span class="sc">-</span> <span class="dv">5</span> <span class="sc">*</span> sigma, mu <span class="sc">+</span> <span class="dv">5</span> <span class="sc">*</span> sigma, <span class="at">length.out =</span> nq)</span>
+<span id="cb9-500"><a href="#cb9-500" aria-hidden="true" tabindex="-1"></a>  w <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(q, mu, sigma); w <span class="ot">&lt;-</span> w <span class="sc">/</span> <span class="fu">sum</span>(w)</span>
+<span id="cb9-501"><a href="#cb9-501" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Reduce</span>(<span class="st">`</span><span class="at">+</span><span class="st">`</span>, <span class="fu">Map</span>(<span class="cf">function</span>(t, wt) wt <span class="sc">*</span> <span class="fu">outer</span>(<span class="fu">score_dist</span>(A, t), <span class="fu">score_dist</span>(B, t)),</span>
+<span id="cb9-502"><a href="#cb9-502" aria-hidden="true" tabindex="-1"></a>                  q, w))</span>
+<span id="cb9-503"><a href="#cb9-503" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-504"><a href="#cb9-504" aria-hidden="true" tabindex="-1"></a>chk <span class="ot">&lt;-</span> <span class="cf">function</span>(label, k, ncat, idxA, <span class="at">mu =</span> <span class="dv">0</span>) {</span>
+<span id="cb9-505"><a href="#cb9-505" aria-hidden="true" tabindex="-1"></a>  thr <span class="ot">&lt;-</span> <span class="fu">mk</span>(k, ncat); g <span class="ot">&lt;-</span> <span class="fu">split_grid</span>(thr, idxA)</span>
+<span id="cb9-506"><a href="#cb9-506" aria-hidden="true" tabindex="-1"></a>  W <span class="ot">&lt;-</span> <span class="fu">joint_w</span>(thr, idxA, mu); W <span class="ot">&lt;-</span> W <span class="sc">/</span> <span class="fu">sum</span>(W)</span>
+<span id="cb9-507"><a href="#cb9-507" aria-hidden="true" tabindex="-1"></a>  sig <span class="ot">&lt;-</span> <span class="fu">abs</span>(g<span class="sc">$</span>t) <span class="sc">&gt;</span> <span class="fl">1.96</span></span>
+<span id="cb9-508"><a href="#cb9-508" aria-hidden="true" tabindex="-1"></a>  keep <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">TRUE</span>, <span class="fu">nrow</span>(W), <span class="fu">ncol</span>(W))</span>
+<span id="cb9-509"><a href="#cb9-509" aria-hidden="true" tabindex="-1"></a>  keep[<span class="fu">c</span>(<span class="dv">1</span>L, <span class="fu">nrow</span>(W)), ] <span class="ot">&lt;-</span> <span class="cn">FALSE</span>; keep[, <span class="fu">c</span>(<span class="dv">1</span>L, <span class="fu">ncol</span>(W))] <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb9-510"><a href="#cb9-510" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">config =</span> label, <span class="at">all =</span> <span class="fu">sum</span>(W <span class="sc">*</span> sig),</span>
+<span id="cb9-511"><a href="#cb9-511" aria-hidden="true" tabindex="-1"></a>             <span class="at">pct_ex =</span> <span class="dv">100</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(W[keep])),</span>
+<span id="cb9-512"><a href="#cb9-512" aria-hidden="true" tabindex="-1"></a>             <span class="at">dropped =</span> <span class="fu">sum</span>(W[keep] <span class="sc">*</span> sig[keep]) <span class="sc">/</span> <span class="fu">sum</span>(W[keep]))</span>
+<span id="cb9-513"><a href="#cb9-513" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-514"><a href="#cb9-514" aria-hidden="true" tabindex="-1"></a>ex <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb9-515"><a href="#cb9-515" aria-hidden="true" tabindex="-1"></a>  <span class="fu">chk</span>(<span class="st">"12 items, 4 cat, 6/6"</span>,       <span class="dv">12</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">12</span>, <span class="at">by =</span> <span class="dv">2</span>)),</span>
+<span id="cb9-516"><a href="#cb9-516" aria-hidden="true" tabindex="-1"></a>  <span class="fu">chk</span>(<span class="st">"20 items, 4 cat, 10/10"</span>,     <span class="dv">20</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)),</span>
+<span id="cb9-517"><a href="#cb9-517" aria-hidden="true" tabindex="-1"></a>  <span class="fu">chk</span>(<span class="st">"20 items, 4 cat, 4/16"</span>,      <span class="dv">20</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">5</span>)),</span>
+<span id="cb9-518"><a href="#cb9-518" aria-hidden="true" tabindex="-1"></a>  <span class="fu">chk</span>(<span class="st">"40 items, 4 cat, 20/20"</span>,     <span class="dv">40</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">40</span>, <span class="at">by =</span> <span class="dv">2</span>)),</span>
+<span id="cb9-519"><a href="#cb9-519" aria-hidden="true" tabindex="-1"></a>  <span class="fu">chk</span>(<span class="st">"20 items, 2 cat, 10/10"</span>,     <span class="dv">20</span>, <span class="dv">2</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)),</span>
+<span id="cb9-520"><a href="#cb9-520" aria-hidden="true" tabindex="-1"></a>  <span class="fu">chk</span>(<span class="st">"20 items, 4 cat, off target"</span>, <span class="dv">20</span>, <span class="dv">4</span>, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>), <span class="at">mu =</span> <span class="sc">-</span><span class="dv">2</span>))</span>
+<span id="cb9-521"><a href="#cb9-521" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">data.frame</span>(ex<span class="sc">$</span>config, <span class="fu">round</span>(ex<span class="sc">$</span>all, <span class="dv">4</span>), <span class="fu">round</span>(ex<span class="sc">$</span>pct_ex, <span class="dv">1</span>),</span>
+<span id="cb9-522"><a href="#cb9-522" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">round</span>(ex<span class="sc">$</span>dropped, <span class="dv">4</span>)),</span>
+<span id="cb9-523"><a href="#cb9-523" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Scale"</span>, <span class="st">"alpha, all"</span>, <span class="st">"Extreme (%)"</span>,</span>
+<span id="cb9-524"><a href="#cb9-524" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"alpha, dropped"</span>),</span>
+<span id="cb9-525"><a href="#cb9-525" aria-hidden="true" tabindex="-1"></a>      <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-526"><a href="#cb9-526" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-527"><a href="#cb9-527" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-528"><a href="#cb9-528" aria-hidden="true" tabindex="-1"></a>Dropping extremes moves the size by two or three thousandths. The finding is not</span>
+<span id="cb9-529"><a href="#cb9-529" aria-hidden="true" tabindex="-1"></a>an artifact of the person estimator's behaviour at the boundary.</span>
+<span id="cb9-530"><a href="#cb9-530" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-531"><a href="#cb9-531" aria-hidden="true" tabindex="-1"></a><span class="fu">## What this changes about the protocol {#sec-tt-implications}</span></span>
 <span id="cb9-532"><a href="#cb9-532" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-533"><a href="#cb9-533" aria-hidden="true" tabindex="-1"></a><span class="fu">## What this changes about the protocol {#sec-tt-implications}</span></span>
-<span id="cb9-534"><a href="#cb9-534" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-535"><a href="#cb9-535" aria-hidden="true" tabindex="-1"></a>The protocol's decision rule compares an observed proportion against 5%. That</span>
-<span id="cb9-536"><a href="#cb9-536" aria-hidden="true" tabindex="-1"></a>benchmark is too lenient by a factor of 1.3 to 3.7 across everything tried here,</span>
-<span id="cb9-537"><a href="#cb9-537" aria-hidden="true" tabindex="-1"></a>worst on dichotomous items and off-target samples, which are common in health</span>
-<span id="cb9-538"><a href="#cb9-538" aria-hidden="true" tabindex="-1"></a>measurement. The direction is uniform, so the protocol is biased toward</span>
-<span id="cb9-539"><a href="#cb9-539" aria-hidden="true" tabindex="-1"></a>declaring unidimensionality.</span>
-<span id="cb9-540"><a href="#cb9-540" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-541"><a href="#cb9-541" aria-hidden="true" tabindex="-1"></a>This also gives a mechanism for Hagell's central finding <span class="co">[</span><span class="ot">@hagell2014</span><span class="co">]</span>. Comparing against</span>
-<span id="cb9-542"><a href="#cb9-542" aria-hidden="true" tabindex="-1"></a>a benchmark that is too lenient shifts the whole power curve toward passing, so</span>
-<span id="cb9-543"><a href="#cb9-543" aria-hidden="true" tabindex="-1"></a>conclusions flipping with sample size is ordinary power behaviour against a</span>
-<span id="cb9-544"><a href="#cb9-544" aria-hidden="true" tabindex="-1"></a>biased reference rather than a pathology of the binomial interval. With the</span>
-<span id="cb9-545"><a href="#cb9-545" aria-hidden="true" tabindex="-1"></a>correct reference, mild multidimensionality would be rejected at appreciably</span>
-<span id="cb9-546"><a href="#cb9-546" aria-hidden="true" tabindex="-1"></a>smaller samples, and larger $n$ would behave the way it does in any well posed</span>
-<span id="cb9-547"><a href="#cb9-547" aria-hidden="true" tabindex="-1"></a>test.</span>
-<span id="cb9-548"><a href="#cb9-548" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-549"><a href="#cb9-549" aria-hidden="true" tabindex="-1"></a>The constructive version is cheap. The enumeration needed to state the correct</span>
-<span id="cb9-550"><a href="#cb9-550" aria-hidden="true" tabindex="-1"></a>reference is the same machinery that produced it: one Lord-Wingersky recursion</span>
-<span id="cb9-551"><a href="#cb9-551" aria-hidden="true" tabindex="-1"></a>per subtest and one score-to-measure lookup, both of which the package already</span>
-<span id="cb9-552"><a href="#cb9-552" aria-hidden="true" tabindex="-1"></a>builds for <span class="in">`RMscoreSE()`</span>. From that, either report the exact $\bar\alpha$ and</span>
-<span id="cb9-553"><a href="#cb9-553" aria-hidden="true" tabindex="-1"></a>test the observed count against it, or replace 1.96 with the exact per-score</span>
-<span id="cb9-554"><a href="#cb9-554" aria-hidden="true" tabindex="-1"></a>critical values so that the 5% benchmark becomes true by construction. The</span>
-<span id="cb9-555"><a href="#cb9-555" aria-hidden="true" tabindex="-1"></a>second is closer to what users expect the protocol to mean and needs no change</span>
-<span id="cb9-556"><a href="#cb9-556" aria-hidden="true" tabindex="-1"></a>to how results are reported.</span>
+<span id="cb9-533"><a href="#cb9-533" aria-hidden="true" tabindex="-1"></a>The protocol's decision rule compares an observed proportion against 5%. That</span>
+<span id="cb9-534"><a href="#cb9-534" aria-hidden="true" tabindex="-1"></a>benchmark is too lenient by a factor of 1.3 to 3.7 across everything tried here,</span>
+<span id="cb9-535"><a href="#cb9-535" aria-hidden="true" tabindex="-1"></a>worst on dichotomous items and off-target samples, which are common in health</span>
+<span id="cb9-536"><a href="#cb9-536" aria-hidden="true" tabindex="-1"></a>measurement. The direction is uniform, so the protocol is biased toward</span>
+<span id="cb9-537"><a href="#cb9-537" aria-hidden="true" tabindex="-1"></a>declaring unidimensionality.</span>
+<span id="cb9-538"><a href="#cb9-538" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-539"><a href="#cb9-539" aria-hidden="true" tabindex="-1"></a>This also gives a mechanism for Hagell's central finding <span class="co">[</span><span class="ot">@hagell2014</span><span class="co">]</span>. Comparing against</span>
+<span id="cb9-540"><a href="#cb9-540" aria-hidden="true" tabindex="-1"></a>a benchmark that is too lenient shifts the whole power curve toward passing, so</span>
+<span id="cb9-541"><a href="#cb9-541" aria-hidden="true" tabindex="-1"></a>conclusions flipping with sample size is ordinary power behaviour against a</span>
+<span id="cb9-542"><a href="#cb9-542" aria-hidden="true" tabindex="-1"></a>biased reference rather than a pathology of the binomial interval. With the</span>
+<span id="cb9-543"><a href="#cb9-543" aria-hidden="true" tabindex="-1"></a>correct reference, mild multidimensionality would be rejected at appreciably</span>
+<span id="cb9-544"><a href="#cb9-544" aria-hidden="true" tabindex="-1"></a>smaller samples, and larger $n$ would behave the way it does in any well posed</span>
+<span id="cb9-545"><a href="#cb9-545" aria-hidden="true" tabindex="-1"></a>test.</span>
+<span id="cb9-546"><a href="#cb9-546" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-547"><a href="#cb9-547" aria-hidden="true" tabindex="-1"></a>The constructive version is cheap. The enumeration needed to state the correct</span>
+<span id="cb9-548"><a href="#cb9-548" aria-hidden="true" tabindex="-1"></a>reference is the same machinery that produced it: one Lord-Wingersky recursion</span>
+<span id="cb9-549"><a href="#cb9-549" aria-hidden="true" tabindex="-1"></a>per subtest and one score-to-measure lookup, both of which the package already</span>
+<span id="cb9-550"><a href="#cb9-550" aria-hidden="true" tabindex="-1"></a>builds for <span class="in">`RMscoreSE()`</span>. From that, either report the exact $\bar\alpha$ and</span>
+<span id="cb9-551"><a href="#cb9-551" aria-hidden="true" tabindex="-1"></a>test the observed count against it, or replace 1.96 with the exact per-score</span>
+<span id="cb9-552"><a href="#cb9-552" aria-hidden="true" tabindex="-1"></a>critical values so that the 5% benchmark becomes true by construction. The</span>
+<span id="cb9-553"><a href="#cb9-553" aria-hidden="true" tabindex="-1"></a>second is closer to what users expect the protocol to mean and needs no change</span>
+<span id="cb9-554"><a href="#cb9-554" aria-hidden="true" tabindex="-1"></a>to how results are reported.</span>
+<span id="cb9-555"><a href="#cb9-555" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-556"><a href="#cb9-556" aria-hidden="true" tabindex="-1"></a><span class="fu">## Not yet done: the split is chosen from the data {#sec-tt-split}</span></span>
 <span id="cb9-557"><a href="#cb9-557" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-558"><a href="#cb9-558" aria-hidden="true" tabindex="-1"></a><span class="fu">## Not yet done: the split is chosen from the data {#sec-tt-split}</span></span>
-<span id="cb9-559"><a href="#cb9-559" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-560"><a href="#cb9-560" aria-hidden="true" tabindex="-1"></a>Everything above conditions on a fixed, known split. The protocol chooses the</span>
-<span id="cb9-561"><a href="#cb9-561" aria-hidden="true" tabindex="-1"></a>split by principal component analysis of residuals, taking loadings above +0.3</span>
-<span id="cb9-562"><a href="#cb9-562" aria-hidden="true" tabindex="-1"></a>and below -0.3, a cutoff whose rationale @hagell2014 already calls unclear.</span>
-<span id="cb9-563"><a href="#cb9-563" aria-hidden="true" tabindex="-1"></a>That is a selection step, and the null conditional on a data-chosen contrast is not</span>
-<span id="cb9-564"><a href="#cb9-564" aria-hidden="true" tabindex="-1"></a>the null for a fixed one. The enumeration therefore understates the size of the</span>
-<span id="cb9-565"><a href="#cb9-565" aria-hidden="true" tabindex="-1"></a>protocol as practised.</span>
-<span id="cb9-566"><a href="#cb9-566" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-567"><a href="#cb9-567" aria-hidden="true" tabindex="-1"></a>The two errors run in opposite directions. Referring to 1.96, together with the</span>
-<span id="cb9-568"><a href="#cb9-568" aria-hidden="true" tabindex="-1"></a>respondents who cannot be flagged at all, pushes the realised proportion below</span>
-<span id="cb9-569"><a href="#cb9-569" aria-hidden="true" tabindex="-1"></a>5% and makes the protocol too lenient. Selecting the most discrepant contrast</span>
-<span id="cb9-570"><a href="#cb9-570" aria-hidden="true" tabindex="-1"></a>pushes it up and makes the protocol too strict. Which dominates depends on item</span>
-<span id="cb9-571"><a href="#cb9-571" aria-hidden="true" tabindex="-1"></a>count, response categories, targeting and how unbalanced the split is, and</span>
-<span id="cb9-572"><a href="#cb9-572" aria-hidden="true" tabindex="-1"></a>nothing here settles it.</span>
-<span id="cb9-573"><a href="#cb9-573" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-574"><a href="#cb9-574" aria-hidden="true" tabindex="-1"></a>Settling it needs a parametric bootstrap of the whole pipeline: generate under</span>
-<span id="cb9-575"><a href="#cb9-575" aria-hidden="true" tabindex="-1"></a>the fitted unidimensional model, run the PCA, take the split, run the t-tests,</span>
-<span id="cb9-576"><a href="#cb9-576" aria-hidden="true" tabindex="-1"></a>count. That is the same shape as <span class="in">`RMdimResidualPCACutoff()`</span> and the infit and Q3</span>
-<span id="cb9-577"><a href="#cb9-577" aria-hidden="true" tabindex="-1"></a>cutoff work, and the exact component above would serve as its reference, which</span>
-<span id="cb9-578"><a href="#cb9-578" aria-hidden="true" tabindex="-1"></a>removes most of the noise from the comparison the way the exact RCI null did for</span>
-<span id="cb9-579"><a href="#cb9-579" aria-hidden="true" tabindex="-1"></a>the change study.</span>
-<span id="cb9-580"><a href="#cb9-580" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-581"><a href="#cb9-581" aria-hidden="true" tabindex="-1"></a>It is worth holding open that the two errors partly cancel. Existing simulation</span>
-<span id="cb9-582"><a href="#cb9-582" aria-hidden="true" tabindex="-1"></a>work reporting the protocol as well behaved under unidimensionality would be</span>
-<span id="cb9-583"><a href="#cb9-583" aria-hidden="true" tabindex="-1"></a>consistent with that, and a cancellation would not be stable across the</span>
-<span id="cb9-584"><a href="#cb9-584" aria-hidden="true" tabindex="-1"></a>conditions in the first table. I have not checked what @smith2002 or @horton2010 report on this point, so that reading is a conjecture to verify</span>
-<span id="cb9-585"><a href="#cb9-585" aria-hidden="true" tabindex="-1"></a>against the sources rather than a finding of this note.</span>
+<span id="cb9-558"><a href="#cb9-558" aria-hidden="true" tabindex="-1"></a>Everything above conditions on a fixed, known split. The protocol chooses the</span>
+<span id="cb9-559"><a href="#cb9-559" aria-hidden="true" tabindex="-1"></a>split by principal component analysis of residuals, taking loadings above +0.3</span>
+<span id="cb9-560"><a href="#cb9-560" aria-hidden="true" tabindex="-1"></a>and below -0.3, a cutoff whose rationale @hagell2014 already calls unclear.</span>
+<span id="cb9-561"><a href="#cb9-561" aria-hidden="true" tabindex="-1"></a>That is a selection step, and the null conditional on a data-chosen contrast is not</span>
+<span id="cb9-562"><a href="#cb9-562" aria-hidden="true" tabindex="-1"></a>the null for a fixed one. The enumeration therefore understates the size of the</span>
+<span id="cb9-563"><a href="#cb9-563" aria-hidden="true" tabindex="-1"></a>protocol as practised.</span>
+<span id="cb9-564"><a href="#cb9-564" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-565"><a href="#cb9-565" aria-hidden="true" tabindex="-1"></a>The two errors run in opposite directions. Referring to 1.96, together with the</span>
+<span id="cb9-566"><a href="#cb9-566" aria-hidden="true" tabindex="-1"></a>respondents who cannot be flagged at all, pushes the realised proportion below</span>
+<span id="cb9-567"><a href="#cb9-567" aria-hidden="true" tabindex="-1"></a>5% and makes the protocol too lenient. Selecting the most discrepant contrast</span>
+<span id="cb9-568"><a href="#cb9-568" aria-hidden="true" tabindex="-1"></a>pushes it up and makes the protocol too strict. Which dominates depends on item</span>
+<span id="cb9-569"><a href="#cb9-569" aria-hidden="true" tabindex="-1"></a>count, response categories, targeting and how unbalanced the split is, and</span>
+<span id="cb9-570"><a href="#cb9-570" aria-hidden="true" tabindex="-1"></a>nothing here settles it.</span>
+<span id="cb9-571"><a href="#cb9-571" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-572"><a href="#cb9-572" aria-hidden="true" tabindex="-1"></a>Settling it needs a parametric bootstrap of the whole pipeline: generate under</span>
+<span id="cb9-573"><a href="#cb9-573" aria-hidden="true" tabindex="-1"></a>the fitted unidimensional model, run the PCA, take the split, run the t-tests,</span>
+<span id="cb9-574"><a href="#cb9-574" aria-hidden="true" tabindex="-1"></a>count. That is the same shape as <span class="in">`RMdimResidualPCACutoff()`</span> and the infit and Q3</span>
+<span id="cb9-575"><a href="#cb9-575" aria-hidden="true" tabindex="-1"></a>cutoff work, and the exact component above would serve as its reference, which</span>
+<span id="cb9-576"><a href="#cb9-576" aria-hidden="true" tabindex="-1"></a>removes most of the noise from the comparison the way the exact RCI null did for</span>
+<span id="cb9-577"><a href="#cb9-577" aria-hidden="true" tabindex="-1"></a>the change study.</span>
+<span id="cb9-578"><a href="#cb9-578" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-579"><a href="#cb9-579" aria-hidden="true" tabindex="-1"></a>It is worth holding open that the two errors partly cancel. Existing simulation</span>
+<span id="cb9-580"><a href="#cb9-580" aria-hidden="true" tabindex="-1"></a>work reporting the protocol as well behaved under unidimensionality would be</span>
+<span id="cb9-581"><a href="#cb9-581" aria-hidden="true" tabindex="-1"></a>consistent with that, and a cancellation would not be stable across the</span>
+<span id="cb9-582"><a href="#cb9-582" aria-hidden="true" tabindex="-1"></a>conditions in the first table. I have not checked what @smith2002 or @horton2010 report on this point, so that reading is a conjecture to verify</span>
+<span id="cb9-583"><a href="#cb9-583" aria-hidden="true" tabindex="-1"></a>against the sources rather than a finding of this note.</span>
+<span id="cb9-584"><a href="#cb9-584" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-585"><a href="#cb9-585" aria-hidden="true" tabindex="-1"></a><span class="fu">## Scope and limits {#sec-tt-scope}</span></span>
 <span id="cb9-586"><a href="#cb9-586" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-587"><a href="#cb9-587" aria-hidden="true" tabindex="-1"></a><span class="fu">## Scope and limits {#sec-tt-scope}</span></span>
-<span id="cb9-588"><a href="#cb9-588" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-589"><a href="#cb9-589" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Complete data only**, as in the RCI chapter (@sec-rci-scope). Missing responses break</span>
-<span id="cb9-590"><a href="#cb9-590" aria-hidden="true" tabindex="-1"></a>  sufficiency of a single subtest score, so the enumeration would run per</span>
-<span id="cb9-591"><a href="#cb9-591" aria-hidden="true" tabindex="-1"></a>  missingness pattern.</span>
-<span id="cb9-592"><a href="#cb9-592" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Fixed split.** See @sec-tt-split.</span>
-<span id="cb9-593"><a href="#cb9-593" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**WLE with CML-style thresholds.** RUMM2030's person estimator may differ. It</span>
-<span id="cb9-594"><a href="#cb9-594" aria-hidden="true" tabindex="-1"></a>  would move the centering column more than the size column, since dropping</span>
-<span id="cb9-595"><a href="#cb9-595" aria-hidden="true" tabindex="-1"></a>  extremes barely changed the latter.</span>
-<span id="cb9-596"><a href="#cb9-596" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**The latent density enters only through the weighting.** The per-score sizes</span>
-<span id="cb9-597"><a href="#cb9-597" aria-hidden="true" tabindex="-1"></a>  are free of it. Only the sample means and the count distributions depend on</span>
-<span id="cb9-598"><a href="#cb9-598" aria-hidden="true" tabindex="-1"></a>  the assumed $N(\mu, \sigma)$.</span>
-<span id="cb9-599"><a href="#cb9-599" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The 1.96 figure is taken as the rule in force. Software referring to a $t$</span>
-<span id="cb9-600"><a href="#cb9-600" aria-hidden="true" tabindex="-1"></a>  distribution with finite degrees of freedom uses a slightly larger value,</span>
-<span id="cb9-601"><a href="#cb9-601" aria-hidden="true" tabindex="-1"></a>  which makes the test more conservative, not less.</span>
+<span id="cb9-587"><a href="#cb9-587" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Complete data only**, as in the RCI chapter (@sec-rci-scope). Missing responses break</span>
+<span id="cb9-588"><a href="#cb9-588" aria-hidden="true" tabindex="-1"></a>  sufficiency of a single subtest score, so the enumeration would run per</span>
+<span id="cb9-589"><a href="#cb9-589" aria-hidden="true" tabindex="-1"></a>  missingness pattern.</span>
+<span id="cb9-590"><a href="#cb9-590" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Fixed split.** See @sec-tt-split.</span>
+<span id="cb9-591"><a href="#cb9-591" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**WLE with CML-style thresholds.** RUMM2030's person estimator may differ. It</span>
+<span id="cb9-592"><a href="#cb9-592" aria-hidden="true" tabindex="-1"></a>  would move the centering column more than the size column, since dropping</span>
+<span id="cb9-593"><a href="#cb9-593" aria-hidden="true" tabindex="-1"></a>  extremes barely changed the latter.</span>
+<span id="cb9-594"><a href="#cb9-594" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**The latent density enters only through the weighting.** The per-score sizes</span>
+<span id="cb9-595"><a href="#cb9-595" aria-hidden="true" tabindex="-1"></a>  are free of it. Only the sample means and the count distributions depend on</span>
+<span id="cb9-596"><a href="#cb9-596" aria-hidden="true" tabindex="-1"></a>  the assumed $N(\mu, \sigma)$.</span>
+<span id="cb9-597"><a href="#cb9-597" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The 1.96 figure is taken as the rule in force. Software referring to a $t$</span>
+<span id="cb9-598"><a href="#cb9-598" aria-hidden="true" tabindex="-1"></a>  distribution with finite degrees of freedom uses a slightly larger value,</span>
+<span id="cb9-599"><a href="#cb9-599" aria-hidden="true" tabindex="-1"></a>  which makes the test more conservative, not less.</span>
+<span id="cb9-600"><a href="#cb9-600" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-601"><a href="#cb9-601" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproduction {#sec-tt-reproduction}</span></span>
 <span id="cb9-602"><a href="#cb9-602" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-603"><a href="#cb9-603" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproduction {#sec-tt-reproduction}</span></span>
-<span id="cb9-604"><a href="#cb9-604" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-605"><a href="#cb9-605" aria-hidden="true" tabindex="-1"></a><span class="in">`scripts/ttest/ttest_protocol_exact_null.R`</span> runs everything here plus the Monte Carlo</span>
-<span id="cb9-606"><a href="#cb9-606" aria-hidden="true" tabindex="-1"></a>anchor, which is not rendered. The enumeration is self-contained in the</span>
-<span id="cb9-607"><a href="#cb9-607" aria-hidden="true" tabindex="-1"></a><span class="in">`exact-fns`</span> chunk above and needs only <span class="in">`easyRasch2:::.pcm_cat_probs()`</span>,</span>
-<span id="cb9-608"><a href="#cb9-608" aria-hidden="true" tabindex="-1"></a><span class="in">`:::.theta_wle()`</span> and <span class="in">`:::.score_pattern()`</span>, the same three internals the RCI</span>
-<span id="cb9-609"><a href="#cb9-609" aria-hidden="true" tabindex="-1"></a>chapter uses.</span>
+<span id="cb9-603"><a href="#cb9-603" aria-hidden="true" tabindex="-1"></a><span class="in">`scripts/ttest/ttest_protocol_exact_null.R`</span> runs everything here plus the Monte Carlo</span>
+<span id="cb9-604"><a href="#cb9-604" aria-hidden="true" tabindex="-1"></a>anchor, which is not rendered. The enumeration is self-contained in the</span>
+<span id="cb9-605"><a href="#cb9-605" aria-hidden="true" tabindex="-1"></a><span class="in">`exact-fns`</span> chunk above and needs only <span class="in">`easyRasch2:::.pcm_cat_probs()`</span>,</span>
+<span id="cb9-606"><a href="#cb9-606" aria-hidden="true" tabindex="-1"></a><span class="in">`:::.theta_wle()`</span> and <span class="in">`:::.score_pattern()`</span>, the same three internals the RCI</span>
+<span id="cb9-607"><a href="#cb9-607" aria-hidden="true" tabindex="-1"></a>chapter uses.</span>
+<span id="cb9-608"><a href="#cb9-608" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-609"><a href="#cb9-609" aria-hidden="true" tabindex="-1"></a><span class="fu">## Revision history {.unnumbered}</span></span>
 <span id="cb9-610"><a href="#cb9-610" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-611"><a href="#cb9-611" aria-hidden="true" tabindex="-1"></a><span class="fu">## Revision history {.unnumbered}</span></span>
-<span id="cb9-612"><a href="#cb9-612" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-613"><a href="#cb9-613" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>2026-10-04: first version in this book, moved from <span class="in">`easyRasch2/dev/ttest_protocol_exact_null.qmd`</span>.</span>
+<span id="cb9-611"><a href="#cb9-611" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>2026-10-04: first version in this book, moved from <span class="in">`easyRasch2/dev/ttest_protocol_exact_null.qmd`</span>.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
