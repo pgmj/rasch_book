@@ -24,8 +24,9 @@ test. In *Rasch Measurement Explorations*`r modified_note()`.
 ::: {.callout-tip appearance="simple" icon=false}
 ## Summary
 
-The item-restscore test in `iarm::item_restscore()` compares observed and
-expected Goodman-Kruskal gamma and refers the difference to a standard normal.
+The item-restscore test [@kreiner2011], as implemented in
+`iarm::item_restscore()`, compares observed and expected Goodman-Kruskal gamma
+and refers the difference to a standard normal.
 Under a true Rasch model it is not calibrated. The standard error is right for
 the observed gamma, but the expected gamma is estimated from the same data and
 moves with it, so $z$ is too small by a nearly constant factor. A small-sample
@@ -64,7 +65,9 @@ instead of assuming it:
    Ark and van Aert [-@vanderark2015] found it had the worst coverage of four CI types for
    bivariate gamma, but only for tables up to 5 × 5 at N ≤ 100 [@vanderark2015]. The
    item × restscore table is larger (4 × 28 for nine four-category items), with
-   sparse cells in the tails of the restscore.
+   sparse cells in the tails of the restscore. Kreiner [-@kreiner2011] notes
+   that asymptotic distributions are poor approximations in such large sparse
+   tables and suggests Monte Carlo or parametric bootstrap p-values instead.
 
 The partial gamma LD and DIF functions already have simulation-based cutoffs.
 Item-restscore does not. `RMitemRestscoreBoot()` resamples the data and counts
