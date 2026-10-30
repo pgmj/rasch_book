@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.19">
+<meta name="generator" content="quarto-1.10.20">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -101,14 +101,14 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b626d73c4c936ccc3cb08be7d45d1df6.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-17888a1159294d3eb470f19f6f52f5a5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0ae969d3293726db143f6e9eb89af930.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-17888a1159294d3eb470f19f6f52f5a5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fd0503e23dce65854c81c5baaade3bdf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-4dc5810a0ca2761c5abee21657872ed5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-fd0503e23dce65854c81c5baaade3bdf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fd33a4952e9ae2782db733e1f7710525.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-c7f9e716fd0b9cf72826647080c3781c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-fd33a4952e9ae2782db733e1f7710525.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -540,7 +540,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The item-restscore test in <code>iarm::item_restscore()</code> compares observed and expected Goodman-Kruskal gamma and refers the difference to a standard normal. Under a true Rasch model it is not calibrated. The standard error is right for the observed gamma, but the expected gamma is estimated from the same data and moves with it, so <span class="math inline">\(z\)</span> is too small by a nearly constant factor. A small-sample bias also pushes <span class="math inline">\(z\)</span> upward. The underfit tail rejects 0.2% to 1.2% against a nominal 2.5%. Family-wise, with BH over the items, a true Rasch model gets at least one flagged item in 13.5% of dichotomous samples at n = 150 (30.5% when mistargeted), while polytomous data are conservative at every n.&nbsp;A parametric bootstrap that re-estimates the thresholds in every replication would absorb both distortions.</p>
+<p>The item-restscore test <span class="citation" data-cites="kreiner2011">(<a href="../references.html#ref-kreiner2011" role="doc-biblioref">Kreiner, 2011</a>)</span>, as implemented in <code>iarm::item_restscore()</code>, compares observed and expected Goodman-Kruskal gamma and refers the difference to a standard normal. Under a true Rasch model it is not calibrated. The standard error is right for the observed gamma, but the expected gamma is estimated from the same data and moves with it, so <span class="math inline">\(z\)</span> is too small by a nearly constant factor. A small-sample bias also pushes <span class="math inline">\(z\)</span> upward. The underfit tail rejects 0.2% to 1.2% against a nominal 2.5%. Family-wise, with BH over the items, a true Rasch model gets at least one flagged item in 13.5% of dichotomous samples at n = 150 (30.5% when mistargeted), while polytomous data are conservative at every n.&nbsp;A parametric bootstrap that re-estimates the thresholds in every replication would absorb both distortions.</p>
 </div>
 </div>
 <section id="sec-rs-purpose" class="level2" data-number="1.1">
@@ -553,7 +553,7 @@ z_i = \frac{\hat\gamma_i^{\text{obs}} - \hat\gamma_i^{\text{exp}}}{\text{ASE}(\h
 <p>Two features of this construction give reasons to check calibration directly instead of assuming it:</p>
 <ol type="1">
 <li><strong>The expected gamma is treated as known.</strong> It is a function of estimated thresholds, and it is estimated from the same data as the observed gamma. The ASE ignores both the estimation uncertainty and the correlation between the two terms. The sign of the resulting bias cannot be worked out without simulating it.</li>
-<li><strong>The ASE is the delta-method SE computed under the alternative.</strong> van der Ark and van Aert <span class="citation" data-cites="vanderark2015">(<a href="../references.html#ref-vanderark2015" role="doc-biblioref">2015</a>)</span> found it had the worst coverage of four CI types for bivariate gamma, but only for tables up to 5 × 5 at N ≤ 100 <span class="citation" data-cites="vanderark2015">(<a href="../references.html#ref-vanderark2015" role="doc-biblioref"><span class="nocase">van der Ark &amp; van Aert</span>, 2015</a>)</span>. The item × restscore table is larger (4 × 28 for nine four-category items), with sparse cells in the tails of the restscore.</li>
+<li><strong>The ASE is the delta-method SE computed under the alternative.</strong> van der Ark and van Aert <span class="citation" data-cites="vanderark2015">(<a href="../references.html#ref-vanderark2015" role="doc-biblioref">2015</a>)</span> found it had the worst coverage of four CI types for bivariate gamma, but only for tables up to 5 × 5 at N ≤ 100 <span class="citation" data-cites="vanderark2015">(<a href="../references.html#ref-vanderark2015" role="doc-biblioref"><span class="nocase">van der Ark &amp; van Aert</span>, 2015</a>)</span>. The item × restscore table is larger (4 × 28 for nine four-category items), with sparse cells in the tails of the restscore. Kreiner <span class="citation" data-cites="kreiner2011">(<a href="../references.html#ref-kreiner2011" role="doc-biblioref">2011</a>)</span> notes that asymptotic distributions are poor approximations in such large sparse tables and suggests Monte Carlo or parametric bootstrap p-values instead.</li>
 </ol>
 <p>The partial gamma LD and DIF functions already have simulation-based cutoffs. Item-restscore does not. <code>RMitemRestscoreBoot()</code> resamples the data and counts how often each item is flagged, which describes stability and not calibration.</p>
 <p>An earlier simulation hinted at this. It reported item-restscore as well calibrated from per-item false positive rates, but counted as the share of replications with at least one BH-flagged item, its small-sample rate was above 5 percent. That study is not reported here, so this is the motivation for the check, not evidence.</p>
@@ -1597,6 +1597,9 @@ Figure&nbsp;1.1: Quantile plot of the item-restscore z against the standard norm
 <!-- -->
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-kreiner2011" class="csl-entry" role="listitem">
+Kreiner, S. (2011). A note on item–restscore association in <span>Rasch</span> models. <em>Applied Psychological Measurement</em>, <em>35</em>(7), 557–561. <a href="https://doi.org/10.1177/0146621611410227">https://doi.org/10.1177/0146621611410227</a>
+</div>
 <div id="ref-vanderark2015" class="csl-entry" role="listitem">
 <span class="nocase">van der Ark, L. A., &amp; van Aert, R. C. M.</span> (2015). Comparing confidence intervals for <span>Goodman</span> and <span class="nocase">Kruskal’s</span> gamma coefficient. <em>Journal of Statistical Computation and Simulation</em>, <em>85</em>(12), 2491–2505.
 </div>
@@ -2106,440 +2109,443 @@ Figure&nbsp;1.1: Quantile plot of the item-restscore z against the standard norm
 <span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip appearance="simple" icon=false}</span>
 <span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summary</span></span>
 <span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>The item-restscore test in <span class="in">`iarm::item_restscore()`</span> compares observed and</span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>expected Goodman-Kruskal gamma and refers the difference to a standard normal.</span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>Under a true Rasch model it is not calibrated. The standard error is right for</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>the observed gamma, but the expected gamma is estimated from the same data and</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>moves with it, so $z$ is too small by a nearly constant factor. A small-sample</span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>bias also pushes $z$ upward. The underfit tail rejects 0.2% to 1.2% against a</span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>nominal 2.5%. Family-wise, with BH over the items, a true Rasch model gets at</span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>least one flagged item in 13.5% of dichotomous samples at n = 150 (30.5% when</span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>mistargeted), while polytomous data are conservative at every n. A parametric</span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>bootstrap that re-estimates the thresholds in every replication would absorb</span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>both distortions.</span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Purpose {#sec-rs-purpose}</span></span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="in">`RMitemRestscore()`</span> flags items using the p-value from <span class="in">`iarm::item_restscore()`</span>.</span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>The test statistic is</span>
-<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>z_i = \frac{\hat\gamma_i^{\text{obs}} - \hat\gamma_i^{\text{exp}}}{\text{ASE}(\hat\gamma_i^{\text{obs}})},</span>
-<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>referred to the standard normal, two-sided, then adjusted over the $k$ items</span>
-<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>(BH by default). The observed gamma is Goodman-Kruskal gamma for the</span>
-<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>item × restscore table. The expected gamma is computed from the CML item</span>
-<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>parameters and the observed score distribution. The ASE is the delta-method</span>
-<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>standard error that <span class="in">`vcdExtra::GKgamma()`</span> returns for the observed table.</span>
-<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>Two features of this construction give reasons to check calibration directly</span>
-<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>instead of assuming it:</span>
-<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**The expected gamma is treated as known.** It is a function of estimated</span>
-<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a>   thresholds, and it is estimated from the same data as the observed gamma.</span>
-<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>   The ASE ignores both the estimation uncertainty and the correlation between</span>
-<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a>   the two terms. The sign of the resulting bias cannot be worked out without</span>
-<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a>   simulating it.</span>
-<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**The ASE is the delta-method SE computed under the alternative.** van der</span>
-<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a>   Ark and van Aert <span class="co">[</span><span class="ot">-@vanderark2015</span><span class="co">]</span> found it had the worst coverage of four CI types for</span>
-<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a>   bivariate gamma, but only for tables up to 5 × 5 at N ≤ 100 <span class="co">[</span><span class="ot">@vanderark2015</span><span class="co">]</span>. The</span>
-<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>   item × restscore table is larger (4 × 28 for nine four-category items), with</span>
-<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>   sparse cells in the tails of the restscore.</span>
-<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a>The partial gamma LD and DIF functions already have simulation-based cutoffs.</span>
-<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a>Item-restscore does not. <span class="in">`RMitemRestscoreBoot()`</span> resamples the data and counts</span>
-<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a>how often each item is flagged, which describes stability and not calibration.</span>
-<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a>An earlier simulation hinted at this. It reported item-restscore as well</span>
-<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a>calibrated from per-item false positive rates, but counted as the share of</span>
-<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a>replications with at least one BH-flagged item, its small-sample rate was above</span>
-<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a>5 percent. That study is not reported here, so this is the motivation for the</span>
-<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>check, not evidence.</span>
-<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a><span class="fu">## Design {#sec-rs-design}</span></span>
-<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Item sets.** (a) 20 dichotomous items with locations evenly spaced on</span>
-<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">-2, 2</span><span class="co">]</span>, as in the S-X2 comparison (@sec-sx2-comp-design). (b) 9 polytomous items with four categories,</span>
-<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a>  locations evenly spaced on <span class="co">[</span><span class="ot">-1.5, 1.5</span><span class="co">]</span>, and thresholds at location ± 1.2 and</span>
-<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a>  location + 0, as a PHQ-9-sized scale.</span>
-<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Persons.** θ ~ N(μ, 1.5²), with μ = 0 (targeted) or μ = 1.5 (mistargeted),</span>
-<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a>  since sparse restscore tails are a plausible source of miscalibration.</span>
-<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Sample sizes.** 150, 300, 600, 1000, 2000.</span>
-<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Replications.** 4000 per cell. The Monte Carlo SE of a 5 percent rate is</span>
-<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a>  then 0.34 points.</span>
-<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Fitting.** Same as the package: <span class="in">`psychotools::pcmodel()`</span>, then</span>
-<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a>  <span class="in">`iarm::item_restscore()`</span>. A replication with an unobserved category (or an</span>
-<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a>  item with zero variance) is discarded and counted, since the package would</span>
-<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a>  not fit it either.</span>
-<span id="cb14-94"><a href="#cb14-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-95"><a href="#cb14-95" aria-hidden="true" tabindex="-1"></a><span class="in">`iarm`</span> returns its results rounded to four decimals, so $z$ is recomputed from</span>
-<span id="cb14-96"><a href="#cb14-96" aria-hidden="true" tabindex="-1"></a>the rounded observed, expected and SE columns and the p-values from $z$. With SEs</span>
-<span id="cb14-97"><a href="#cb14-97" aria-hidden="true" tabindex="-1"></a>around .02 to .05 the rounding moves $z$ by at most about .003.</span>
-<span id="cb14-98"><a href="#cb14-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-99"><a href="#cb14-99" aria-hidden="true" tabindex="-1"></a>For each item and replication the observed gamma, expected gamma and ASE are</span>
-<span id="cb14-100"><a href="#cb14-100" aria-hidden="true" tabindex="-1"></a>stored. Calibration is summarised in three ways.</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>The item-restscore test <span class="co">[</span><span class="ot">@kreiner2011</span><span class="co">]</span>, as implemented in</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="in">`iarm::item_restscore()`</span>, compares observed and expected Goodman-Kruskal gamma</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>and refers the difference to a standard normal.</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>Under a true Rasch model it is not calibrated. The standard error is right for</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>the observed gamma, but the expected gamma is estimated from the same data and</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>moves with it, so $z$ is too small by a nearly constant factor. A small-sample</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>bias also pushes $z$ upward. The underfit tail rejects 0.2% to 1.2% against a</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>nominal 2.5%. Family-wise, with BH over the items, a true Rasch model gets at</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>least one flagged item in 13.5% of dichotomous samples at n = 150 (30.5% when</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>mistargeted), while polytomous data are conservative at every n. A parametric</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>bootstrap that re-estimates the thresholds in every replication would absorb</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>both distortions.</span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Purpose {#sec-rs-purpose}</span></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="in">`RMitemRestscore()`</span> flags items using the p-value from <span class="in">`iarm::item_restscore()`</span>.</span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>The test statistic is</span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>z_i = \frac{\hat\gamma_i^{\text{obs}} - \hat\gamma_i^{\text{exp}}}{\text{ASE}(\hat\gamma_i^{\text{obs}})},</span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>referred to the standard normal, two-sided, then adjusted over the $k$ items</span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>(BH by default). The observed gamma is Goodman-Kruskal gamma for the</span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>item × restscore table. The expected gamma is computed from the CML item</span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>parameters and the observed score distribution. The ASE is the delta-method</span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>standard error that <span class="in">`vcdExtra::GKgamma()`</span> returns for the observed table.</span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>Two features of this construction give reasons to check calibration directly</span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>instead of assuming it:</span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**The expected gamma is treated as known.** It is a function of estimated</span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>   thresholds, and it is estimated from the same data as the observed gamma.</span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a>   The ASE ignores both the estimation uncertainty and the correlation between</span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a>   the two terms. The sign of the resulting bias cannot be worked out without</span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>   simulating it.</span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**The ASE is the delta-method SE computed under the alternative.** van der</span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a>   Ark and van Aert <span class="co">[</span><span class="ot">-@vanderark2015</span><span class="co">]</span> found it had the worst coverage of four CI types for</span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>   bivariate gamma, but only for tables up to 5 × 5 at N ≤ 100 <span class="co">[</span><span class="ot">@vanderark2015</span><span class="co">]</span>. The</span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>   item × restscore table is larger (4 × 28 for nine four-category items), with</span>
+<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a>   sparse cells in the tails of the restscore. Kreiner <span class="co">[</span><span class="ot">-@kreiner2011</span><span class="co">]</span> notes</span>
+<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a>   that asymptotic distributions are poor approximations in such large sparse</span>
+<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a>   tables and suggests Monte Carlo or parametric bootstrap p-values instead.</span>
+<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a>The partial gamma LD and DIF functions already have simulation-based cutoffs.</span>
+<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a>Item-restscore does not. <span class="in">`RMitemRestscoreBoot()`</span> resamples the data and counts</span>
+<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a>how often each item is flagged, which describes stability and not calibration.</span>
+<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a>An earlier simulation hinted at this. It reported item-restscore as well</span>
+<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>calibrated from per-item false positive rates, but counted as the share of</span>
+<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a>replications with at least one BH-flagged item, its small-sample rate was above</span>
+<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a>5 percent. That study is not reported here, so this is the motivation for the</span>
+<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a>check, not evidence.</span>
+<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a><span class="fu">## Design {#sec-rs-design}</span></span>
+<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Item sets.** (a) 20 dichotomous items with locations evenly spaced on</span>
+<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a>  <span class="co">[</span><span class="ot">-2, 2</span><span class="co">]</span>, as in the S-X2 comparison (@sec-sx2-comp-design). (b) 9 polytomous items with four categories,</span>
+<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a>  locations evenly spaced on <span class="co">[</span><span class="ot">-1.5, 1.5</span><span class="co">]</span>, and thresholds at location ± 1.2 and</span>
+<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a>  location + 0, as a PHQ-9-sized scale.</span>
+<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Persons.** θ ~ N(μ, 1.5²), with μ = 0 (targeted) or μ = 1.5 (mistargeted),</span>
+<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a>  since sparse restscore tails are a plausible source of miscalibration.</span>
+<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Sample sizes.** 150, 300, 600, 1000, 2000.</span>
+<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Replications.** 4000 per cell. The Monte Carlo SE of a 5 percent rate is</span>
+<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a>  then 0.34 points.</span>
+<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Fitting.** Same as the package: <span class="in">`psychotools::pcmodel()`</span>, then</span>
+<span id="cb14-94"><a href="#cb14-94" aria-hidden="true" tabindex="-1"></a>  <span class="in">`iarm::item_restscore()`</span>. A replication with an unobserved category (or an</span>
+<span id="cb14-95"><a href="#cb14-95" aria-hidden="true" tabindex="-1"></a>  item with zero variance) is discarded and counted, since the package would</span>
+<span id="cb14-96"><a href="#cb14-96" aria-hidden="true" tabindex="-1"></a>  not fit it either.</span>
+<span id="cb14-97"><a href="#cb14-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-98"><a href="#cb14-98" aria-hidden="true" tabindex="-1"></a><span class="in">`iarm`</span> returns its results rounded to four decimals, so $z$ is recomputed from</span>
+<span id="cb14-99"><a href="#cb14-99" aria-hidden="true" tabindex="-1"></a>the rounded observed, expected and SE columns and the p-values from $z$. With SEs</span>
+<span id="cb14-100"><a href="#cb14-100" aria-hidden="true" tabindex="-1"></a>around .02 to .05 the rounding moves $z$ by at most about .003.</span>
 <span id="cb14-101"><a href="#cb14-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-102"><a href="#cb14-102" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Per-item rejection at two-sided α = .05, and separately in each tail at .025.</span>
-<span id="cb14-103"><a href="#cb14-103" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Family-wise rejection (any item flagged) with no adjustment, BH as in the</span>
-<span id="cb14-104"><a href="#cb14-104" aria-hidden="true" tabindex="-1"></a>  package default, and Bonferroni.</span>
-<span id="cb14-105"><a href="#cb14-105" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A decomposition of the SE. If the ASE were correct for the test statistic,</span>
-<span id="cb14-106"><a href="#cb14-106" aria-hidden="true" tabindex="-1"></a>  the empirical SD of $\hat\gamma^{\text{obs}} - \hat\gamma^{\text{exp}}$ across</span>
-<span id="cb14-107"><a href="#cb14-107" aria-hidden="true" tabindex="-1"></a>  replications would equal the root mean squared ASE. The ratio</span>
-<span id="cb14-108"><a href="#cb14-108" aria-hidden="true" tabindex="-1"></a>  $\text{SD}(\hat\gamma^{\text{obs}}) / \text{RMS(ASE)}$ checks the ASE as an SE</span>
-<span id="cb14-109"><a href="#cb14-109" aria-hidden="true" tabindex="-1"></a>  for the observed gamma alone. Comparing the two ratios separates point 1 from</span>
-<span id="cb14-110"><a href="#cb14-110" aria-hidden="true" tabindex="-1"></a>  point 2 in @sec-rs-purpose.</span>
-<span id="cb14-111"><a href="#cb14-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-112"><a href="#cb14-112" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup}</span></span>
-<span id="cb14-113"><a href="#cb14-113" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>({</span>
-<span id="cb14-114"><a href="#cb14-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(psychotools)</span>
-<span id="cb14-115"><a href="#cb14-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(iarm)</span>
-<span id="cb14-116"><a href="#cb14-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(parallel)</span>
-<span id="cb14-117"><a href="#cb14-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(dplyr)</span>
-<span id="cb14-118"><a href="#cb14-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(tidyr)</span>
-<span id="cb14-119"><a href="#cb14-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(ggplot2)</span>
-<span id="cb14-120"><a href="#cb14-120" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb14-121"><a href="#cb14-121" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">rgl.useNULL =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb14-122"><a href="#cb14-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-123"><a href="#cb14-123" aria-hidden="true" tabindex="-1"></a>R_REPS   <span class="ot">&lt;-</span> <span class="dv">4000</span></span>
-<span id="cb14-124"><a href="#cb14-124" aria-hidden="true" tabindex="-1"></a>NS       <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">300</span>, <span class="dv">600</span>, <span class="dv">1000</span>, <span class="dv">2000</span>)</span>
-<span id="cb14-125"><a href="#cb14-125" aria-hidden="true" tabindex="-1"></a>MUS      <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.5</span>)</span>
-<span id="cb14-126"><a href="#cb14-126" aria-hidden="true" tabindex="-1"></a>THETA_SD <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
-<span id="cb14-127"><a href="#cb14-127" aria-hidden="true" tabindex="-1"></a>NCORES   <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb14-128"><a href="#cb14-128" aria-hidden="true" tabindex="-1"></a>RES_FILE <span class="ot">&lt;-</span> <span class="st">"results/restscore/restscore_asymptotic_null.rds"</span></span>
-<span id="cb14-129"><a href="#cb14-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-130"><a href="#cb14-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-131"><a href="#cb14-131" aria-hidden="true" tabindex="-1"></a><span class="fu">### Item parameters</span></span>
-<span id="cb14-132"><a href="#cb14-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-133"><a href="#cb14-133" aria-hidden="true" tabindex="-1"></a><span class="in">```{r items}</span></span>
-<span id="cb14-134"><a href="#cb14-134" aria-hidden="true" tabindex="-1"></a>item_sets <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb14-135"><a href="#cb14-135" aria-hidden="true" tabindex="-1"></a>  <span class="at">dich =</span> <span class="fu">as.list</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="at">length.out =</span> <span class="dv">20</span>)),</span>
-<span id="cb14-136"><a href="#cb14-136" aria-hidden="true" tabindex="-1"></a>  <span class="at">poly =</span> <span class="fu">lapply</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>, <span class="at">length.out =</span> <span class="dv">9</span>), <span class="cf">function</span>(l) l <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.2</span>, <span class="dv">0</span>, <span class="fl">1.2</span>))</span>
-<span id="cb14-137"><a href="#cb14-137" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-138"><a href="#cb14-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-139"><a href="#cb14-139" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
-<span id="cb14-140"><a href="#cb14-140" aria-hidden="true" tabindex="-1"></a>  <span class="at">set =</span> <span class="fu">c</span>(<span class="st">"dich"</span>, <span class="st">"poly"</span>),</span>
-<span id="cb14-141"><a href="#cb14-141" aria-hidden="true" tabindex="-1"></a>  <span class="at">items =</span> <span class="fu">lengths</span>(item_sets),</span>
-<span id="cb14-142"><a href="#cb14-142" aria-hidden="true" tabindex="-1"></a>  <span class="at">categories =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>),</span>
-<span id="cb14-143"><a href="#cb14-143" aria-hidden="true" tabindex="-1"></a>  <span class="at">location_range =</span> <span class="fu">c</span>(<span class="st">"-2 to 2"</span>, <span class="st">"-1.5 to 1.5"</span>)</span>
-<span id="cb14-144"><a href="#cb14-144" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-145"><a href="#cb14-145" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-146"><a href="#cb14-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-147"><a href="#cb14-147" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data generation</span></span>
-<span id="cb14-148"><a href="#cb14-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-149"><a href="#cb14-149" aria-hidden="true" tabindex="-1"></a>Partial credit model, vectorised over persons. <span class="in">`thr`</span> is one threshold vector per</span>
-<span id="cb14-150"><a href="#cb14-150" aria-hidden="true" tabindex="-1"></a>item. A dichotomous item is a PCM item with one threshold.</span>
+<span id="cb14-102"><a href="#cb14-102" aria-hidden="true" tabindex="-1"></a>For each item and replication the observed gamma, expected gamma and ASE are</span>
+<span id="cb14-103"><a href="#cb14-103" aria-hidden="true" tabindex="-1"></a>stored. Calibration is summarised in three ways.</span>
+<span id="cb14-104"><a href="#cb14-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-105"><a href="#cb14-105" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Per-item rejection at two-sided α = .05, and separately in each tail at .025.</span>
+<span id="cb14-106"><a href="#cb14-106" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Family-wise rejection (any item flagged) with no adjustment, BH as in the</span>
+<span id="cb14-107"><a href="#cb14-107" aria-hidden="true" tabindex="-1"></a>  package default, and Bonferroni.</span>
+<span id="cb14-108"><a href="#cb14-108" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A decomposition of the SE. If the ASE were correct for the test statistic,</span>
+<span id="cb14-109"><a href="#cb14-109" aria-hidden="true" tabindex="-1"></a>  the empirical SD of $\hat\gamma^{\text{obs}} - \hat\gamma^{\text{exp}}$ across</span>
+<span id="cb14-110"><a href="#cb14-110" aria-hidden="true" tabindex="-1"></a>  replications would equal the root mean squared ASE. The ratio</span>
+<span id="cb14-111"><a href="#cb14-111" aria-hidden="true" tabindex="-1"></a>  $\text{SD}(\hat\gamma^{\text{obs}}) / \text{RMS(ASE)}$ checks the ASE as an SE</span>
+<span id="cb14-112"><a href="#cb14-112" aria-hidden="true" tabindex="-1"></a>  for the observed gamma alone. Comparing the two ratios separates point 1 from</span>
+<span id="cb14-113"><a href="#cb14-113" aria-hidden="true" tabindex="-1"></a>  point 2 in @sec-rs-purpose.</span>
+<span id="cb14-114"><a href="#cb14-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-115"><a href="#cb14-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup}</span></span>
+<span id="cb14-116"><a href="#cb14-116" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>({</span>
+<span id="cb14-117"><a href="#cb14-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(psychotools)</span>
+<span id="cb14-118"><a href="#cb14-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(iarm)</span>
+<span id="cb14-119"><a href="#cb14-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(parallel)</span>
+<span id="cb14-120"><a href="#cb14-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(dplyr)</span>
+<span id="cb14-121"><a href="#cb14-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(tidyr)</span>
+<span id="cb14-122"><a href="#cb14-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(ggplot2)</span>
+<span id="cb14-123"><a href="#cb14-123" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb14-124"><a href="#cb14-124" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">rgl.useNULL =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-125"><a href="#cb14-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-126"><a href="#cb14-126" aria-hidden="true" tabindex="-1"></a>R_REPS   <span class="ot">&lt;-</span> <span class="dv">4000</span></span>
+<span id="cb14-127"><a href="#cb14-127" aria-hidden="true" tabindex="-1"></a>NS       <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">300</span>, <span class="dv">600</span>, <span class="dv">1000</span>, <span class="dv">2000</span>)</span>
+<span id="cb14-128"><a href="#cb14-128" aria-hidden="true" tabindex="-1"></a>MUS      <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.5</span>)</span>
+<span id="cb14-129"><a href="#cb14-129" aria-hidden="true" tabindex="-1"></a>THETA_SD <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb14-130"><a href="#cb14-130" aria-hidden="true" tabindex="-1"></a>NCORES   <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb14-131"><a href="#cb14-131" aria-hidden="true" tabindex="-1"></a>RES_FILE <span class="ot">&lt;-</span> <span class="st">"results/restscore/restscore_asymptotic_null.rds"</span></span>
+<span id="cb14-132"><a href="#cb14-132" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-133"><a href="#cb14-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-134"><a href="#cb14-134" aria-hidden="true" tabindex="-1"></a><span class="fu">### Item parameters</span></span>
+<span id="cb14-135"><a href="#cb14-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-136"><a href="#cb14-136" aria-hidden="true" tabindex="-1"></a><span class="in">```{r items}</span></span>
+<span id="cb14-137"><a href="#cb14-137" aria-hidden="true" tabindex="-1"></a>item_sets <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb14-138"><a href="#cb14-138" aria-hidden="true" tabindex="-1"></a>  <span class="at">dich =</span> <span class="fu">as.list</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="at">length.out =</span> <span class="dv">20</span>)),</span>
+<span id="cb14-139"><a href="#cb14-139" aria-hidden="true" tabindex="-1"></a>  <span class="at">poly =</span> <span class="fu">lapply</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>, <span class="at">length.out =</span> <span class="dv">9</span>), <span class="cf">function</span>(l) l <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.2</span>, <span class="dv">0</span>, <span class="fl">1.2</span>))</span>
+<span id="cb14-140"><a href="#cb14-140" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-141"><a href="#cb14-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-142"><a href="#cb14-142" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb14-143"><a href="#cb14-143" aria-hidden="true" tabindex="-1"></a>  <span class="at">set =</span> <span class="fu">c</span>(<span class="st">"dich"</span>, <span class="st">"poly"</span>),</span>
+<span id="cb14-144"><a href="#cb14-144" aria-hidden="true" tabindex="-1"></a>  <span class="at">items =</span> <span class="fu">lengths</span>(item_sets),</span>
+<span id="cb14-145"><a href="#cb14-145" aria-hidden="true" tabindex="-1"></a>  <span class="at">categories =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>),</span>
+<span id="cb14-146"><a href="#cb14-146" aria-hidden="true" tabindex="-1"></a>  <span class="at">location_range =</span> <span class="fu">c</span>(<span class="st">"-2 to 2"</span>, <span class="st">"-1.5 to 1.5"</span>)</span>
+<span id="cb14-147"><a href="#cb14-147" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-148"><a href="#cb14-148" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-149"><a href="#cb14-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-150"><a href="#cb14-150" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data generation</span></span>
 <span id="cb14-151"><a href="#cb14-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-152"><a href="#cb14-152" aria-hidden="true" tabindex="-1"></a><span class="in">```{r sim}</span></span>
-<span id="cb14-153"><a href="#cb14-153" aria-hidden="true" tabindex="-1"></a>sim_pcm <span class="ot">&lt;-</span> <span class="cf">function</span>(theta, thr) {</span>
-<span id="cb14-154"><a href="#cb14-154" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(theta)</span>
-<span id="cb14-155"><a href="#cb14-155" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(thr, <span class="cf">function</span>(d) {</span>
-<span id="cb14-156"><a href="#cb14-156" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> <span class="fu">length</span>(d)</span>
-<span id="cb14-157"><a href="#cb14-157" aria-hidden="true" tabindex="-1"></a>    eta <span class="ot">&lt;-</span> <span class="fu">outer</span>(theta, <span class="dv">0</span><span class="sc">:</span>m) <span class="sc">-</span></span>
-<span id="cb14-158"><a href="#cb14-158" aria-hidden="true" tabindex="-1"></a>      <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">cumsum</span>(d)), n, m <span class="sc">+</span> <span class="dv">1</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb14-159"><a href="#cb14-159" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">exp</span>(eta <span class="sc">-</span> <span class="fu">apply</span>(eta, <span class="dv">1</span>, max))</span>
-<span id="cb14-160"><a href="#cb14-160" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> p <span class="sc">/</span> <span class="fu">rowSums</span>(p)</span>
-<span id="cb14-161"><a href="#cb14-161" aria-hidden="true" tabindex="-1"></a>    cp <span class="ot">&lt;-</span> p <span class="sc">%*%</span> <span class="fu">upper.tri</span>(<span class="fu">diag</span>(m <span class="sc">+</span> <span class="dv">1</span>), <span class="at">diag =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb14-162"><a href="#cb14-162" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rowSums</span>(<span class="fu">runif</span>(n) <span class="sc">&gt;</span> cp)</span>
-<span id="cb14-163"><a href="#cb14-163" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb14-164"><a href="#cb14-164" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-165"><a href="#cb14-165" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-166"><a href="#cb14-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-167"><a href="#cb14-167" aria-hidden="true" tabindex="-1"></a><span class="fu">### One replication</span></span>
-<span id="cb14-168"><a href="#cb14-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-169"><a href="#cb14-169" aria-hidden="true" tabindex="-1"></a><span class="in">```{r onerep}</span></span>
-<span id="cb14-170"><a href="#cb14-170" aria-hidden="true" tabindex="-1"></a>one_rep <span class="ot">&lt;-</span> <span class="cf">function</span>(rep, set, n, mu) {</span>
-<span id="cb14-171"><a href="#cb14-171" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="fl">1e7</span> <span class="sc">*</span> <span class="fu">match</span>(set, <span class="fu">names</span>(item_sets)) <span class="sc">+</span> <span class="fl">1e5</span> <span class="sc">*</span> <span class="fu">match</span>(mu, MUS) <span class="sc">+</span></span>
-<span id="cb14-172"><a href="#cb14-172" aria-hidden="true" tabindex="-1"></a>             <span class="dv">10</span> <span class="sc">*</span> n <span class="sc">+</span> rep)</span>
-<span id="cb14-173"><a href="#cb14-173" aria-hidden="true" tabindex="-1"></a>  thr <span class="ot">&lt;-</span> item_sets[[set]]</span>
-<span id="cb14-174"><a href="#cb14-174" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">sim_pcm</span>(<span class="fu">rnorm</span>(n, mu, THETA_SD), thr))</span>
-<span id="cb14-175"><a href="#cb14-175" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(d) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"I"</span>, <span class="fu">seq_along</span>(thr))</span>
-<span id="cb14-176"><a href="#cb14-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-177"><a href="#cb14-177" aria-hidden="true" tabindex="-1"></a>  <span class="co"># every category observed in every item, as the CML fit requires</span></span>
-<span id="cb14-178"><a href="#cb14-178" aria-hidden="true" tabindex="-1"></a>  full <span class="ot">&lt;-</span> <span class="fu">all</span>(<span class="fu">mapply</span>(<span class="cf">function</span>(x, m) <span class="fu">all</span>(<span class="fu">tabulate</span>(x <span class="sc">+</span> <span class="dv">1</span>, m <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">&gt;</span> <span class="dv">0</span>),</span>
-<span id="cb14-179"><a href="#cb14-179" aria-hidden="true" tabindex="-1"></a>                     d, <span class="fu">lengths</span>(thr)))</span>
-<span id="cb14-180"><a href="#cb14-180" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>full) <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
-<span id="cb14-181"><a href="#cb14-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-182"><a href="#cb14-182" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>({</span>
-<span id="cb14-183"><a href="#cb14-183" aria-hidden="true" tabindex="-1"></a>    fit <span class="ot">&lt;-</span> psychotools<span class="sc">::</span><span class="fu">pcmodel</span>(d, <span class="at">hessian =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb14-184"><a href="#cb14-184" aria-hidden="true" tabindex="-1"></a>    r <span class="ot">&lt;-</span> iarm<span class="sc">::</span><span class="fu">item_restscore</span>(fit, <span class="at">p.adj =</span> <span class="st">"none"</span>)</span>
-<span id="cb14-185"><a href="#cb14-185" aria-hidden="true" tabindex="-1"></a>    <span class="fu">matrix</span>(<span class="fu">as.numeric</span>(r[<span class="fu">seq_along</span>(thr), <span class="fu">c</span>(<span class="st">"observed"</span>, <span class="st">"expected"</span>, <span class="st">"se"</span>)]),</span>
-<span id="cb14-186"><a href="#cb14-186" aria-hidden="true" tabindex="-1"></a>           <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="cn">NULL</span>, <span class="fu">c</span>(<span class="st">"obs"</span>, <span class="st">"exp"</span>, <span class="st">"se"</span>)))</span>
-<span id="cb14-187"><a href="#cb14-187" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) <span class="cn">NULL</span>)</span>
-<span id="cb14-188"><a href="#cb14-188" aria-hidden="true" tabindex="-1"></a>  res</span>
-<span id="cb14-189"><a href="#cb14-189" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-190"><a href="#cb14-190" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-191"><a href="#cb14-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-192"><a href="#cb14-192" aria-hidden="true" tabindex="-1"></a><span class="fu">### Run</span></span>
-<span id="cb14-193"><a href="#cb14-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-194"><a href="#cb14-194" aria-hidden="true" tabindex="-1"></a>Results are cached. Delete <span class="in">`r RES_FILE`</span> to force a re-run.</span>
-<span id="cb14-195"><a href="#cb14-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-196"><a href="#cb14-196" aria-hidden="true" tabindex="-1"></a><span class="in">```{r run}</span></span>
-<span id="cb14-197"><a href="#cb14-197" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">rep =</span> <span class="fu">seq_len</span>(R_REPS), <span class="at">n =</span> NS, <span class="at">mu =</span> MUS,</span>
-<span id="cb14-198"><a href="#cb14-198" aria-hidden="true" tabindex="-1"></a>                    <span class="at">set =</span> <span class="fu">names</span>(item_sets), <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb14-199"><a href="#cb14-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-200"><a href="#cb14-200" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(RES_FILE)) {</span>
-<span id="cb14-201"><a href="#cb14-201" aria-hidden="true" tabindex="-1"></a>  sim <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(RES_FILE)</span>
-<span id="cb14-202"><a href="#cb14-202" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb14-203"><a href="#cb14-203" aria-hidden="true" tabindex="-1"></a>  t0 <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb14-204"><a href="#cb14-204" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">mclapply</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(grid)),</span>
-<span id="cb14-205"><a href="#cb14-205" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">function</span>(i) <span class="fu">one_rep</span>(grid<span class="sc">$</span>rep[i], grid<span class="sc">$</span>set[i],</span>
-<span id="cb14-206"><a href="#cb14-206" aria-hidden="true" tabindex="-1"></a>                                      grid<span class="sc">$</span>n[i], grid<span class="sc">$</span>mu[i]),</span>
-<span id="cb14-207"><a href="#cb14-207" aria-hidden="true" tabindex="-1"></a>                  <span class="at">mc.cores =</span> NCORES, <span class="at">mc.preschedule =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb14-208"><a href="#cb14-208" aria-hidden="true" tabindex="-1"></a>  sim <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">res =</span> res, <span class="at">grid =</span> grid, <span class="at">item_sets =</span> item_sets,</span>
-<span id="cb14-209"><a href="#cb14-209" aria-hidden="true" tabindex="-1"></a>              <span class="at">elapsed_min =</span> <span class="fu">as.numeric</span>(<span class="fu">Sys.time</span>() <span class="sc">-</span> t0, <span class="at">units =</span> <span class="st">"mins"</span>))</span>
-<span id="cb14-210"><a href="#cb14-210" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(sim, RES_FILE)</span>
-<span id="cb14-211"><a href="#cb14-211" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-212"><a href="#cb14-212" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"elapsed:"</span>, <span class="fu">round</span>(sim<span class="sc">$</span>elapsed_min, <span class="dv">1</span>), <span class="st">"min</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb14-213"><a href="#cb14-213" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-214"><a href="#cb14-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-215"><a href="#cb14-215" aria-hidden="true" tabindex="-1"></a><span class="in">```{r tidy}</span></span>
-<span id="cb14-216"><a href="#cb14-216" aria-hidden="true" tabindex="-1"></a>ok <span class="ot">&lt;-</span> <span class="sc">!</span><span class="fu">vapply</span>(sim<span class="sc">$</span>res, is.null, <span class="fu">logical</span>(<span class="dv">1</span>))</span>
+<span id="cb14-152"><a href="#cb14-152" aria-hidden="true" tabindex="-1"></a>Partial credit model, vectorised over persons. <span class="in">`thr`</span> is one threshold vector per</span>
+<span id="cb14-153"><a href="#cb14-153" aria-hidden="true" tabindex="-1"></a>item. A dichotomous item is a PCM item with one threshold.</span>
+<span id="cb14-154"><a href="#cb14-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-155"><a href="#cb14-155" aria-hidden="true" tabindex="-1"></a><span class="in">```{r sim}</span></span>
+<span id="cb14-156"><a href="#cb14-156" aria-hidden="true" tabindex="-1"></a>sim_pcm <span class="ot">&lt;-</span> <span class="cf">function</span>(theta, thr) {</span>
+<span id="cb14-157"><a href="#cb14-157" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(theta)</span>
+<span id="cb14-158"><a href="#cb14-158" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(thr, <span class="cf">function</span>(d) {</span>
+<span id="cb14-159"><a href="#cb14-159" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> <span class="fu">length</span>(d)</span>
+<span id="cb14-160"><a href="#cb14-160" aria-hidden="true" tabindex="-1"></a>    eta <span class="ot">&lt;-</span> <span class="fu">outer</span>(theta, <span class="dv">0</span><span class="sc">:</span>m) <span class="sc">-</span></span>
+<span id="cb14-161"><a href="#cb14-161" aria-hidden="true" tabindex="-1"></a>      <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">cumsum</span>(d)), n, m <span class="sc">+</span> <span class="dv">1</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-162"><a href="#cb14-162" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">exp</span>(eta <span class="sc">-</span> <span class="fu">apply</span>(eta, <span class="dv">1</span>, max))</span>
+<span id="cb14-163"><a href="#cb14-163" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> p <span class="sc">/</span> <span class="fu">rowSums</span>(p)</span>
+<span id="cb14-164"><a href="#cb14-164" aria-hidden="true" tabindex="-1"></a>    cp <span class="ot">&lt;-</span> p <span class="sc">%*%</span> <span class="fu">upper.tri</span>(<span class="fu">diag</span>(m <span class="sc">+</span> <span class="dv">1</span>), <span class="at">diag =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-165"><a href="#cb14-165" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rowSums</span>(<span class="fu">runif</span>(n) <span class="sc">&gt;</span> cp)</span>
+<span id="cb14-166"><a href="#cb14-166" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb14-167"><a href="#cb14-167" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-168"><a href="#cb14-168" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-169"><a href="#cb14-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-170"><a href="#cb14-170" aria-hidden="true" tabindex="-1"></a><span class="fu">### One replication</span></span>
+<span id="cb14-171"><a href="#cb14-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-172"><a href="#cb14-172" aria-hidden="true" tabindex="-1"></a><span class="in">```{r onerep}</span></span>
+<span id="cb14-173"><a href="#cb14-173" aria-hidden="true" tabindex="-1"></a>one_rep <span class="ot">&lt;-</span> <span class="cf">function</span>(rep, set, n, mu) {</span>
+<span id="cb14-174"><a href="#cb14-174" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="fl">1e7</span> <span class="sc">*</span> <span class="fu">match</span>(set, <span class="fu">names</span>(item_sets)) <span class="sc">+</span> <span class="fl">1e5</span> <span class="sc">*</span> <span class="fu">match</span>(mu, MUS) <span class="sc">+</span></span>
+<span id="cb14-175"><a href="#cb14-175" aria-hidden="true" tabindex="-1"></a>             <span class="dv">10</span> <span class="sc">*</span> n <span class="sc">+</span> rep)</span>
+<span id="cb14-176"><a href="#cb14-176" aria-hidden="true" tabindex="-1"></a>  thr <span class="ot">&lt;-</span> item_sets[[set]]</span>
+<span id="cb14-177"><a href="#cb14-177" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">sim_pcm</span>(<span class="fu">rnorm</span>(n, mu, THETA_SD), thr))</span>
+<span id="cb14-178"><a href="#cb14-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(d) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"I"</span>, <span class="fu">seq_along</span>(thr))</span>
+<span id="cb14-179"><a href="#cb14-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-180"><a href="#cb14-180" aria-hidden="true" tabindex="-1"></a>  <span class="co"># every category observed in every item, as the CML fit requires</span></span>
+<span id="cb14-181"><a href="#cb14-181" aria-hidden="true" tabindex="-1"></a>  full <span class="ot">&lt;-</span> <span class="fu">all</span>(<span class="fu">mapply</span>(<span class="cf">function</span>(x, m) <span class="fu">all</span>(<span class="fu">tabulate</span>(x <span class="sc">+</span> <span class="dv">1</span>, m <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">&gt;</span> <span class="dv">0</span>),</span>
+<span id="cb14-182"><a href="#cb14-182" aria-hidden="true" tabindex="-1"></a>                     d, <span class="fu">lengths</span>(thr)))</span>
+<span id="cb14-183"><a href="#cb14-183" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>full) <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb14-184"><a href="#cb14-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-185"><a href="#cb14-185" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>({</span>
+<span id="cb14-186"><a href="#cb14-186" aria-hidden="true" tabindex="-1"></a>    fit <span class="ot">&lt;-</span> psychotools<span class="sc">::</span><span class="fu">pcmodel</span>(d, <span class="at">hessian =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb14-187"><a href="#cb14-187" aria-hidden="true" tabindex="-1"></a>    r <span class="ot">&lt;-</span> iarm<span class="sc">::</span><span class="fu">item_restscore</span>(fit, <span class="at">p.adj =</span> <span class="st">"none"</span>)</span>
+<span id="cb14-188"><a href="#cb14-188" aria-hidden="true" tabindex="-1"></a>    <span class="fu">matrix</span>(<span class="fu">as.numeric</span>(r[<span class="fu">seq_along</span>(thr), <span class="fu">c</span>(<span class="st">"observed"</span>, <span class="st">"expected"</span>, <span class="st">"se"</span>)]),</span>
+<span id="cb14-189"><a href="#cb14-189" aria-hidden="true" tabindex="-1"></a>           <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="cn">NULL</span>, <span class="fu">c</span>(<span class="st">"obs"</span>, <span class="st">"exp"</span>, <span class="st">"se"</span>)))</span>
+<span id="cb14-190"><a href="#cb14-190" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) <span class="cn">NULL</span>)</span>
+<span id="cb14-191"><a href="#cb14-191" aria-hidden="true" tabindex="-1"></a>  res</span>
+<span id="cb14-192"><a href="#cb14-192" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-193"><a href="#cb14-193" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-194"><a href="#cb14-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-195"><a href="#cb14-195" aria-hidden="true" tabindex="-1"></a><span class="fu">### Run</span></span>
+<span id="cb14-196"><a href="#cb14-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-197"><a href="#cb14-197" aria-hidden="true" tabindex="-1"></a>Results are cached. Delete <span class="in">`r RES_FILE`</span> to force a re-run.</span>
+<span id="cb14-198"><a href="#cb14-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-199"><a href="#cb14-199" aria-hidden="true" tabindex="-1"></a><span class="in">```{r run}</span></span>
+<span id="cb14-200"><a href="#cb14-200" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">rep =</span> <span class="fu">seq_len</span>(R_REPS), <span class="at">n =</span> NS, <span class="at">mu =</span> MUS,</span>
+<span id="cb14-201"><a href="#cb14-201" aria-hidden="true" tabindex="-1"></a>                    <span class="at">set =</span> <span class="fu">names</span>(item_sets), <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb14-202"><a href="#cb14-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-203"><a href="#cb14-203" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(RES_FILE)) {</span>
+<span id="cb14-204"><a href="#cb14-204" aria-hidden="true" tabindex="-1"></a>  sim <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(RES_FILE)</span>
+<span id="cb14-205"><a href="#cb14-205" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb14-206"><a href="#cb14-206" aria-hidden="true" tabindex="-1"></a>  t0 <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb14-207"><a href="#cb14-207" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">mclapply</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(grid)),</span>
+<span id="cb14-208"><a href="#cb14-208" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">function</span>(i) <span class="fu">one_rep</span>(grid<span class="sc">$</span>rep[i], grid<span class="sc">$</span>set[i],</span>
+<span id="cb14-209"><a href="#cb14-209" aria-hidden="true" tabindex="-1"></a>                                      grid<span class="sc">$</span>n[i], grid<span class="sc">$</span>mu[i]),</span>
+<span id="cb14-210"><a href="#cb14-210" aria-hidden="true" tabindex="-1"></a>                  <span class="at">mc.cores =</span> NCORES, <span class="at">mc.preschedule =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-211"><a href="#cb14-211" aria-hidden="true" tabindex="-1"></a>  sim <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">res =</span> res, <span class="at">grid =</span> grid, <span class="at">item_sets =</span> item_sets,</span>
+<span id="cb14-212"><a href="#cb14-212" aria-hidden="true" tabindex="-1"></a>              <span class="at">elapsed_min =</span> <span class="fu">as.numeric</span>(<span class="fu">Sys.time</span>() <span class="sc">-</span> t0, <span class="at">units =</span> <span class="st">"mins"</span>))</span>
+<span id="cb14-213"><a href="#cb14-213" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(sim, RES_FILE)</span>
+<span id="cb14-214"><a href="#cb14-214" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-215"><a href="#cb14-215" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"elapsed:"</span>, <span class="fu">round</span>(sim<span class="sc">$</span>elapsed_min, <span class="dv">1</span>), <span class="st">"min</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb14-216"><a href="#cb14-216" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb14-217"><a href="#cb14-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-218"><a href="#cb14-218" aria-hidden="true" tabindex="-1"></a>sim<span class="sc">$</span>grid <span class="sc">|&gt;</span></span>
-<span id="cb14-219"><a href="#cb14-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ok =</span> ok) <span class="sc">|&gt;</span></span>
-<span id="cb14-220"><a href="#cb14-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(set, mu, n) <span class="sc">|&gt;</span></span>
-<span id="cb14-221"><a href="#cb14-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">discarded =</span> <span class="fu">sum</span>(<span class="sc">!</span>ok), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-222"><a href="#cb14-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(discarded <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb14-223"><a href="#cb14-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-224"><a href="#cb14-224" aria-hidden="true" tabindex="-1"></a>item_loc <span class="ot">&lt;-</span> <span class="fu">lapply</span>(sim<span class="sc">$</span>item_sets, <span class="cf">function</span>(s) <span class="fu">vapply</span>(s, mean, <span class="fu">numeric</span>(<span class="dv">1</span>)))</span>
-<span id="cb14-225"><a href="#cb14-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-226"><a href="#cb14-226" aria-hidden="true" tabindex="-1"></a>long <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(<span class="fu">which</span>(ok), <span class="cf">function</span>(i) {</span>
-<span id="cb14-227"><a href="#cb14-227" aria-hidden="true" tabindex="-1"></a>  g <span class="ot">&lt;-</span> sim<span class="sc">$</span>grid[i, ]</span>
-<span id="cb14-228"><a href="#cb14-228" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span> sim<span class="sc">$</span>res[[i]]</span>
-<span id="cb14-229"><a href="#cb14-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">set =</span> g<span class="sc">$</span>set, <span class="at">mu =</span> g<span class="sc">$</span>mu, <span class="at">n =</span> g<span class="sc">$</span>n, <span class="at">rep =</span> g<span class="sc">$</span>rep,</span>
-<span id="cb14-230"><a href="#cb14-230" aria-hidden="true" tabindex="-1"></a>             <span class="at">item =</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(m)),</span>
-<span id="cb14-231"><a href="#cb14-231" aria-hidden="true" tabindex="-1"></a>             <span class="at">location =</span> item_loc[[g<span class="sc">$</span>set]], m)</span>
-<span id="cb14-232"><a href="#cb14-232" aria-hidden="true" tabindex="-1"></a>})) <span class="sc">|&gt;</span></span>
-<span id="cb14-233"><a href="#cb14-233" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff =</span> obs <span class="sc">-</span> exp,</span>
-<span id="cb14-234"><a href="#cb14-234" aria-hidden="true" tabindex="-1"></a>         <span class="at">z =</span> diff <span class="sc">/</span> se,</span>
-<span id="cb14-235"><a href="#cb14-235" aria-hidden="true" tabindex="-1"></a>         <span class="at">p =</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(z)))</span>
-<span id="cb14-236"><a href="#cb14-236" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-237"><a href="#cb14-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-238"><a href="#cb14-238" aria-hidden="true" tabindex="-1"></a><span class="fu">## Results {#sec-rs-results}</span></span>
-<span id="cb14-239"><a href="#cb14-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-240"><a href="#cb14-240" aria-hidden="true" tabindex="-1"></a><span class="fu">### Per-item rejection rates</span></span>
-<span id="cb14-241"><a href="#cb14-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-242"><a href="#cb14-242" aria-hidden="true" tabindex="-1"></a>Nominal 5.0 percent two-sided, 2.5 percent in each tail. <span class="in">`over`</span> is observed</span>
-<span id="cb14-243"><a href="#cb14-243" aria-hidden="true" tabindex="-1"></a>gamma above expected (the package labels this overfit), <span class="in">`under`</span> is below.</span>
+<span id="cb14-218"><a href="#cb14-218" aria-hidden="true" tabindex="-1"></a><span class="in">```{r tidy}</span></span>
+<span id="cb14-219"><a href="#cb14-219" aria-hidden="true" tabindex="-1"></a>ok <span class="ot">&lt;-</span> <span class="sc">!</span><span class="fu">vapply</span>(sim<span class="sc">$</span>res, is.null, <span class="fu">logical</span>(<span class="dv">1</span>))</span>
+<span id="cb14-220"><a href="#cb14-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-221"><a href="#cb14-221" aria-hidden="true" tabindex="-1"></a>sim<span class="sc">$</span>grid <span class="sc">|&gt;</span></span>
+<span id="cb14-222"><a href="#cb14-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ok =</span> ok) <span class="sc">|&gt;</span></span>
+<span id="cb14-223"><a href="#cb14-223" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(set, mu, n) <span class="sc">|&gt;</span></span>
+<span id="cb14-224"><a href="#cb14-224" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">discarded =</span> <span class="fu">sum</span>(<span class="sc">!</span>ok), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-225"><a href="#cb14-225" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(discarded <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb14-226"><a href="#cb14-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-227"><a href="#cb14-227" aria-hidden="true" tabindex="-1"></a>item_loc <span class="ot">&lt;-</span> <span class="fu">lapply</span>(sim<span class="sc">$</span>item_sets, <span class="cf">function</span>(s) <span class="fu">vapply</span>(s, mean, <span class="fu">numeric</span>(<span class="dv">1</span>)))</span>
+<span id="cb14-228"><a href="#cb14-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-229"><a href="#cb14-229" aria-hidden="true" tabindex="-1"></a>long <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(<span class="fu">which</span>(ok), <span class="cf">function</span>(i) {</span>
+<span id="cb14-230"><a href="#cb14-230" aria-hidden="true" tabindex="-1"></a>  g <span class="ot">&lt;-</span> sim<span class="sc">$</span>grid[i, ]</span>
+<span id="cb14-231"><a href="#cb14-231" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span> sim<span class="sc">$</span>res[[i]]</span>
+<span id="cb14-232"><a href="#cb14-232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">set =</span> g<span class="sc">$</span>set, <span class="at">mu =</span> g<span class="sc">$</span>mu, <span class="at">n =</span> g<span class="sc">$</span>n, <span class="at">rep =</span> g<span class="sc">$</span>rep,</span>
+<span id="cb14-233"><a href="#cb14-233" aria-hidden="true" tabindex="-1"></a>             <span class="at">item =</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(m)),</span>
+<span id="cb14-234"><a href="#cb14-234" aria-hidden="true" tabindex="-1"></a>             <span class="at">location =</span> item_loc[[g<span class="sc">$</span>set]], m)</span>
+<span id="cb14-235"><a href="#cb14-235" aria-hidden="true" tabindex="-1"></a>})) <span class="sc">|&gt;</span></span>
+<span id="cb14-236"><a href="#cb14-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff =</span> obs <span class="sc">-</span> exp,</span>
+<span id="cb14-237"><a href="#cb14-237" aria-hidden="true" tabindex="-1"></a>         <span class="at">z =</span> diff <span class="sc">/</span> se,</span>
+<span id="cb14-238"><a href="#cb14-238" aria-hidden="true" tabindex="-1"></a>         <span class="at">p =</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(z)))</span>
+<span id="cb14-239"><a href="#cb14-239" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-240"><a href="#cb14-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-241"><a href="#cb14-241" aria-hidden="true" tabindex="-1"></a><span class="fu">## Results {#sec-rs-results}</span></span>
+<span id="cb14-242"><a href="#cb14-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-243"><a href="#cb14-243" aria-hidden="true" tabindex="-1"></a><span class="fu">### Per-item rejection rates</span></span>
 <span id="cb14-244"><a href="#cb14-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-245"><a href="#cb14-245" aria-hidden="true" tabindex="-1"></a>An observed gamma of exactly ±1 has an ASE of zero, which gives an infinite $z$</span>
-<span id="cb14-246"><a href="#cb14-246" aria-hidden="true" tabindex="-1"></a>and p = 0. The package flags such an item, so it counts as a rejection here, but</span>
-<span id="cb14-247"><a href="#cb14-247" aria-hidden="true" tabindex="-1"></a>it is left out of the mean and SD of $z$. <span class="in">`se_zero`</span> counts these cases.</span>
-<span id="cb14-248"><a href="#cb14-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-249"><a href="#cb14-249" aria-hidden="true" tabindex="-1"></a><span class="in">```{r peritem}</span></span>
-<span id="cb14-250"><a href="#cb14-250" aria-hidden="true" tabindex="-1"></a>long <span class="sc">|&gt;</span></span>
-<span id="cb14-251"><a href="#cb14-251" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(set, mu, n) <span class="sc">|&gt;</span></span>
-<span id="cb14-252"><a href="#cb14-252" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">two_sided =</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fu">mean</span>(p <span class="sc">&lt;</span> .<span class="dv">05</span>),</span>
-<span id="cb14-253"><a href="#cb14-253" aria-hidden="true" tabindex="-1"></a>            <span class="at">over =</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fu">mean</span>(z <span class="sc">&gt;</span> <span class="fu">qnorm</span>(.<span class="dv">975</span>)),</span>
-<span id="cb14-254"><a href="#cb14-254" aria-hidden="true" tabindex="-1"></a>            <span class="at">under =</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fu">mean</span>(z <span class="sc">&lt;</span> <span class="fu">qnorm</span>(.<span class="dv">025</span>)),</span>
-<span id="cb14-255"><a href="#cb14-255" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_z =</span> <span class="fu">mean</span>(z[<span class="fu">is.finite</span>(z)]),</span>
-<span id="cb14-256"><a href="#cb14-256" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_z =</span> <span class="fu">sd</span>(z[<span class="fu">is.finite</span>(z)]),</span>
-<span id="cb14-257"><a href="#cb14-257" aria-hidden="true" tabindex="-1"></a>            <span class="at">se_zero =</span> <span class="fu">sum</span>(se <span class="sc">==</span> <span class="dv">0</span>),</span>
-<span id="cb14-258"><a href="#cb14-258" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-259"><a href="#cb14-259" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(two_sided<span class="sc">:</span>under, \(x) <span class="fu">round</span>(x, <span class="dv">2</span>)),</span>
-<span id="cb14-260"><a href="#cb14-260" aria-hidden="true" tabindex="-1"></a>         <span class="fu">across</span>(<span class="fu">c</span>(mean_z, sd_z), \(x) <span class="fu">round</span>(x, <span class="dv">3</span>)))</span>
-<span id="cb14-261"><a href="#cb14-261" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-262"><a href="#cb14-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-263"><a href="#cb14-263" aria-hidden="true" tabindex="-1"></a><span class="fu">### Family-wise rejection</span></span>
-<span id="cb14-264"><a href="#cb14-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-265"><a href="#cb14-265" aria-hidden="true" tabindex="-1"></a>Proportion of replications with at least one flagged item. Under a complete</span>
-<span id="cb14-266"><a href="#cb14-266" aria-hidden="true" tabindex="-1"></a>null, BH and Bonferroni both control this at 5 percent. The unadjusted column</span>
-<span id="cb14-267"><a href="#cb14-267" aria-hidden="true" tabindex="-1"></a>shows what the per-item test implies across 9 or 20 items.</span>
-<span id="cb14-268"><a href="#cb14-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-269"><a href="#cb14-269" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fwer}</span></span>
-<span id="cb14-270"><a href="#cb14-270" aria-hidden="true" tabindex="-1"></a>fw <span class="ot">&lt;-</span> long <span class="sc">|&gt;</span></span>
-<span id="cb14-271"><a href="#cb14-271" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(set, mu, n, rep) <span class="sc">|&gt;</span></span>
-<span id="cb14-272"><a href="#cb14-272" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">none =</span> <span class="fu">any</span>(p <span class="sc">&lt;</span> .<span class="dv">05</span>),</span>
-<span id="cb14-273"><a href="#cb14-273" aria-hidden="true" tabindex="-1"></a>            <span class="at">bh =</span> <span class="fu">any</span>(<span class="fu">p.adjust</span>(p, <span class="st">"BH"</span>) <span class="sc">&lt;</span> .<span class="dv">05</span>),</span>
-<span id="cb14-274"><a href="#cb14-274" aria-hidden="true" tabindex="-1"></a>            <span class="at">bonferroni =</span> <span class="fu">any</span>(<span class="fu">p.adjust</span>(p, <span class="st">"bonferroni"</span>) <span class="sc">&lt;</span> .<span class="dv">05</span>),</span>
-<span id="cb14-275"><a href="#cb14-275" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-276"><a href="#cb14-276" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(set, mu, n) <span class="sc">|&gt;</span></span>
-<span id="cb14-277"><a href="#cb14-277" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">reps =</span> <span class="fu">n</span>(),</span>
-<span id="cb14-278"><a href="#cb14-278" aria-hidden="true" tabindex="-1"></a>            <span class="fu">across</span>(<span class="fu">c</span>(none, bh, bonferroni), \(x) <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">mean</span>(x), <span class="dv">2</span>)),</span>
-<span id="cb14-279"><a href="#cb14-279" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
-<span id="cb14-280"><a href="#cb14-280" aria-hidden="true" tabindex="-1"></a>fw</span>
-<span id="cb14-281"><a href="#cb14-281" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-282"><a href="#cb14-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-283"><a href="#cb14-283" aria-hidden="true" tabindex="-1"></a><span class="fu">### Where the SE goes wrong</span></span>
-<span id="cb14-284"><a href="#cb14-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-285"><a href="#cb14-285" aria-hidden="true" tabindex="-1"></a><span class="in">`sd_diff / rms_se`</span> near 1 means the ASE is the right SE for the test statistic.</span>
-<span id="cb14-286"><a href="#cb14-286" aria-hidden="true" tabindex="-1"></a><span class="in">`sd_obs / rms_se`</span> near 1 means it is the right SE for the observed gamma alone.</span>
-<span id="cb14-287"><a href="#cb14-287" aria-hidden="true" tabindex="-1"></a><span class="in">`cor_obs_exp`</span> is the correlation between observed and expected gamma across</span>
-<span id="cb14-288"><a href="#cb14-288" aria-hidden="true" tabindex="-1"></a>replications, averaged over items.</span>
-<span id="cb14-289"><a href="#cb14-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-290"><a href="#cb14-290" aria-hidden="true" tabindex="-1"></a><span class="in">```{r sedecomp}</span></span>
-<span id="cb14-291"><a href="#cb14-291" aria-hidden="true" tabindex="-1"></a>se_tab <span class="ot">&lt;-</span> long <span class="sc">|&gt;</span></span>
-<span id="cb14-292"><a href="#cb14-292" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(set, mu, n, item) <span class="sc">|&gt;</span></span>
-<span id="cb14-293"><a href="#cb14-293" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sd_diff =</span> <span class="fu">sd</span>(diff), <span class="at">sd_obs =</span> <span class="fu">sd</span>(obs), <span class="at">sd_exp =</span> <span class="fu">sd</span>(exp),</span>
-<span id="cb14-294"><a href="#cb14-294" aria-hidden="true" tabindex="-1"></a>            <span class="at">rms_se =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(se<span class="sc">^</span><span class="dv">2</span>)), <span class="at">cor_obs_exp =</span> <span class="fu">cor</span>(obs, exp),</span>
-<span id="cb14-295"><a href="#cb14-295" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-296"><a href="#cb14-296" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(set, mu, n) <span class="sc">|&gt;</span></span>
-<span id="cb14-297"><a href="#cb14-297" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sd_diff_over_rms_se =</span> <span class="fu">mean</span>(sd_diff <span class="sc">/</span> rms_se),</span>
-<span id="cb14-298"><a href="#cb14-298" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_obs_over_rms_se =</span> <span class="fu">mean</span>(sd_obs <span class="sc">/</span> rms_se),</span>
-<span id="cb14-299"><a href="#cb14-299" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_exp_over_rms_se =</span> <span class="fu">mean</span>(sd_exp <span class="sc">/</span> rms_se),</span>
-<span id="cb14-300"><a href="#cb14-300" aria-hidden="true" tabindex="-1"></a>            <span class="at">cor_obs_exp =</span> <span class="fu">mean</span>(cor_obs_exp),</span>
-<span id="cb14-301"><a href="#cb14-301" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-302"><a href="#cb14-302" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.double) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">c</span>(mu), \(x) <span class="fu">round</span>(x, <span class="dv">3</span>)))</span>
-<span id="cb14-303"><a href="#cb14-303" aria-hidden="true" tabindex="-1"></a>se_tab</span>
-<span id="cb14-304"><a href="#cb14-304" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-305"><a href="#cb14-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-306"><a href="#cb14-306" aria-hidden="true" tabindex="-1"></a><span class="fu">### Per-item rates by item location</span></span>
-<span id="cb14-307"><a href="#cb14-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-308"><a href="#cb14-308" aria-hidden="true" tabindex="-1"></a>If sparse restscore tails matter, items far from the sample mean should be the</span>
-<span id="cb14-309"><a href="#cb14-309" aria-hidden="true" tabindex="-1"></a>worst calibrated, and more so under mistargeting.</span>
+<span id="cb14-245"><a href="#cb14-245" aria-hidden="true" tabindex="-1"></a>Nominal 5.0 percent two-sided, 2.5 percent in each tail. <span class="in">`over`</span> is observed</span>
+<span id="cb14-246"><a href="#cb14-246" aria-hidden="true" tabindex="-1"></a>gamma above expected (the package labels this overfit), <span class="in">`under`</span> is below.</span>
+<span id="cb14-247"><a href="#cb14-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-248"><a href="#cb14-248" aria-hidden="true" tabindex="-1"></a>An observed gamma of exactly ±1 has an ASE of zero, which gives an infinite $z$</span>
+<span id="cb14-249"><a href="#cb14-249" aria-hidden="true" tabindex="-1"></a>and p = 0. The package flags such an item, so it counts as a rejection here, but</span>
+<span id="cb14-250"><a href="#cb14-250" aria-hidden="true" tabindex="-1"></a>it is left out of the mean and SD of $z$. <span class="in">`se_zero`</span> counts these cases.</span>
+<span id="cb14-251"><a href="#cb14-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-252"><a href="#cb14-252" aria-hidden="true" tabindex="-1"></a><span class="in">```{r peritem}</span></span>
+<span id="cb14-253"><a href="#cb14-253" aria-hidden="true" tabindex="-1"></a>long <span class="sc">|&gt;</span></span>
+<span id="cb14-254"><a href="#cb14-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(set, mu, n) <span class="sc">|&gt;</span></span>
+<span id="cb14-255"><a href="#cb14-255" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">two_sided =</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fu">mean</span>(p <span class="sc">&lt;</span> .<span class="dv">05</span>),</span>
+<span id="cb14-256"><a href="#cb14-256" aria-hidden="true" tabindex="-1"></a>            <span class="at">over =</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fu">mean</span>(z <span class="sc">&gt;</span> <span class="fu">qnorm</span>(.<span class="dv">975</span>)),</span>
+<span id="cb14-257"><a href="#cb14-257" aria-hidden="true" tabindex="-1"></a>            <span class="at">under =</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fu">mean</span>(z <span class="sc">&lt;</span> <span class="fu">qnorm</span>(.<span class="dv">025</span>)),</span>
+<span id="cb14-258"><a href="#cb14-258" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_z =</span> <span class="fu">mean</span>(z[<span class="fu">is.finite</span>(z)]),</span>
+<span id="cb14-259"><a href="#cb14-259" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_z =</span> <span class="fu">sd</span>(z[<span class="fu">is.finite</span>(z)]),</span>
+<span id="cb14-260"><a href="#cb14-260" aria-hidden="true" tabindex="-1"></a>            <span class="at">se_zero =</span> <span class="fu">sum</span>(se <span class="sc">==</span> <span class="dv">0</span>),</span>
+<span id="cb14-261"><a href="#cb14-261" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-262"><a href="#cb14-262" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(two_sided<span class="sc">:</span>under, \(x) <span class="fu">round</span>(x, <span class="dv">2</span>)),</span>
+<span id="cb14-263"><a href="#cb14-263" aria-hidden="true" tabindex="-1"></a>         <span class="fu">across</span>(<span class="fu">c</span>(mean_z, sd_z), \(x) <span class="fu">round</span>(x, <span class="dv">3</span>)))</span>
+<span id="cb14-264"><a href="#cb14-264" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-265"><a href="#cb14-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-266"><a href="#cb14-266" aria-hidden="true" tabindex="-1"></a><span class="fu">### Family-wise rejection</span></span>
+<span id="cb14-267"><a href="#cb14-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-268"><a href="#cb14-268" aria-hidden="true" tabindex="-1"></a>Proportion of replications with at least one flagged item. Under a complete</span>
+<span id="cb14-269"><a href="#cb14-269" aria-hidden="true" tabindex="-1"></a>null, BH and Bonferroni both control this at 5 percent. The unadjusted column</span>
+<span id="cb14-270"><a href="#cb14-270" aria-hidden="true" tabindex="-1"></a>shows what the per-item test implies across 9 or 20 items.</span>
+<span id="cb14-271"><a href="#cb14-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-272"><a href="#cb14-272" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fwer}</span></span>
+<span id="cb14-273"><a href="#cb14-273" aria-hidden="true" tabindex="-1"></a>fw <span class="ot">&lt;-</span> long <span class="sc">|&gt;</span></span>
+<span id="cb14-274"><a href="#cb14-274" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(set, mu, n, rep) <span class="sc">|&gt;</span></span>
+<span id="cb14-275"><a href="#cb14-275" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">none =</span> <span class="fu">any</span>(p <span class="sc">&lt;</span> .<span class="dv">05</span>),</span>
+<span id="cb14-276"><a href="#cb14-276" aria-hidden="true" tabindex="-1"></a>            <span class="at">bh =</span> <span class="fu">any</span>(<span class="fu">p.adjust</span>(p, <span class="st">"BH"</span>) <span class="sc">&lt;</span> .<span class="dv">05</span>),</span>
+<span id="cb14-277"><a href="#cb14-277" aria-hidden="true" tabindex="-1"></a>            <span class="at">bonferroni =</span> <span class="fu">any</span>(<span class="fu">p.adjust</span>(p, <span class="st">"bonferroni"</span>) <span class="sc">&lt;</span> .<span class="dv">05</span>),</span>
+<span id="cb14-278"><a href="#cb14-278" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-279"><a href="#cb14-279" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(set, mu, n) <span class="sc">|&gt;</span></span>
+<span id="cb14-280"><a href="#cb14-280" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">reps =</span> <span class="fu">n</span>(),</span>
+<span id="cb14-281"><a href="#cb14-281" aria-hidden="true" tabindex="-1"></a>            <span class="fu">across</span>(<span class="fu">c</span>(none, bh, bonferroni), \(x) <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">mean</span>(x), <span class="dv">2</span>)),</span>
+<span id="cb14-282"><a href="#cb14-282" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb14-283"><a href="#cb14-283" aria-hidden="true" tabindex="-1"></a>fw</span>
+<span id="cb14-284"><a href="#cb14-284" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-285"><a href="#cb14-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-286"><a href="#cb14-286" aria-hidden="true" tabindex="-1"></a><span class="fu">### Where the SE goes wrong</span></span>
+<span id="cb14-287"><a href="#cb14-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-288"><a href="#cb14-288" aria-hidden="true" tabindex="-1"></a><span class="in">`sd_diff / rms_se`</span> near 1 means the ASE is the right SE for the test statistic.</span>
+<span id="cb14-289"><a href="#cb14-289" aria-hidden="true" tabindex="-1"></a><span class="in">`sd_obs / rms_se`</span> near 1 means it is the right SE for the observed gamma alone.</span>
+<span id="cb14-290"><a href="#cb14-290" aria-hidden="true" tabindex="-1"></a><span class="in">`cor_obs_exp`</span> is the correlation between observed and expected gamma across</span>
+<span id="cb14-291"><a href="#cb14-291" aria-hidden="true" tabindex="-1"></a>replications, averaged over items.</span>
+<span id="cb14-292"><a href="#cb14-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-293"><a href="#cb14-293" aria-hidden="true" tabindex="-1"></a><span class="in">```{r sedecomp}</span></span>
+<span id="cb14-294"><a href="#cb14-294" aria-hidden="true" tabindex="-1"></a>se_tab <span class="ot">&lt;-</span> long <span class="sc">|&gt;</span></span>
+<span id="cb14-295"><a href="#cb14-295" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(set, mu, n, item) <span class="sc">|&gt;</span></span>
+<span id="cb14-296"><a href="#cb14-296" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sd_diff =</span> <span class="fu">sd</span>(diff), <span class="at">sd_obs =</span> <span class="fu">sd</span>(obs), <span class="at">sd_exp =</span> <span class="fu">sd</span>(exp),</span>
+<span id="cb14-297"><a href="#cb14-297" aria-hidden="true" tabindex="-1"></a>            <span class="at">rms_se =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(se<span class="sc">^</span><span class="dv">2</span>)), <span class="at">cor_obs_exp =</span> <span class="fu">cor</span>(obs, exp),</span>
+<span id="cb14-298"><a href="#cb14-298" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-299"><a href="#cb14-299" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(set, mu, n) <span class="sc">|&gt;</span></span>
+<span id="cb14-300"><a href="#cb14-300" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sd_diff_over_rms_se =</span> <span class="fu">mean</span>(sd_diff <span class="sc">/</span> rms_se),</span>
+<span id="cb14-301"><a href="#cb14-301" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_obs_over_rms_se =</span> <span class="fu">mean</span>(sd_obs <span class="sc">/</span> rms_se),</span>
+<span id="cb14-302"><a href="#cb14-302" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_exp_over_rms_se =</span> <span class="fu">mean</span>(sd_exp <span class="sc">/</span> rms_se),</span>
+<span id="cb14-303"><a href="#cb14-303" aria-hidden="true" tabindex="-1"></a>            <span class="at">cor_obs_exp =</span> <span class="fu">mean</span>(cor_obs_exp),</span>
+<span id="cb14-304"><a href="#cb14-304" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-305"><a href="#cb14-305" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.double) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">c</span>(mu), \(x) <span class="fu">round</span>(x, <span class="dv">3</span>)))</span>
+<span id="cb14-306"><a href="#cb14-306" aria-hidden="true" tabindex="-1"></a>se_tab</span>
+<span id="cb14-307"><a href="#cb14-307" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-308"><a href="#cb14-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-309"><a href="#cb14-309" aria-hidden="true" tabindex="-1"></a><span class="fu">### Per-item rates by item location</span></span>
 <span id="cb14-310"><a href="#cb14-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-311"><a href="#cb14-311" aria-hidden="true" tabindex="-1"></a><span class="in">```{r byitem}</span></span>
-<span id="cb14-312"><a href="#cb14-312" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
-<span id="cb14-313"><a href="#cb14-313" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
-<span id="cb14-314"><a href="#cb14-314" aria-hidden="true" tabindex="-1"></a><span class="co"># readable panel labels, shared with the quantile plot below</span></span>
-<span id="cb14-315"><a href="#cb14-315" aria-hidden="true" tabindex="-1"></a>set_lab <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">dich =</span> <span class="st">"20 dichotomous items"</span>, <span class="at">poly =</span> <span class="st">"9 items, 4 categories"</span>)</span>
-<span id="cb14-316"><a href="#cb14-316" aria-hidden="true" tabindex="-1"></a>mu_lab <span class="ot">&lt;-</span> <span class="cf">function</span>(mu) <span class="fu">ifelse</span>(mu <span class="sc">==</span> <span class="dv">0</span>, <span class="st">"μ = 0 (targeted)"</span>, <span class="st">"μ = 1.5 (mistargeted)"</span>)</span>
-<span id="cb14-317"><a href="#cb14-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-318"><a href="#cb14-318" aria-hidden="true" tabindex="-1"></a>long <span class="sc">|&gt;</span></span>
-<span id="cb14-319"><a href="#cb14-319" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(set, mu, n, item, location) <span class="sc">|&gt;</span></span>
-<span id="cb14-320"><a href="#cb14-320" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">rate =</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fu">mean</span>(p <span class="sc">&lt;</span> .<span class="dv">05</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-321"><a href="#cb14-321" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rel_location =</span> location <span class="sc">-</span> mu,</span>
-<span id="cb14-322"><a href="#cb14-322" aria-hidden="true" tabindex="-1"></a>         <span class="at">set =</span> set_lab[set],</span>
-<span id="cb14-323"><a href="#cb14-323" aria-hidden="true" tabindex="-1"></a>         <span class="at">mu =</span> <span class="fu">mu_lab</span>(mu)) <span class="sc">|&gt;</span></span>
-<span id="cb14-324"><a href="#cb14-324" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(rel_location, rate, <span class="at">colour =</span> <span class="fu">factor</span>(n))) <span class="sc">+</span></span>
-<span id="cb14-325"><a href="#cb14-325" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">5</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"grey40"</span>) <span class="sc">+</span></span>
-<span id="cb14-326"><a href="#cb14-326" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb14-327"><a href="#cb14-327" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb14-328"><a href="#cb14-328" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(set <span class="sc">~</span> mu, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
-<span id="cb14-329"><a href="#cb14-329" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Item location relative to person mean (logits)"</span>,</span>
-<span id="cb14-330"><a href="#cb14-330" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Per-item rejection rate (%)"</span>, <span class="at">colour =</span> <span class="st">"n"</span>) <span class="sc">+</span></span>
-<span id="cb14-331"><a href="#cb14-331" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
-<span id="cb14-332"><a href="#cb14-332" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-333"><a href="#cb14-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-334"><a href="#cb14-334" aria-hidden="true" tabindex="-1"></a><span class="fu">### Distribution of z</span></span>
-<span id="cb14-335"><a href="#cb14-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-336"><a href="#cb14-336" aria-hidden="true" tabindex="-1"></a>Quantile plot against the standard normal, pooled over items, for the smallest</span>
-<span id="cb14-337"><a href="#cb14-337" aria-hidden="true" tabindex="-1"></a>and largest n. Points on the diagonal mean the reference distribution is right.</span>
+<span id="cb14-311"><a href="#cb14-311" aria-hidden="true" tabindex="-1"></a>If sparse restscore tails matter, items far from the sample mean should be the</span>
+<span id="cb14-312"><a href="#cb14-312" aria-hidden="true" tabindex="-1"></a>worst calibrated, and more so under mistargeting.</span>
+<span id="cb14-313"><a href="#cb14-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-314"><a href="#cb14-314" aria-hidden="true" tabindex="-1"></a><span class="in">```{r byitem}</span></span>
+<span id="cb14-315"><a href="#cb14-315" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb14-316"><a href="#cb14-316" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
+<span id="cb14-317"><a href="#cb14-317" aria-hidden="true" tabindex="-1"></a><span class="co"># readable panel labels, shared with the quantile plot below</span></span>
+<span id="cb14-318"><a href="#cb14-318" aria-hidden="true" tabindex="-1"></a>set_lab <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">dich =</span> <span class="st">"20 dichotomous items"</span>, <span class="at">poly =</span> <span class="st">"9 items, 4 categories"</span>)</span>
+<span id="cb14-319"><a href="#cb14-319" aria-hidden="true" tabindex="-1"></a>mu_lab <span class="ot">&lt;-</span> <span class="cf">function</span>(mu) <span class="fu">ifelse</span>(mu <span class="sc">==</span> <span class="dv">0</span>, <span class="st">"μ = 0 (targeted)"</span>, <span class="st">"μ = 1.5 (mistargeted)"</span>)</span>
+<span id="cb14-320"><a href="#cb14-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-321"><a href="#cb14-321" aria-hidden="true" tabindex="-1"></a>long <span class="sc">|&gt;</span></span>
+<span id="cb14-322"><a href="#cb14-322" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(set, mu, n, item, location) <span class="sc">|&gt;</span></span>
+<span id="cb14-323"><a href="#cb14-323" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">rate =</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fu">mean</span>(p <span class="sc">&lt;</span> .<span class="dv">05</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-324"><a href="#cb14-324" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rel_location =</span> location <span class="sc">-</span> mu,</span>
+<span id="cb14-325"><a href="#cb14-325" aria-hidden="true" tabindex="-1"></a>         <span class="at">set =</span> set_lab[set],</span>
+<span id="cb14-326"><a href="#cb14-326" aria-hidden="true" tabindex="-1"></a>         <span class="at">mu =</span> <span class="fu">mu_lab</span>(mu)) <span class="sc">|&gt;</span></span>
+<span id="cb14-327"><a href="#cb14-327" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(rel_location, rate, <span class="at">colour =</span> <span class="fu">factor</span>(n))) <span class="sc">+</span></span>
+<span id="cb14-328"><a href="#cb14-328" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">5</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"grey40"</span>) <span class="sc">+</span></span>
+<span id="cb14-329"><a href="#cb14-329" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb14-330"><a href="#cb14-330" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb14-331"><a href="#cb14-331" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(set <span class="sc">~</span> mu, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb14-332"><a href="#cb14-332" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Item location relative to person mean (logits)"</span>,</span>
+<span id="cb14-333"><a href="#cb14-333" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Per-item rejection rate (%)"</span>, <span class="at">colour =</span> <span class="st">"n"</span>) <span class="sc">+</span></span>
+<span id="cb14-334"><a href="#cb14-334" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb14-335"><a href="#cb14-335" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-336"><a href="#cb14-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-337"><a href="#cb14-337" aria-hidden="true" tabindex="-1"></a><span class="fu">### Distribution of z</span></span>
 <span id="cb14-338"><a href="#cb14-338" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-339"><a href="#cb14-339" aria-hidden="true" tabindex="-1"></a><span class="in">```{r qq-data}</span></span>
-<span id="cb14-340"><a href="#cb14-340" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb14-341"><a href="#cb14-341" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)                         <span class="co"># fixed sample of points to plot</span></span>
-<span id="cb14-342"><a href="#cb14-342" aria-hidden="true" tabindex="-1"></a>qq <span class="ot">&lt;-</span> long <span class="sc">|&gt;</span></span>
-<span id="cb14-343"><a href="#cb14-343" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">%in%</span> <span class="fu">range</span>(NS)) <span class="sc">|&gt;</span></span>
-<span id="cb14-344"><a href="#cb14-344" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(set, mu, n) <span class="sc">|&gt;</span></span>
-<span id="cb14-345"><a href="#cb14-345" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">theoretical =</span> <span class="fu">qnorm</span>(<span class="fu">ppoints</span>(<span class="fu">n</span>()))[<span class="fu">rank</span>(z, <span class="at">ties.method =</span> <span class="st">"first"</span>)]) <span class="sc">|&gt;</span></span>
-<span id="cb14-346"><a href="#cb14-346" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5000</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-347"><a href="#cb14-347" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb14-348"><a href="#cb14-348" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">set =</span> <span class="fu">factor</span>(set_lab[set], <span class="at">levels =</span> set_lab),</span>
-<span id="cb14-349"><a href="#cb14-349" aria-hidden="true" tabindex="-1"></a>         <span class="at">mu =</span> <span class="fu">mu_lab</span>(mu))</span>
-<span id="cb14-350"><a href="#cb14-350" aria-hidden="true" tabindex="-1"></a>QQ_LIM <span class="ot">&lt;-</span> <span class="fl">4.5</span></span>
-<span id="cb14-351"><a href="#cb14-351" aria-hidden="true" tabindex="-1"></a>qq_cut <span class="ot">&lt;-</span> qq <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">abs</span>(z) <span class="sc">&gt;</span> QQ_LIM <span class="sc">|</span> <span class="sc">!</span><span class="fu">is.finite</span>(z))</span>
-<span id="cb14-352"><a href="#cb14-352" aria-hidden="true" tabindex="-1"></a>qq_out <span class="ot">&lt;-</span> <span class="fu">nrow</span>(qq_cut)</span>
-<span id="cb14-353"><a href="#cb14-353" aria-hidden="true" tabindex="-1"></a>qq_cut_pos <span class="ot">&lt;-</span> <span class="fu">all</span>(qq_cut<span class="sc">$</span>z <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb14-354"><a href="#cb14-354" aria-hidden="true" tabindex="-1"></a>qq_cut_gmin <span class="ot">&lt;-</span> <span class="fu">min</span>(qq_cut<span class="sc">$</span>obs)</span>
-<span id="cb14-355"><a href="#cb14-355" aria-hidden="true" tabindex="-1"></a>qq_cut_n150 <span class="ot">&lt;-</span> <span class="fu">sum</span>(qq_cut<span class="sc">$</span>n <span class="sc">==</span> <span class="dv">150</span>)</span>
-<span id="cb14-356"><a href="#cb14-356" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-357"><a href="#cb14-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-360"><a href="#cb14-360" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb14-361"><a href="#cb14-361" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-rs-qq</span></span>
-<span id="cb14-362"><a href="#cb14-362" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
-<span id="cb14-363"><a href="#cb14-363" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 8</span></span>
-<span id="cb14-364"><a href="#cb14-364" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Quantile plot of the item-restscore z against the standard normal,</span></span>
-<span id="cb14-365"><a href="#cb14-365" aria-hidden="true" tabindex="-1"></a><span class="co">#|   pooled over items, at the smallest and largest sample size. The dashed</span></span>
-<span id="cb14-366"><a href="#cb14-366" aria-hidden="true" tabindex="-1"></a><span class="co">#|   line is where the points would lie if the standard normal were the right</span></span>
-<span id="cb14-367"><a href="#cb14-367" aria-hidden="true" tabindex="-1"></a><span class="co">#|   reference. Each panel shows a random sample of 5000 points per sample</span></span>
-<span id="cb14-368"><a href="#cb14-368" aria-hidden="true" tabindex="-1"></a><span class="co">#|   size."</span></span>
-<span id="cb14-369"><a href="#cb14-369" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: "Four square panels, rows for the dichotomous and polytomous item</span></span>
-<span id="cb14-370"><a href="#cb14-370" aria-hidden="true" tabindex="-1"></a><span class="co">#|   sets and columns for the targeted and mistargeted samples, each plotting</span></span>
-<span id="cb14-371"><a href="#cb14-371" aria-hidden="true" tabindex="-1"></a><span class="co">#|   observed z against standard normal quantiles for n = 150 and n = 2000. In</span></span>
-<span id="cb14-372"><a href="#cb14-372" aria-hidden="true" tabindex="-1"></a><span class="co">#|   every panel the points lie above the dashed diagonal in the lower tail and</span></span>
-<span id="cb14-373"><a href="#cb14-373" aria-hidden="true" tabindex="-1"></a><span class="co">#|   bend above it in the upper tail, most for n = 150 and for the dichotomous</span></span>
-<span id="cb14-374"><a href="#cb14-374" aria-hidden="true" tabindex="-1"></a><span class="co">#|   items, so z is shifted upwards and skewed to the right rather than standard</span></span>
-<span id="cb14-375"><a href="#cb14-375" aria-hidden="true" tabindex="-1"></a><span class="co">#|   normal."</span></span>
-<span id="cb14-376"><a href="#cb14-376" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(qq, <span class="fu">aes</span>(theoretical, z, <span class="at">colour =</span> <span class="fu">factor</span>(n))) <span class="sc">+</span></span>
-<span id="cb14-377"><a href="#cb14-377" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"grey40"</span>) <span class="sc">+</span></span>
-<span id="cb14-378"><a href="#cb14-378" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.6</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb14-379"><a href="#cb14-379" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(set, mu), <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb14-380"><a href="#cb14-380" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span>QQ_LIM, QQ_LIM), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>QQ_LIM, QQ_LIM)) <span class="sc">+</span></span>
-<span id="cb14-381"><a href="#cb14-381" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"150"</span> <span class="ot">=</span> <span class="st">"#2a78d6"</span>, <span class="st">"2000"</span> <span class="ot">=</span> <span class="st">"#eb6834"</span>)) <span class="sc">+</span></span>
-<span id="cb14-382"><a href="#cb14-382" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"N(0, 1) quantile"</span>, <span class="at">y =</span> <span class="st">"Observed z"</span>, <span class="at">colour =</span> <span class="st">"n"</span>) <span class="sc">+</span></span>
-<span id="cb14-383"><a href="#cb14-383" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
-<span id="cb14-384"><a href="#cb14-384" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="dv">1</span>)))</span>
-<span id="cb14-385"><a href="#cb14-385" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb14-386"><a href="#cb14-386" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-387"><a href="#cb14-387" aria-hidden="true" tabindex="-1"></a>Both axes are cut at ±<span class="in">`r QQ_LIM`</span>, which leaves out <span class="in">`r qq_out`</span> of the</span>
-<span id="cb14-388"><a href="#cb14-388" aria-hidden="true" tabindex="-1"></a><span class="in">`r format(nrow(qq), big.mark = " ")`</span> plotted points. <span class="in">`r if (qq_cut_pos) "All of them are in the upper tail" else "They are in both tails"`</span>,</span>
-<span id="cb14-389"><a href="#cb14-389" aria-hidden="true" tabindex="-1"></a>from items with an observed gamma between <span class="in">`r sprintf("%.2f", qq_cut_gmin)`</span> and</span>
-<span id="cb14-390"><a href="#cb14-390" aria-hidden="true" tabindex="-1"></a>1, and <span class="in">`r if (qq_cut_n150 == qq_out) "all of them are" else paste(qq_cut_n150, "of them are")`</span> at n = 150.</span>
-<span id="cb14-391"><a href="#cb14-391" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-392"><a href="#cb14-392" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interpretation {#sec-rs-interpretation}</span></span>
-<span id="cb14-393"><a href="#cb14-393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-394"><a href="#cb14-394" aria-hidden="true" tabindex="-1"></a>The asymptotic item-restscore test is not calibrated. Two separate distortions</span>
-<span id="cb14-395"><a href="#cb14-395" aria-hidden="true" tabindex="-1"></a>act on it, and neither vanishes as n grows.</span>
+<span id="cb14-339"><a href="#cb14-339" aria-hidden="true" tabindex="-1"></a>Quantile plot against the standard normal, pooled over items, for the smallest</span>
+<span id="cb14-340"><a href="#cb14-340" aria-hidden="true" tabindex="-1"></a>and largest n. Points on the diagonal mean the reference distribution is right.</span>
+<span id="cb14-341"><a href="#cb14-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-342"><a href="#cb14-342" aria-hidden="true" tabindex="-1"></a><span class="in">```{r qq-data}</span></span>
+<span id="cb14-343"><a href="#cb14-343" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb14-344"><a href="#cb14-344" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)                         <span class="co"># fixed sample of points to plot</span></span>
+<span id="cb14-345"><a href="#cb14-345" aria-hidden="true" tabindex="-1"></a>qq <span class="ot">&lt;-</span> long <span class="sc">|&gt;</span></span>
+<span id="cb14-346"><a href="#cb14-346" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">%in%</span> <span class="fu">range</span>(NS)) <span class="sc">|&gt;</span></span>
+<span id="cb14-347"><a href="#cb14-347" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(set, mu, n) <span class="sc">|&gt;</span></span>
+<span id="cb14-348"><a href="#cb14-348" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">theoretical =</span> <span class="fu">qnorm</span>(<span class="fu">ppoints</span>(<span class="fu">n</span>()))[<span class="fu">rank</span>(z, <span class="at">ties.method =</span> <span class="st">"first"</span>)]) <span class="sc">|&gt;</span></span>
+<span id="cb14-349"><a href="#cb14-349" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-350"><a href="#cb14-350" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-351"><a href="#cb14-351" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">set =</span> <span class="fu">factor</span>(set_lab[set], <span class="at">levels =</span> set_lab),</span>
+<span id="cb14-352"><a href="#cb14-352" aria-hidden="true" tabindex="-1"></a>         <span class="at">mu =</span> <span class="fu">mu_lab</span>(mu))</span>
+<span id="cb14-353"><a href="#cb14-353" aria-hidden="true" tabindex="-1"></a>QQ_LIM <span class="ot">&lt;-</span> <span class="fl">4.5</span></span>
+<span id="cb14-354"><a href="#cb14-354" aria-hidden="true" tabindex="-1"></a>qq_cut <span class="ot">&lt;-</span> qq <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">abs</span>(z) <span class="sc">&gt;</span> QQ_LIM <span class="sc">|</span> <span class="sc">!</span><span class="fu">is.finite</span>(z))</span>
+<span id="cb14-355"><a href="#cb14-355" aria-hidden="true" tabindex="-1"></a>qq_out <span class="ot">&lt;-</span> <span class="fu">nrow</span>(qq_cut)</span>
+<span id="cb14-356"><a href="#cb14-356" aria-hidden="true" tabindex="-1"></a>qq_cut_pos <span class="ot">&lt;-</span> <span class="fu">all</span>(qq_cut<span class="sc">$</span>z <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb14-357"><a href="#cb14-357" aria-hidden="true" tabindex="-1"></a>qq_cut_gmin <span class="ot">&lt;-</span> <span class="fu">min</span>(qq_cut<span class="sc">$</span>obs)</span>
+<span id="cb14-358"><a href="#cb14-358" aria-hidden="true" tabindex="-1"></a>qq_cut_n150 <span class="ot">&lt;-</span> <span class="fu">sum</span>(qq_cut<span class="sc">$</span>n <span class="sc">==</span> <span class="dv">150</span>)</span>
+<span id="cb14-359"><a href="#cb14-359" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-360"><a href="#cb14-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-363"><a href="#cb14-363" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-364"><a href="#cb14-364" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-rs-qq</span></span>
+<span id="cb14-365"><a href="#cb14-365" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb14-366"><a href="#cb14-366" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 8</span></span>
+<span id="cb14-367"><a href="#cb14-367" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Quantile plot of the item-restscore z against the standard normal,</span></span>
+<span id="cb14-368"><a href="#cb14-368" aria-hidden="true" tabindex="-1"></a><span class="co">#|   pooled over items, at the smallest and largest sample size. The dashed</span></span>
+<span id="cb14-369"><a href="#cb14-369" aria-hidden="true" tabindex="-1"></a><span class="co">#|   line is where the points would lie if the standard normal were the right</span></span>
+<span id="cb14-370"><a href="#cb14-370" aria-hidden="true" tabindex="-1"></a><span class="co">#|   reference. Each panel shows a random sample of 5000 points per sample</span></span>
+<span id="cb14-371"><a href="#cb14-371" aria-hidden="true" tabindex="-1"></a><span class="co">#|   size."</span></span>
+<span id="cb14-372"><a href="#cb14-372" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: "Four square panels, rows for the dichotomous and polytomous item</span></span>
+<span id="cb14-373"><a href="#cb14-373" aria-hidden="true" tabindex="-1"></a><span class="co">#|   sets and columns for the targeted and mistargeted samples, each plotting</span></span>
+<span id="cb14-374"><a href="#cb14-374" aria-hidden="true" tabindex="-1"></a><span class="co">#|   observed z against standard normal quantiles for n = 150 and n = 2000. In</span></span>
+<span id="cb14-375"><a href="#cb14-375" aria-hidden="true" tabindex="-1"></a><span class="co">#|   every panel the points lie above the dashed diagonal in the lower tail and</span></span>
+<span id="cb14-376"><a href="#cb14-376" aria-hidden="true" tabindex="-1"></a><span class="co">#|   bend above it in the upper tail, most for n = 150 and for the dichotomous</span></span>
+<span id="cb14-377"><a href="#cb14-377" aria-hidden="true" tabindex="-1"></a><span class="co">#|   items, so z is shifted upwards and skewed to the right rather than standard</span></span>
+<span id="cb14-378"><a href="#cb14-378" aria-hidden="true" tabindex="-1"></a><span class="co">#|   normal."</span></span>
+<span id="cb14-379"><a href="#cb14-379" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(qq, <span class="fu">aes</span>(theoretical, z, <span class="at">colour =</span> <span class="fu">factor</span>(n))) <span class="sc">+</span></span>
+<span id="cb14-380"><a href="#cb14-380" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"grey40"</span>) <span class="sc">+</span></span>
+<span id="cb14-381"><a href="#cb14-381" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.6</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb14-382"><a href="#cb14-382" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(set, mu), <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb14-383"><a href="#cb14-383" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span>QQ_LIM, QQ_LIM), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span>QQ_LIM, QQ_LIM)) <span class="sc">+</span></span>
+<span id="cb14-384"><a href="#cb14-384" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"150"</span> <span class="ot">=</span> <span class="st">"#2a78d6"</span>, <span class="st">"2000"</span> <span class="ot">=</span> <span class="st">"#eb6834"</span>)) <span class="sc">+</span></span>
+<span id="cb14-385"><a href="#cb14-385" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"N(0, 1) quantile"</span>, <span class="at">y =</span> <span class="st">"Observed z"</span>, <span class="at">colour =</span> <span class="st">"n"</span>) <span class="sc">+</span></span>
+<span id="cb14-386"><a href="#cb14-386" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
+<span id="cb14-387"><a href="#cb14-387" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="dv">1</span>)))</span>
+<span id="cb14-388"><a href="#cb14-388" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-389"><a href="#cb14-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-390"><a href="#cb14-390" aria-hidden="true" tabindex="-1"></a>Both axes are cut at ±<span class="in">`r QQ_LIM`</span>, which leaves out <span class="in">`r qq_out`</span> of the</span>
+<span id="cb14-391"><a href="#cb14-391" aria-hidden="true" tabindex="-1"></a><span class="in">`r format(nrow(qq), big.mark = " ")`</span> plotted points. <span class="in">`r if (qq_cut_pos) "All of them are in the upper tail" else "They are in both tails"`</span>,</span>
+<span id="cb14-392"><a href="#cb14-392" aria-hidden="true" tabindex="-1"></a>from items with an observed gamma between <span class="in">`r sprintf("%.2f", qq_cut_gmin)`</span> and</span>
+<span id="cb14-393"><a href="#cb14-393" aria-hidden="true" tabindex="-1"></a>1, and <span class="in">`r if (qq_cut_n150 == qq_out) "all of them are" else paste(qq_cut_n150, "of them are")`</span> at n = 150.</span>
+<span id="cb14-394"><a href="#cb14-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-395"><a href="#cb14-395" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interpretation {#sec-rs-interpretation}</span></span>
 <span id="cb14-396"><a href="#cb14-396" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-397"><a href="#cb14-397" aria-hidden="true" tabindex="-1"></a>**1. The ASE is right for the observed gamma but wrong for the test statistic.**</span>
-<span id="cb14-398"><a href="#cb14-398" aria-hidden="true" tabindex="-1"></a>The SD of the observed gamma across replications matches the root mean squared</span>
-<span id="cb14-399"><a href="#cb14-399" aria-hidden="true" tabindex="-1"></a>ASE to within 1 percent in every cell, so the delta-method SE is not the</span>
-<span id="cb14-400"><a href="#cb14-400" aria-hidden="true" tabindex="-1"></a>problem. The problem is that the expected gamma varies across samples and moves</span>
-<span id="cb14-401"><a href="#cb14-401" aria-hidden="true" tabindex="-1"></a>with the observed gamma (correlation about .41 for the dichotomous set and .55</span>
-<span id="cb14-402"><a href="#cb14-402" aria-hidden="true" tabindex="-1"></a>for the polytomous set). Its variance roughly equals the covariance, so the</span>
-<span id="cb14-403"><a href="#cb14-403" aria-hidden="true" tabindex="-1"></a>difference varies less than the observed gamma alone. The SD of the difference</span>
-<span id="cb14-404"><a href="#cb14-404" aria-hidden="true" tabindex="-1"></a>is 0.91 times the ASE for dichotomous items and 0.83 times for polytomous items,</span>
-<span id="cb14-405"><a href="#cb14-405" aria-hidden="true" tabindex="-1"></a>nearly constant across sample size and targeting. Dividing by the ASE therefore</span>
-<span id="cb14-406"><a href="#cb14-406" aria-hidden="true" tabindex="-1"></a>shrinks $z$ by a fixed factor, and the test is conservative at every sample</span>
-<span id="cb14-407"><a href="#cb14-407" aria-hidden="true" tabindex="-1"></a>size. This is point 1 from @sec-rs-purpose, and point 2 does not show up at</span>
-<span id="cb14-408"><a href="#cb14-408" aria-hidden="true" tabindex="-1"></a>all.</span>
-<span id="cb14-409"><a href="#cb14-409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-410"><a href="#cb14-410" aria-hidden="true" tabindex="-1"></a>**2. A small-sample bias pushes $z$ upwards.** Mean $z$ is .15 at n = 150 and</span>
-<span id="cb14-411"><a href="#cb14-411" aria-hidden="true" tabindex="-1"></a>falls to .04 at n = 2000, roughly in proportion to $1/\sqrt{n}$. This is what a</span>
-<span id="cb14-412"><a href="#cb14-412" aria-hidden="true" tabindex="-1"></a>bias of order $1/n$ in the gamma difference produces. It inflates the upper tail</span>
-<span id="cb14-413"><a href="#cb14-413" aria-hidden="true" tabindex="-1"></a>(observed gamma above expected, labelled overfit by the package) and depletes</span>
-<span id="cb14-414"><a href="#cb14-414" aria-hidden="true" tabindex="-1"></a>the lower tail. It is largest for items far from the person mean, reaching</span>
-<span id="cb14-415"><a href="#cb14-415" aria-hidden="true" tabindex="-1"></a>14 percent two-sided at n = 150 for the easiest dichotomous item under</span>
-<span id="cb14-416"><a href="#cb14-416" aria-hidden="true" tabindex="-1"></a>mistargeting.</span>
-<span id="cb14-417"><a href="#cb14-417" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-418"><a href="#cb14-418" aria-hidden="true" tabindex="-1"></a>**Net effect on single items.** Nominal is 5 percent two-sided. Dichotomous</span>
-<span id="cb14-419"><a href="#cb14-419" aria-hidden="true" tabindex="-1"></a>items reject 4.7 percent at n = 150 when targeted, falling to 3.1 at n = 2000.</span>
-<span id="cb14-420"><a href="#cb14-420" aria-hidden="true" tabindex="-1"></a>Polytomous items reject 2.9 falling to 1.9. The tails are lopsided. The lower</span>
-<span id="cb14-421"><a href="#cb14-421" aria-hidden="true" tabindex="-1"></a>tail, which is the underfit direction and the usual signature of</span>
-<span id="cb14-422"><a href="#cb14-422" aria-hidden="true" tabindex="-1"></a>multidimensionality, rejects 0.2 to 1.2 percent against a nominal 2.5 in every</span>
-<span id="cb14-423"><a href="#cb14-423" aria-hidden="true" tabindex="-1"></a>cell, a tenth to a half of what it should. The upper tail exceeds 2.5 percent at</span>
-<span id="cb14-424"><a href="#cb14-424" aria-hidden="true" tabindex="-1"></a>small n for dichotomous items. The power cost of the deflated lower tail is not</span>
-<span id="cb14-425"><a href="#cb14-425" aria-hidden="true" tabindex="-1"></a>measured here, but it follows directly: underfit has to be larger than the</span>
-<span id="cb14-426"><a href="#cb14-426" aria-hidden="true" tabindex="-1"></a>nominal level implies before it is flagged.</span>
-<span id="cb14-427"><a href="#cb14-427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-428"><a href="#cb14-428" aria-hidden="true" tabindex="-1"></a>**Family-wise rates, which is what a user sees.** With BH over the items, the</span>
-<span id="cb14-429"><a href="#cb14-429" aria-hidden="true" tabindex="-1"></a>probability that a true Rasch model gets at least one item flagged is:</span>
+<span id="cb14-397"><a href="#cb14-397" aria-hidden="true" tabindex="-1"></a>The asymptotic item-restscore test is not calibrated. Two separate distortions</span>
+<span id="cb14-398"><a href="#cb14-398" aria-hidden="true" tabindex="-1"></a>act on it, and neither vanishes as n grows.</span>
+<span id="cb14-399"><a href="#cb14-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-400"><a href="#cb14-400" aria-hidden="true" tabindex="-1"></a>**1. The ASE is right for the observed gamma but wrong for the test statistic.**</span>
+<span id="cb14-401"><a href="#cb14-401" aria-hidden="true" tabindex="-1"></a>The SD of the observed gamma across replications matches the root mean squared</span>
+<span id="cb14-402"><a href="#cb14-402" aria-hidden="true" tabindex="-1"></a>ASE to within 1 percent in every cell, so the delta-method SE is not the</span>
+<span id="cb14-403"><a href="#cb14-403" aria-hidden="true" tabindex="-1"></a>problem. The problem is that the expected gamma varies across samples and moves</span>
+<span id="cb14-404"><a href="#cb14-404" aria-hidden="true" tabindex="-1"></a>with the observed gamma (correlation about .41 for the dichotomous set and .55</span>
+<span id="cb14-405"><a href="#cb14-405" aria-hidden="true" tabindex="-1"></a>for the polytomous set). Its variance roughly equals the covariance, so the</span>
+<span id="cb14-406"><a href="#cb14-406" aria-hidden="true" tabindex="-1"></a>difference varies less than the observed gamma alone. The SD of the difference</span>
+<span id="cb14-407"><a href="#cb14-407" aria-hidden="true" tabindex="-1"></a>is 0.91 times the ASE for dichotomous items and 0.83 times for polytomous items,</span>
+<span id="cb14-408"><a href="#cb14-408" aria-hidden="true" tabindex="-1"></a>nearly constant across sample size and targeting. Dividing by the ASE therefore</span>
+<span id="cb14-409"><a href="#cb14-409" aria-hidden="true" tabindex="-1"></a>shrinks $z$ by a fixed factor, and the test is conservative at every sample</span>
+<span id="cb14-410"><a href="#cb14-410" aria-hidden="true" tabindex="-1"></a>size. This is point 1 from @sec-rs-purpose, and point 2 does not show up at</span>
+<span id="cb14-411"><a href="#cb14-411" aria-hidden="true" tabindex="-1"></a>all.</span>
+<span id="cb14-412"><a href="#cb14-412" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-413"><a href="#cb14-413" aria-hidden="true" tabindex="-1"></a>**2. A small-sample bias pushes $z$ upwards.** Mean $z$ is .15 at n = 150 and</span>
+<span id="cb14-414"><a href="#cb14-414" aria-hidden="true" tabindex="-1"></a>falls to .04 at n = 2000, roughly in proportion to $1/\sqrt{n}$. This is what a</span>
+<span id="cb14-415"><a href="#cb14-415" aria-hidden="true" tabindex="-1"></a>bias of order $1/n$ in the gamma difference produces. It inflates the upper tail</span>
+<span id="cb14-416"><a href="#cb14-416" aria-hidden="true" tabindex="-1"></a>(observed gamma above expected, labelled overfit by the package) and depletes</span>
+<span id="cb14-417"><a href="#cb14-417" aria-hidden="true" tabindex="-1"></a>the lower tail. It is largest for items far from the person mean, reaching</span>
+<span id="cb14-418"><a href="#cb14-418" aria-hidden="true" tabindex="-1"></a>14 percent two-sided at n = 150 for the easiest dichotomous item under</span>
+<span id="cb14-419"><a href="#cb14-419" aria-hidden="true" tabindex="-1"></a>mistargeting.</span>
+<span id="cb14-420"><a href="#cb14-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-421"><a href="#cb14-421" aria-hidden="true" tabindex="-1"></a>**Net effect on single items.** Nominal is 5 percent two-sided. Dichotomous</span>
+<span id="cb14-422"><a href="#cb14-422" aria-hidden="true" tabindex="-1"></a>items reject 4.7 percent at n = 150 when targeted, falling to 3.1 at n = 2000.</span>
+<span id="cb14-423"><a href="#cb14-423" aria-hidden="true" tabindex="-1"></a>Polytomous items reject 2.9 falling to 1.9. The tails are lopsided. The lower</span>
+<span id="cb14-424"><a href="#cb14-424" aria-hidden="true" tabindex="-1"></a>tail, which is the underfit direction and the usual signature of</span>
+<span id="cb14-425"><a href="#cb14-425" aria-hidden="true" tabindex="-1"></a>multidimensionality, rejects 0.2 to 1.2 percent against a nominal 2.5 in every</span>
+<span id="cb14-426"><a href="#cb14-426" aria-hidden="true" tabindex="-1"></a>cell, a tenth to a half of what it should. The upper tail exceeds 2.5 percent at</span>
+<span id="cb14-427"><a href="#cb14-427" aria-hidden="true" tabindex="-1"></a>small n for dichotomous items. The power cost of the deflated lower tail is not</span>
+<span id="cb14-428"><a href="#cb14-428" aria-hidden="true" tabindex="-1"></a>measured here, but it follows directly: underfit has to be larger than the</span>
+<span id="cb14-429"><a href="#cb14-429" aria-hidden="true" tabindex="-1"></a>nominal level implies before it is flagged.</span>
 <span id="cb14-430"><a href="#cb14-430" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-431"><a href="#cb14-431" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>dichotomous, targeted: 13.5, 6.2, 4.1, 2.7 and 2.3 percent at n = 150 to 2000</span>
-<span id="cb14-432"><a href="#cb14-432" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>dichotomous, mistargeted: 30.5, 13.9, 7.4, 4.9 and 3.2 percent</span>
-<span id="cb14-433"><a href="#cb14-433" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>polytomous, targeted: 4.2 falling to 0.9 to 1.1 percent</span>
-<span id="cb14-434"><a href="#cb14-434" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>polytomous, mistargeted: 5.1 falling to 1.2 to 1.6 percent</span>
-<span id="cb14-435"><a href="#cb14-435" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-436"><a href="#cb14-436" aria-hidden="true" tabindex="-1"></a>So the same test is liberal for dichotomous data at small n,</span>
-<span id="cb14-437"><a href="#cb14-437" aria-hidden="true" tabindex="-1"></a>especially when mistargeted, and conservative for polytomous data at every n.</span>
-<span id="cb14-438"><a href="#cb14-438" aria-hidden="true" tabindex="-1"></a>No single correction to the nominal level fixes both.</span>
-<span id="cb14-439"><a href="#cb14-439" aria-hidden="true" tabindex="-1"></a>BH and Bonferroni give nearly identical rates, as expected under a complete</span>
-<span id="cb14-440"><a href="#cb14-440" aria-hidden="true" tabindex="-1"></a>null.</span>
-<span id="cb14-441"><a href="#cb14-441" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-442"><a href="#cb14-442" aria-hidden="true" tabindex="-1"></a>**Discarded replications.** 28 percent of the mistargeted polytomous</span>
-<span id="cb14-443"><a href="#cb14-443" aria-hidden="true" tabindex="-1"></a>replications at n = 150 and 6 percent at n = 300 had an unobserved category and</span>
-<span id="cb14-444"><a href="#cb14-444" aria-hidden="true" tabindex="-1"></a>were discarded. Those two cells describe samples where every category is used,</span>
-<span id="cb14-445"><a href="#cb14-445" aria-hidden="true" tabindex="-1"></a>which are also the only samples the package can fit.</span>
-<span id="cb14-446"><a href="#cb14-446" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-447"><a href="#cb14-447" aria-hidden="true" tabindex="-1"></a>**For easyRasch2.** Both distortions come from treating the expected gamma as a</span>
-<span id="cb14-448"><a href="#cb14-448" aria-hidden="true" tabindex="-1"></a>fixed reference, and both depend on the item set, sample size and targeting. A</span>
-<span id="cb14-449"><a href="#cb14-449" aria-hidden="true" tabindex="-1"></a>parametric bootstrap that simulates from the fitted model, **re-estimates the</span>
-<span id="cb14-450"><a href="#cb14-450" aria-hidden="true" tabindex="-1"></a>thresholds in every replication**, and recomputes the observed minus expected</span>
-<span id="cb14-451"><a href="#cb14-451" aria-hidden="true" tabindex="-1"></a>difference would absorb both, in the same way as <span class="in">`RMitemInfitCutoff()`</span>. A</span>
-<span id="cb14-452"><a href="#cb14-452" aria-hidden="true" tabindex="-1"></a>bootstrap that holds the thresholds fixed would reproduce distortion 1. The</span>
-<span id="cb14-453"><a href="#cb14-453" aria-hidden="true" tabindex="-1"></a>item-restscore statistic is cheap (about 0.1 s per replication including the</span>
-<span id="cb14-454"><a href="#cb14-454" aria-hidden="true" tabindex="-1"></a>CML fit), so an <span class="in">`RMitemRestscoreCutoff()`</span> at the same iteration counts as the</span>
-<span id="cb14-455"><a href="#cb14-455" aria-hidden="true" tabindex="-1"></a>infit cutoffs is affordable. This simulation says nothing about power. That</span>
-<span id="cb14-456"><a href="#cb14-456" aria-hidden="true" tabindex="-1"></a>comparison, against infit with simulation-based cutoffs, is the natural next</span>
-<span id="cb14-457"><a href="#cb14-457" aria-hidden="true" tabindex="-1"></a>step.</span>
-<span id="cb14-458"><a href="#cb14-458" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-459"><a href="#cb14-459" aria-hidden="true" tabindex="-1"></a><span class="fu">## Revision history {.unnumbered}</span></span>
-<span id="cb14-460"><a href="#cb14-460" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-461"><a href="#cb14-461" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>2026-10-04: first version in this book, moved from <span class="in">`easyRasch2/dev/restscore_asymptotic_null.qmd`</span>.</span>
-<span id="cb14-462"><a href="#cb14-462" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>2026-10-05: removed false positive rates quoted from an earlier S-X2 simulation, which has been withdrawn. The motivation is kept as one paragraph. No result of this chapter changed.</span>
+<span id="cb14-431"><a href="#cb14-431" aria-hidden="true" tabindex="-1"></a>**Family-wise rates, which is what a user sees.** With BH over the items, the</span>
+<span id="cb14-432"><a href="#cb14-432" aria-hidden="true" tabindex="-1"></a>probability that a true Rasch model gets at least one item flagged is:</span>
+<span id="cb14-433"><a href="#cb14-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-434"><a href="#cb14-434" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>dichotomous, targeted: 13.5, 6.2, 4.1, 2.7 and 2.3 percent at n = 150 to 2000</span>
+<span id="cb14-435"><a href="#cb14-435" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>dichotomous, mistargeted: 30.5, 13.9, 7.4, 4.9 and 3.2 percent</span>
+<span id="cb14-436"><a href="#cb14-436" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>polytomous, targeted: 4.2 falling to 0.9 to 1.1 percent</span>
+<span id="cb14-437"><a href="#cb14-437" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>polytomous, mistargeted: 5.1 falling to 1.2 to 1.6 percent</span>
+<span id="cb14-438"><a href="#cb14-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-439"><a href="#cb14-439" aria-hidden="true" tabindex="-1"></a>So the same test is liberal for dichotomous data at small n,</span>
+<span id="cb14-440"><a href="#cb14-440" aria-hidden="true" tabindex="-1"></a>especially when mistargeted, and conservative for polytomous data at every n.</span>
+<span id="cb14-441"><a href="#cb14-441" aria-hidden="true" tabindex="-1"></a>No single correction to the nominal level fixes both.</span>
+<span id="cb14-442"><a href="#cb14-442" aria-hidden="true" tabindex="-1"></a>BH and Bonferroni give nearly identical rates, as expected under a complete</span>
+<span id="cb14-443"><a href="#cb14-443" aria-hidden="true" tabindex="-1"></a>null.</span>
+<span id="cb14-444"><a href="#cb14-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-445"><a href="#cb14-445" aria-hidden="true" tabindex="-1"></a>**Discarded replications.** 28 percent of the mistargeted polytomous</span>
+<span id="cb14-446"><a href="#cb14-446" aria-hidden="true" tabindex="-1"></a>replications at n = 150 and 6 percent at n = 300 had an unobserved category and</span>
+<span id="cb14-447"><a href="#cb14-447" aria-hidden="true" tabindex="-1"></a>were discarded. Those two cells describe samples where every category is used,</span>
+<span id="cb14-448"><a href="#cb14-448" aria-hidden="true" tabindex="-1"></a>which are also the only samples the package can fit.</span>
+<span id="cb14-449"><a href="#cb14-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-450"><a href="#cb14-450" aria-hidden="true" tabindex="-1"></a>**For easyRasch2.** Both distortions come from treating the expected gamma as a</span>
+<span id="cb14-451"><a href="#cb14-451" aria-hidden="true" tabindex="-1"></a>fixed reference, and both depend on the item set, sample size and targeting. A</span>
+<span id="cb14-452"><a href="#cb14-452" aria-hidden="true" tabindex="-1"></a>parametric bootstrap that simulates from the fitted model, **re-estimates the</span>
+<span id="cb14-453"><a href="#cb14-453" aria-hidden="true" tabindex="-1"></a>thresholds in every replication**, and recomputes the observed minus expected</span>
+<span id="cb14-454"><a href="#cb14-454" aria-hidden="true" tabindex="-1"></a>difference would absorb both, in the same way as <span class="in">`RMitemInfitCutoff()`</span>. A</span>
+<span id="cb14-455"><a href="#cb14-455" aria-hidden="true" tabindex="-1"></a>bootstrap that holds the thresholds fixed would reproduce distortion 1. The</span>
+<span id="cb14-456"><a href="#cb14-456" aria-hidden="true" tabindex="-1"></a>item-restscore statistic is cheap (about 0.1 s per replication including the</span>
+<span id="cb14-457"><a href="#cb14-457" aria-hidden="true" tabindex="-1"></a>CML fit), so an <span class="in">`RMitemRestscoreCutoff()`</span> at the same iteration counts as the</span>
+<span id="cb14-458"><a href="#cb14-458" aria-hidden="true" tabindex="-1"></a>infit cutoffs is affordable. This simulation says nothing about power. That</span>
+<span id="cb14-459"><a href="#cb14-459" aria-hidden="true" tabindex="-1"></a>comparison, against infit with simulation-based cutoffs, is the natural next</span>
+<span id="cb14-460"><a href="#cb14-460" aria-hidden="true" tabindex="-1"></a>step.</span>
+<span id="cb14-461"><a href="#cb14-461" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-462"><a href="#cb14-462" aria-hidden="true" tabindex="-1"></a><span class="fu">## Revision history {.unnumbered}</span></span>
+<span id="cb14-463"><a href="#cb14-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-464"><a href="#cb14-464" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>2026-10-04: first version in this book, moved from <span class="in">`easyRasch2/dev/restscore_asymptotic_null.qmd`</span>.</span>
+<span id="cb14-465"><a href="#cb14-465" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>2026-10-05: removed false positive rates quoted from an earlier S-X2 simulation, which has been withdrawn. The motivation is kept as one paragraph. No result of this chapter changed.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
