@@ -38,7 +38,9 @@ book:
       chapters:
         - chapters/ttest-protocol-exact-null.qmd
     # - part: "Local dependence"
-    # - part: "Differential item functioning"
+    - part: "Differential item functioning"
+      chapters:
+        - chapters/dif-anchor-tests.qmd
     # - part: "Reliability and targeting"
     - part: "Person-level change"
       chapters:
