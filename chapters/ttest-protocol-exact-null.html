@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.20">
+<meta name="generator" content="quarto-1.11.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -93,22 +93,23 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/rci-exact-null.html" rel="next">
+<link href="../chapters/dif-anchor-tests.html" rel="next">
 <link href="../chapters/sx2-infit.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-17888a1159294d3eb470f19f6f52f5a5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0ae969d3293726db143f6e9eb89af930.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-17888a1159294d3eb470f19f6f52f5a5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-447e42e69aaa9833c0ba1b986f430b20.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fd33a4952e9ae2782db733e1f7710525.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-c7f9e716fd0b9cf72826647080c3781c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-fd33a4952e9ae2782db733e1f7710525.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-4f67ab1e4efc86feb5e21e0983fc9301.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-27330ec348340ca706981e98b339590d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-4f67ab1e4efc86feb5e21e0983fc9301.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -169,7 +170,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar floating quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -192,6 +193,7 @@ window.Quarto = {
       for (let i=0; i < toggles.length; i++) {
         const toggle = toggles[i];
         if (toggle) {
+          toggle.setAttribute("aria-checked", alternate ? "true" : "false");
           if (alternate) {
             toggle.classList.add("alternate");
           } else {
@@ -221,13 +223,19 @@ window.Quarto = {
       manageTransitions('#quarto-margin-sidebar .nav-link', true);
       // Switch the toggles
       setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455).
+    // Not run on load: stylesheets are set before first paint there, and
+    // scrolling would undo the scroll to a URL fragment (#14973).
+    // The one pixel nudge keeps the reader where they were.
+    const refreshSafariScrollbar = () => {
       if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
         manageTransitions("body", false);
-        window.scrollTo(0, 1);
+        const scrollY = window.scrollY;
+        window.scrollTo(0, scrollY > 0 ? scrollY - 1 : 1);
         setTimeout(() => {
-          window.scrollTo(0, 0);
+          window.scrollTo(0, scrollY);
           manageTransitions("body", true);
         }, 40);
       }
@@ -321,6 +329,7 @@ window.Quarto = {
       // Read the current dark / light value
       let toAlternate = !hasAlternateSentinel();
       toggleColorMode(toAlternate);
+      refreshSafariScrollbar();
       setStyleSentinel(toAlternate);
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
       window.dispatchEvent(new Event('resize'));
@@ -335,13 +344,13 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/ttest-protocol-exact-null.html">Dimensionality</a></li><li class="breadcrumb-item"><a href="../chapters/ttest-protocol-exact-null.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">An exact null for the PCA/t-test unidimensionality protocol</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/ttest-protocol-exact-null.html">Dimensionality</a></li><li class="breadcrumb-item"><a href="../chapters/ttest-protocol-exact-null.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">An exact null for the PCA/t-test unidimensionality protocol</span></a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -352,13 +361,13 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Site">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Rasch Measurement Explorations</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/pgmj/rasch_book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <button type="button" role="switch" aria-checked="false" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode" aria-label="Toggle dark mode"><i class="bi"></i></button>
 </div>
     </div>
       </div>
@@ -377,13 +386,10 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Item fit</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Item fit</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/restscore-asymptotic-null.html" class="sidebar-item-text sidebar-link">
@@ -400,13 +406,10 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Dimensionality</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Dimensionality</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/ttest-protocol-exact-null.html" class="sidebar-item-text sidebar-link active">
@@ -417,17 +420,28 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Person-level change</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Differential item functioning</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/dif-anchor-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Anchored DIF tests for two groups</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Person-level change</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/rci-exact-null.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">An exact null for the Rasch change index</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">An exact null for the Rasch change index</span></span></a>
   </div>
 </li>
       </ul>
@@ -450,7 +464,7 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
@@ -472,10 +486,10 @@ window.Quarto = {
 <div class="toc-actions"><ul><li><a href="https://github.com/pgmj/rasch_book/blob/main/chapters/ttest-protocol-exact-null.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/pgmj/rasch_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content" tabindex="-1">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/ttest-protocol-exact-null.html">Dimensionality</a></li><li class="breadcrumb-item"><a href="../chapters/ttest-protocol-exact-null.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">An exact null for the PCA/t-test unidimensionality protocol</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/ttest-protocol-exact-null.html">Dimensionality</a></li><li class="breadcrumb-item"><a href="../chapters/ttest-protocol-exact-null.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">An exact null for the PCA/t-test unidimensionality protocol</span></a></li></ol></nav>
 <div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">An exact null for the PCA/t-test unidimensionality protocol</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 <p class="subtitle lead">Why the person-level t-test is not a 5% test, and what that does to the binomial step</p>
@@ -548,10 +562,10 @@ window.Quarto = {
 <h2 data-number="3.2" class="anchored" data-anchor-id="sec-tt-statistic"><span class="header-section-number">3.2</span> The statistic is the change index with subtests in place of occasions</h2>
 <p>The protocol computes</p>
 <p><span class="math display">\[t = \frac{\hat\theta_A - \hat\theta_B}{\sqrt{SE(\hat\theta_A)^2 + SE(\hat\theta_B)^2}}\]</span></p>
-<p>which is the Rasch change index of the <a href="../chapters/rci-exact-null.html">RCI chapter</a> with item subtests in place of occasions. Both mechanisms documented there (<a href="rci-exact-null.html#sec-rci-mechanisms" class="quarto-xref"><span>Section 4.2</span></a>) carry over.</p>
+<p>which is the Rasch change index of the <a href="../chapters/rci-exact-null.html">RCI chapter</a> with item subtests in place of occasions. Both mechanisms documented there (<a href="rci-exact-null.html#sec-rci-mechanisms" class="quarto-xref"><span>Section 5.2</span></a>) carry over.</p>
 <p><strong>Self-normalisation.</strong> <span class="math inline">\(SE(\hat\theta_A)\)</span> and <span class="math inline">\(SE(\hat\theta_B)\)</span> are deterministic functions of the realised subtest scores, so the denominator is not independent of the numerator, both tails of the null are damped, and the critical value falls below 1.96. The “t” label is a misnomer for the same reason: a t denominator is independent of its numerator, which is the one property this denominator does not have.</p>
 <p><strong>Discreteness.</strong> With complete data each subtest score is sufficient, so <span class="math inline">\(\hat\theta_A\)</span> and <span class="math inline">\(\hat\theta_B\)</span> take only as many values as there are subtest scores and the null is a distribution over <span class="math inline">\((k_A+1) \times (k_B+1)\)</span> cells.</p>
-<p>Conditional independence, which is what makes the enumeration possible, also carries over, but it has a different standing in the two settings. In the change case it is an auxiliary assumption. The null there is that <span class="math inline">\(\theta\)</span> did not move, and carry-over between two administrations of the same items can be present while <span class="math inline">\(\theta\)</span> is fixed, so separate administration does not deliver conditional independence on its own. <a href="rci-exact-null.html#sec-rci-carryover" class="quarto-xref"><span>Section 4.11</span></a> covers what happens when it fails. Here the item sets are disjoint, so local independence gives <span class="math inline">\(P(r_A, r_B \mid \theta) = P(r_A \mid \theta)\,P(r_B \mid
+<p>Conditional independence, which is what makes the enumeration possible, also carries over, but it has a different standing in the two settings. In the change case it is an auxiliary assumption. The null there is that <span class="math inline">\(\theta\)</span> did not move, and carry-over between two administrations of the same items can be present while <span class="math inline">\(\theta\)</span> is fixed, so separate administration does not deliver conditional independence on its own. <a href="rci-exact-null.html#sec-rci-carryover" class="quarto-xref"><span>Section 5.11</span></a> covers what happens when it fails. Here the item sets are disjoint, so local independence gives <span class="math inline">\(P(r_A, r_B \mid \theta) = P(r_A \mid \theta)\,P(r_B \mid
 \theta)\)</span>, and that statement is the null hypothesis rather than a condition attached to it. A failure is what the protocol exists to detect, so enumerating under it is the right move.</p>
 <p>What the protocol cannot do is say which kind of failure it found. <span class="citation" data-cites="marais2008a">Marais &amp; Andrich (<a href="../references.html#ref-marais2008a" role="doc-biblioref">2008</a>)</span> separate <strong>trait dependence</strong>, where a person parameter beyond <span class="math inline">\(\theta\)</span> enters the responses, from <strong>response dependence</strong>, where the response to one item governs the response to another. Only the first is multidimensionality. Two locally dependent items in the same subtest reduce the information that subtest carries below what the model assumes, so <span class="math inline">\(SE_A\)</span> understates the spread of <span class="math inline">\(\hat\theta_A\)</span> and <span class="math inline">\(|t|\)</span> is inflated, pushing the protocol toward rejection in the same way a second dimension would. That follows from the information rather than from anything measured here. It leaves the size calculations below untouched, since those hold under a null with no dependence of either kind, but it bears on what a rejection supports: that the item set fails local independence, not the stronger claim of multidimensionality that the procedure’s name carries.</p>
 </section>
@@ -651,7 +665,7 @@ window.Quarto = {
 </section>
 <section id="sec-tt-validation" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="sec-tt-validation"><span class="header-section-number">3.4</span> Validation</h2>
-<p>Three anchors, following the discipline of the RCI chapter (<a href="rci-exact-null.html#sec-rci-validation" class="quarto-xref"><span>Section 4.4</span></a>): reproduce an identity to machine precision, and check the fast path against simulation.</p>
+<p>Three anchors, following the discipline of the RCI chapter (<a href="rci-exact-null.html#sec-rci-validation" class="quarto-xref"><span>Section 5.4</span></a>): reproduce an identity to machine precision, and check the fast path against simulation.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -813,8 +827,8 @@ window.Quarto = {
 </table>
 </div>
 </div>
-<p>The true size of the 1.96 rule runs from 1.4% to 3.9%. It never reaches 5%, and at 40 items split 20/20 it is still short by a factor of 1.27. Dichotomous items are the worst, with the polytomous-versus-dichotomous contrast at 0.0137, and a sample two logits off target is nearly as bad at 0.0177. Both findings match the RCI chapter (<a href="rci-exact-null.html#sec-rci-length" class="quarto-xref"><span>Section 4.5</span></a> and <a href="rci-exact-null.html#sec-rci-targeting" class="quarto-xref"><span>Section 4.6</span></a>), where response categories moved the critical value mainly in the step from two to more than two, and where mistargeting dropped the pooled value from 1.695 to 1.522 because a floor-bound sample is located where the statistic is most damped.</p>
-<p>The effective test length here is the subtest, not the scale, which is what makes the protocol worse than the change case rather than equivalent to it. The length table in <a href="rci-exact-null.html#sec-rci-length" class="quarto-xref"><span>Section 4.5</span></a> reads 1.644 at 4 items, 1.725 at 6, 1.815 at 10 and 1.868 at 20, four categories throughout and persons from <span class="math inline">\(N(0, 1.4)\)</span>. A 20-item scale splitting 10/10 is governed by two 10-item instruments. The published recommendation to use the protocol with at least 12 item response thresholds <span class="citation" data-cites="tennant2006 horton2010">(<a href="../references.html#ref-horton2010" role="doc-biblioref">Horton &amp; Tennant, 2010</a>; <a href="../references.html#ref-tennant2006" role="doc-biblioref">Tennant &amp; Pallant, 2006</a>)</span> amounts to four items at four categories, which is the worst row of that table.</p>
+<p>The true size of the 1.96 rule runs from 1.4% to 3.9%. It never reaches 5%, and at 40 items split 20/20 it is still short by a factor of 1.27. Dichotomous items are the worst, with the polytomous-versus-dichotomous contrast at 0.0137, and a sample two logits off target is nearly as bad at 0.0177. Both findings match the RCI chapter (<a href="rci-exact-null.html#sec-rci-length" class="quarto-xref"><span>Section 5.5</span></a> and <a href="rci-exact-null.html#sec-rci-targeting" class="quarto-xref"><span>Section 5.6</span></a>), where response categories moved the critical value mainly in the step from two to more than two, and where mistargeting dropped the pooled value from 1.695 to 1.522 because a floor-bound sample is located where the statistic is most damped.</p>
+<p>The effective test length here is the subtest, not the scale, which is what makes the protocol worse than the change case rather than equivalent to it. The length table in <a href="rci-exact-null.html#sec-rci-length" class="quarto-xref"><span>Section 5.5</span></a> reads 1.644 at 4 items, 1.725 at 6, 1.815 at 10 and 1.868 at 20, four categories throughout and persons from <span class="math inline">\(N(0, 1.4)\)</span>. A 20-item scale splitting 10/10 is governed by two 10-item instruments. The published recommendation to use the protocol with at least 12 item response thresholds <span class="citation" data-cites="tennant2006 horton2010">(<a href="../references.html#ref-horton2010" role="doc-biblioref">Horton &amp; Tennant, 2010</a>; <a href="../references.html#ref-tennant2006" role="doc-biblioref">Tennant &amp; Pallant, 2006</a>)</span> amounts to four items at four categories, which is the worst row of that table.</p>
 </section>
 <section id="sec-tt-unflaggable" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="sec-tt-unflaggable"><span class="header-section-number">3.6</span> A large share of respondents cannot be flagged at all</h2>
@@ -933,7 +947,7 @@ Figure&nbsp;3.1: Exact size of the 1.96 rule by total score, under a perfectly u
 </table>
 </div>
 </div>
-<p>The RCI chapter (<a href="rci-exact-null.html#sec-rci-validation" class="quarto-xref"><span>Section 4.4</span></a>) corrected an earlier belief that two-sided simulated critical values were asymmetric: under the change null the two occasions are exchangeable, so the difference is symmetric about zero however skewed <span class="math inline">\(\hat\theta\)</span> is, and exchangeability fails only when the occasions differ in missingness. Subtests break exchangeability by construction, because they differ in length, targeting and information. A balanced interleaved split is nearly symmetric, so the change result transfers there. An unbalanced or difficulty-confounded split is not. The ten easiest items against the ten hardest gives correct two-sided values of -2.001 and 1.578, so the upper value is stricter than 1.96 while the lower is more lenient. A principal component of residuals often separates items by location as well as by content, which makes that row the relevant one.</p>
+<p>The RCI chapter (<a href="rci-exact-null.html#sec-rci-validation" class="quarto-xref"><span>Section 5.4</span></a>) corrected an earlier belief that two-sided simulated critical values were asymmetric: under the change null the two occasions are exchangeable, so the difference is symmetric about zero however skewed <span class="math inline">\(\hat\theta\)</span> is, and exchangeability fails only when the occasions differ in missingness. Subtests break exchangeability by construction, because they differ in length, targeting and information. A balanced interleaved split is nearly symmetric, so the change result transfers there. An unbalanced or difficulty-confounded split is not. The ten easiest items against the ten hardest gives correct two-sided values of -2.001 and 1.578, so the upper value is stricter than 1.96 while the lower is more lenient. A principal component of residuals often separates items by location as well as by content, which makes that row the relevant one.</p>
 <p>The last column is <span class="math inline">\(\max_r |E[\hat\theta_A - \hat\theta_B \mid r]|\)</span> under a perfectly unidimensional model. On a 4/16 split it reaches 0.557 logits, purely from the difference in WLE bias between a four-item and a sixteen-item subtest. That is model-implied signal with no multidimensionality behind it. Reporting quantity and units at every surface, as the RCI chapter insists, matters here: the gap is in logits, the t is unitless, and only the second is being compared with 1.96.</p>
 </section>
 <section id="sec-tt-count" class="level2" data-number="3.8">
@@ -1251,7 +1265,7 @@ Figure&nbsp;3.2: Exact null distribution of the observed proportion of significa
 <section id="sec-tt-scope" class="level2" data-number="3.12">
 <h2 data-number="3.12" class="anchored" data-anchor-id="sec-tt-scope"><span class="header-section-number">3.12</span> Scope and limits</h2>
 <ul>
-<li><strong>Complete data only</strong>, as in the RCI chapter (<a href="rci-exact-null.html#sec-rci-scope" class="quarto-xref"><span>Section 4.12</span></a>). Missing responses break sufficiency of a single subtest score, so the enumeration would run per missingness pattern.</li>
+<li><strong>Complete data only</strong>, as in the RCI chapter (<a href="rci-exact-null.html#sec-rci-scope" class="quarto-xref"><span>Section 5.12</span></a>). Missing responses break sufficiency of a single subtest score, so the enumeration would run per missingness pattern.</li>
 <li><strong>Fixed split.</strong> See <a href="#sec-tt-split" class="quarto-xref"><span>Section 3.11</span></a>.</li>
 <li><strong>WLE with CML-style thresholds.</strong> RUMM2030’s person estimator may differ. It would move the centering column more than the size column, since dropping extremes barely changed the latter.</li>
 <li><strong>The latent density enters only through the weighting.</strong> The per-score sizes are free of it. Only the sample means and the count distributions depend on the assumed <span class="math inline">\(N(\mu, \sigma)\)</span>.</li>
@@ -1295,15 +1309,50 @@ Tennant, A., &amp; Pallant, J. (2006). Unidimensionality matters. <em>Rasch Meas
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const toggle = window.document.createElement('button');
+      toggle.type = "button";
+      toggle.setAttribute("role", "switch");
+      toggle.setAttribute("aria-checked", "false");
+      toggle.classList.add('top-right');
+      toggle.classList.add('quarto-color-scheme-toggle');
+      toggle.setAttribute("aria-label", "Toggle dark mode");
+      toggle.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
       const i = window.document.createElement("i");
       i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
+      toggle.appendChild(i);
+      // Put the toggle in a landmark of its own, so that landmark navigation
+      // can reach it.
+      //
+      // The container is always a fresh direct child of body, and the toggle is
+      // never moved into page furniture that the theme or the author controls.
+      // The toggle is positioned against the page, so any ancestor that
+      // establishes a containing block captures it: a positioned element or a
+      // grid for position: absolute, and transform, filter, will-change or
+      // contain for position: fixed. A direct child of body has none of these
+      // to inherit, and the shift when one appears is silent and visual.
+      //
+      // ARIA says a document should have at most one banner, and axe reports a
+      // duplicate whether or not the banners carry distinct labels. So use a
+      // header when the page has no banner yet, and a named region otherwise.
+      //
+      // A header is a banner wherever it sits, unless it is inside sectioning
+      // content, so this cannot just look at the children of body: a custom
+      // page layout wraps the title block header in a plain div. An explicit
+      // role="banner" always counts.
+      const sectioning = 'article, aside, main, nav, section, [role="article"], [role="complementary"], [role="main"], [role="navigation"], [role="region"]';
+      const hasBanner = Array.from(
+        window.document.querySelectorAll('header:not([role]), [role="banner"]')
+      ).some(function(el) {
+        return el.hasAttribute("role") || el.closest(sectioning) === null;
+      });
+      const container = window.document.createElement(hasBanner ? "div" : "header");
+      if (hasBanner) {
+        container.setAttribute("role", "region");
+        container.setAttribute("aria-label", "Toggle dark mode");
+      }
+      container.classList.add('quarto-color-scheme-toggle-container');
+      container.appendChild(toggle);
+      window.document.body.appendChild(container);
     }
     setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
@@ -1433,7 +1482,8 @@ Tennant, A., &amp; Pallant, J. (2006). Unidimensionality matters. <em>Rasch Meas
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -1442,8 +1492,69 @@ Tennant, A., &amp; Pallant, J. (2006). Unidimensionality matters. <em>Rasch Meas
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+          if (!link.classList.contains('no-external-icon')) {
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -1457,6 +1568,7 @@ Tennant, A., &amp; Pallant, J. (2006). Unidimensionality matters. <em>Rasch Meas
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -1619,44 +1731,54 @@ Tennant, A., &amp; Pallant, J. (2006). Unidimensionality matters. <em>Rasch Meas
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -1755,15 +1877,18 @@ Tennant, A., &amp; Pallant, J. (2006). Unidimensionality matters. <em>Rasch Meas
     }
   });
   </script>
-<nav class="page-navigation">
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/sx2-infit.html" class="pagination-link" aria-label="Generalized S-X2 and conditional infit">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Generalized S-X2 and conditional infit</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/rci-exact-null.html" class="pagination-link" aria-label="An exact null for the Rasch change index">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">An exact null for the Rasch change index</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/dif-anchor-tests.html" class="pagination-link" aria-label="Anchored DIF tests for two groups">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Anchored DIF tests for two groups</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">

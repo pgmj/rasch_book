@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.20">
+<meta name="generator" content="quarto-1.11.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Magnus Johansson">
 <meta name="dcterms.date" content="2026-10-04">
 
-<title>4&nbsp; An exact null for the Rasch change index – Rasch Measurement Explorations</title>
+<title>5&nbsp; An exact null for the Rasch change index – Rasch Measurement Explorations</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -94,21 +94,22 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../presentations.html" rel="next">
-<link href="../chapters/ttest-protocol-exact-null.html" rel="prev">
+<link href="../chapters/dif-anchor-tests.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-17888a1159294d3eb470f19f6f52f5a5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0ae969d3293726db143f6e9eb89af930.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-17888a1159294d3eb470f19f6f52f5a5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-447e42e69aaa9833c0ba1b986f430b20.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fd33a4952e9ae2782db733e1f7710525.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-c7f9e716fd0b9cf72826647080c3781c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-fd33a4952e9ae2782db733e1f7710525.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-4f67ab1e4efc86feb5e21e0983fc9301.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-27330ec348340ca706981e98b339590d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-4f67ab1e4efc86feb5e21e0983fc9301.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -169,7 +170,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar floating quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -192,6 +193,7 @@ window.Quarto = {
       for (let i=0; i < toggles.length; i++) {
         const toggle = toggles[i];
         if (toggle) {
+          toggle.setAttribute("aria-checked", alternate ? "true" : "false");
           if (alternate) {
             toggle.classList.add("alternate");
           } else {
@@ -221,13 +223,19 @@ window.Quarto = {
       manageTransitions('#quarto-margin-sidebar .nav-link', true);
       // Switch the toggles
       setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455).
+    // Not run on load: stylesheets are set before first paint there, and
+    // scrolling would undo the scroll to a URL fragment (#14973).
+    // The one pixel nudge keeps the reader where they were.
+    const refreshSafariScrollbar = () => {
       if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
         manageTransitions("body", false);
-        window.scrollTo(0, 1);
+        const scrollY = window.scrollY;
+        window.scrollTo(0, scrollY > 0 ? scrollY - 1 : 1);
         setTimeout(() => {
-          window.scrollTo(0, 0);
+          window.scrollTo(0, scrollY);
           manageTransitions("body", true);
         }, 40);
       }
@@ -321,6 +329,7 @@ window.Quarto = {
       // Read the current dark / light value
       let toAlternate = !hasAlternateSentinel();
       toggleColorMode(toAlternate);
+      refreshSafariScrollbar();
       setStyleSentinel(toAlternate);
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
       window.dispatchEvent(new Event('resize'));
@@ -335,13 +344,13 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/rci-exact-null.html">Person-level change</a></li><li class="breadcrumb-item"><a href="../chapters/rci-exact-null.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">An exact null for the Rasch change index</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/rci-exact-null.html">Person-level change</a></li><li class="breadcrumb-item"><a href="../chapters/rci-exact-null.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">An exact null for the Rasch change index</span></a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -352,13 +361,13 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Site">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Rasch Measurement Explorations</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/pgmj/rasch_book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <button type="button" role="switch" aria-checked="false" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode" aria-label="Toggle dark mode"><i class="bi"></i></button>
 </div>
     </div>
       </div>
@@ -377,13 +386,10 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Item fit</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Item fit</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/restscore-asymptotic-null.html" class="sidebar-item-text sidebar-link">
@@ -400,13 +406,10 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Dimensionality</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Dimensionality</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/ttest-protocol-exact-null.html" class="sidebar-item-text sidebar-link">
@@ -417,17 +420,28 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Person-level change</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Differential item functioning</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/dif-anchor-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Anchored DIF tests for two groups</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Person-level change</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/rci-exact-null.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">An exact null for the Rasch change index</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">An exact null for the Rasch change index</span></span></a>
   </div>
 </li>
       </ul>
@@ -450,40 +464,40 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-rci-purpose" id="toc-sec-rci-purpose" class="nav-link active" data-scroll-target="#sec-rci-purpose"><span class="header-section-number">4.1</span> Purpose</a></li>
-  <li><a href="#sec-rci-mechanisms" id="toc-sec-rci-mechanisms" class="nav-link" data-scroll-target="#sec-rci-mechanisms"><span class="header-section-number">4.2</span> Why the null is not N(0, 1)</a></li>
-  <li><a href="#sec-rci-enumeration" id="toc-sec-rci-enumeration" class="nav-link" data-scroll-target="#sec-rci-enumeration"><span class="header-section-number">4.3</span> Exact enumeration</a></li>
-  <li><a href="#sec-rci-validation" id="toc-sec-rci-validation" class="nav-link" data-scroll-target="#sec-rci-validation"><span class="header-section-number">4.4</span> Validation against simulation</a></li>
-  <li><a href="#sec-rci-length" id="toc-sec-rci-length" class="nav-link" data-scroll-target="#sec-rci-length"><span class="header-section-number">4.5</span> The critical value tracks test information</a></li>
-  <li><a href="#sec-rci-targeting" id="toc-sec-rci-targeting" class="nav-link" data-scroll-target="#sec-rci-targeting"><span class="header-section-number">4.6</span> Skew and targeting</a></li>
-  <li><a href="#sec-rci-conditional" id="toc-sec-rci-conditional" class="nav-link" data-scroll-target="#sec-rci-conditional"><span class="header-section-number">4.7</span> Can the sample dependence be removed?</a></li>
-  <li><a href="#sec-rci-ordering" id="toc-sec-rci-ordering" class="nav-link" data-scroll-target="#sec-rci-ordering"><span class="header-section-number">4.8</span> A consequence for the RCI as a statistic</a></li>
-  <li><a href="#sec-rci-band" id="toc-sec-rci-band" class="nav-link" data-scroll-target="#sec-rci-band"><span class="header-section-number">4.9</span> The no-change band in the figure</a></li>
-  <li><a href="#sec-rci-reliability" id="toc-sec-rci-reliability" class="nav-link" data-scroll-target="#sec-rci-reliability"><span class="header-section-number">4.10</span> What the change figure is resting on</a></li>
-  <li><a href="#sec-rci-carryover" id="toc-sec-rci-carryover" class="nav-link" data-scroll-target="#sec-rci-carryover"><span class="header-section-number">4.11</span> Response dependence between occasions</a>
+  <li><a href="#sec-rci-purpose" id="toc-sec-rci-purpose" class="nav-link active" data-scroll-target="#sec-rci-purpose"><span class="header-section-number">5.1</span> Purpose</a></li>
+  <li><a href="#sec-rci-mechanisms" id="toc-sec-rci-mechanisms" class="nav-link" data-scroll-target="#sec-rci-mechanisms"><span class="header-section-number">5.2</span> Why the null is not N(0, 1)</a></li>
+  <li><a href="#sec-rci-enumeration" id="toc-sec-rci-enumeration" class="nav-link" data-scroll-target="#sec-rci-enumeration"><span class="header-section-number">5.3</span> Exact enumeration</a></li>
+  <li><a href="#sec-rci-validation" id="toc-sec-rci-validation" class="nav-link" data-scroll-target="#sec-rci-validation"><span class="header-section-number">5.4</span> Validation against simulation</a></li>
+  <li><a href="#sec-rci-length" id="toc-sec-rci-length" class="nav-link" data-scroll-target="#sec-rci-length"><span class="header-section-number">5.5</span> The critical value tracks test information</a></li>
+  <li><a href="#sec-rci-targeting" id="toc-sec-rci-targeting" class="nav-link" data-scroll-target="#sec-rci-targeting"><span class="header-section-number">5.6</span> Skew and targeting</a></li>
+  <li><a href="#sec-rci-conditional" id="toc-sec-rci-conditional" class="nav-link" data-scroll-target="#sec-rci-conditional"><span class="header-section-number">5.7</span> Can the sample dependence be removed?</a></li>
+  <li><a href="#sec-rci-ordering" id="toc-sec-rci-ordering" class="nav-link" data-scroll-target="#sec-rci-ordering"><span class="header-section-number">5.8</span> A consequence for the RCI as a statistic</a></li>
+  <li><a href="#sec-rci-band" id="toc-sec-rci-band" class="nav-link" data-scroll-target="#sec-rci-band"><span class="header-section-number">5.9</span> The no-change band in the figure</a></li>
+  <li><a href="#sec-rci-reliability" id="toc-sec-rci-reliability" class="nav-link" data-scroll-target="#sec-rci-reliability"><span class="header-section-number">5.10</span> What the change figure is resting on</a></li>
+  <li><a href="#sec-rci-carryover" id="toc-sec-rci-carryover" class="nav-link" data-scroll-target="#sec-rci-carryover"><span class="header-section-number">5.11</span> Response dependence between occasions</a>
   <ul class="collapse">
-  <li><a href="#what-it-does-to-the-test" id="toc-what-it-does-to-the-test" class="nav-link" data-scroll-target="#what-it-does-to-the-test"><span class="header-section-number">4.11.1</span> What it does to the test</a></li>
-  <li><a href="#why-null-retest-does-not-help" id="toc-why-null-retest-does-not-help" class="nav-link" data-scroll-target="#why-null-retest-does-not-help"><span class="header-section-number">4.11.2</span> Why <code>null = "retest"</code> does not help</a></li>
-  <li><a href="#detecting-it" id="toc-detecting-it" class="nav-link" data-scroll-target="#detecting-it"><span class="header-section-number">4.11.3</span> Detecting it</a></li>
+  <li><a href="#what-it-does-to-the-test" id="toc-what-it-does-to-the-test" class="nav-link" data-scroll-target="#what-it-does-to-the-test"><span class="header-section-number">5.11.1</span> What it does to the test</a></li>
+  <li><a href="#why-null-retest-does-not-help" id="toc-why-null-retest-does-not-help" class="nav-link" data-scroll-target="#why-null-retest-does-not-help"><span class="header-section-number">5.11.2</span> Why <code>null = "retest"</code> does not help</a></li>
+  <li><a href="#detecting-it" id="toc-detecting-it" class="nav-link" data-scroll-target="#detecting-it"><span class="header-section-number">5.11.3</span> Detecting it</a></li>
   </ul></li>
-  <li><a href="#sec-rci-scope" id="toc-sec-rci-scope" class="nav-link" data-scroll-target="#sec-rci-scope"><span class="header-section-number">4.12</span> Scope and limits</a></li>
-  <li><a href="#sec-rci-implemented" id="toc-sec-rci-implemented" class="nav-link" data-scroll-target="#sec-rci-implemented"><span class="header-section-number">4.13</span> Implemented</a></li>
-  <li><a href="#sec-rci-reproduction" id="toc-sec-rci-reproduction" class="nav-link" data-scroll-target="#sec-rci-reproduction"><span class="header-section-number">4.14</span> Reproduction</a></li>
+  <li><a href="#sec-rci-scope" id="toc-sec-rci-scope" class="nav-link" data-scroll-target="#sec-rci-scope"><span class="header-section-number">5.12</span> Scope and limits</a></li>
+  <li><a href="#sec-rci-implemented" id="toc-sec-rci-implemented" class="nav-link" data-scroll-target="#sec-rci-implemented"><span class="header-section-number">5.13</span> Implemented</a></li>
+  <li><a href="#sec-rci-reproduction" id="toc-sec-rci-reproduction" class="nav-link" data-scroll-target="#sec-rci-reproduction"><span class="header-section-number">5.14</span> Reproduction</a></li>
   <li><a href="#revision-history" id="toc-revision-history" class="nav-link" data-scroll-target="#revision-history">Revision history</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/pgmj/rasch_book/blob/main/chapters/rci-exact-null.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/pgmj/rasch_book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content" tabindex="-1">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/rci-exact-null.html">Person-level change</a></li><li class="breadcrumb-item"><a href="../chapters/rci-exact-null.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">An exact null for the Rasch change index</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/rci-exact-null.html">Person-level change</a></li><li class="breadcrumb-item"><a href="../chapters/rci-exact-null.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">An exact null for the Rasch change index</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">An exact null for the Rasch change index</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">An exact null for the Rasch change index</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 <p class="subtitle lead">Why the RCI critical value is not 1.96, and how to compute it without simulating</p>
 </div>
 
@@ -545,20 +559,20 @@ window.Quarto = {
 <p>The Rasch change index (RCI) is usually referred to a standard normal distribution, with 1.96 as the critical value. Under the null the RCI is not standard normal, and the correct critical value is lower, about 1.7 on a six-item scale and still about 1.93 at 60 items. For complete data the null distribution can be computed exactly from the item parameters, without simulation. The critical value depends on targeting as well as the items, so it should be recalibrated on each sample rather than reused. Carry-over between occasions makes the test conservative and creates a spurious severity gradient in estimated change, and it can be detected with a Q3 screen of the racked data.</p>
 </div>
 </div>
-<section id="sec-rci-purpose" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="sec-rci-purpose"><span class="header-section-number">4.1</span> Purpose</h2>
+<section id="sec-rci-purpose" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="sec-rci-purpose"><span class="header-section-number">5.1</span> Purpose</h2>
 <p><code>RMpersonChange()</code> includes an option for <code>critical = "simulate"</code> rather than the conventional 1.96, because the Rasch change index</p>
 <p><span class="math display">\[RCI = \frac{\hat\theta_2 - \hat\theta_1}{\sqrt{SE(\hat\theta_1)^2 + SE(\hat\theta_2)^2}}\]</span></p>
 <p>is not standard normal under the null. The departure is largest on short scales and fades only slowly, so that even at 60 items with four response categories the critical value is still around 1.93. This note shows that the null does not need simulating at all: for complete data it can be enumerated exactly. It also records what the exact critical value does across test length, sample skew and targeting, and one consequence for the RCI as a statistic.</p>
 </section>
-<section id="sec-rci-mechanisms" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="sec-rci-mechanisms"><span class="header-section-number">4.2</span> Why the null is not N(0, 1)</h2>
+<section id="sec-rci-mechanisms" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="sec-rci-mechanisms"><span class="header-section-number">5.2</span> Why the null is not N(0, 1)</h2>
 <p>Two mechanisms, both weakening as test information grows.</p>
 <p><strong>Self-normalisation.</strong> <span class="math inline">\(SE(\hat\theta_1)\)</span> and <span class="math inline">\(SE(\hat\theta_2)\)</span> are deterministic functions of the realised scores, so the denominator is not independent of the numerator. A respondent who moves to an extreme score produces a large numerator and a large denominator together, and the ratio is damped. Both tails of the null are pulled in, so the critical value falls <strong>below</strong> 1.96. In a t-test the denominator is independent of the numerator. Here it is not, which is why the t reference does not help either.</p>
 <p><strong>Discreteness.</strong> With complete data the sum score is sufficient, so <span class="math inline">\(\hat\theta\)</span> takes only as many values as there are scores and the null is discrete rather than continuous.</p>
 </section>
-<section id="sec-rci-enumeration" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="sec-rci-enumeration"><span class="header-section-number">4.3</span> Exact enumeration</h2>
+<section id="sec-rci-enumeration" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="sec-rci-enumeration"><span class="header-section-number">5.3</span> Exact enumeration</h2>
 <p>Sufficiency is what makes this tractable. <span class="math inline">\(\hat\theta(r)\)</span> and <span class="math inline">\(SE(r)\)</span> are deterministic lookups, the ones <code>RMscoreSE()</code> builds, and <span class="math inline">\(P(r \mid \theta)\)</span> follows from the Lord-Wingersky recursion. Under the null the two occasions are independent given <span class="math inline">\(\theta\)</span>, so the joint is <span class="math inline">\(P(r_1 \mid \theta)P(r_2 \mid
 \theta)\)</span> and the whole null is a discrete distribution over <span class="math inline">\((k+1)^2\)</span> score pairs. For six items with four response categories that is 361 cells.</p>
 <p>The two ingredients do different jobs and the enumeration needs both. Sufficiency fixes the <strong>value</strong> of the statistic in every cell, because <span class="math inline">\(\hat\theta\)</span> and <span class="math inline">\(SE\)</span> are functions of the score alone, and no probability enters that map. A quantile also needs the <strong>weight</strong> on each cell, which is <span class="math inline">\(P(r \mid \theta)\)</span>, and that is not deterministic. Lord-Wingersky computes it rather than estimating it: the recursion is the elementary symmetric function identity in probability form, the same object CML estimation runs on, and it replaces an enumeration over <span class="math inline">\(\prod_i (m_i + 1)\)</span> response patterns, 4096 here and around <span class="math inline">\(10^{12}\)</span> at twenty items. Nothing in this note is simulated, which is what “exact” refers to. Nor is there a closed-form expression for the critical value. It is read off the enumerated distribution as a quantile.</p>
@@ -613,8 +627,8 @@ window.Quarto = {
 </details>
 </div>
 </section>
-<section id="sec-rci-validation" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="sec-rci-validation"><span class="header-section-number">4.4</span> Validation against simulation</h2>
+<section id="sec-rci-validation" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="sec-rci-validation"><span class="header-section-number">5.4</span> Validation against simulation</h2>
 <p>Run by <code>dev/</code> scratch scripts at <code>sim_iter</code> 2000 to 4000, n = 200, alpha = .05 two-sided. The simulated and exact values agree to within Monte Carlo error in every configuration tried, including dichotomous items, items with unequal category counts, a right-skewed person distribution and a badly off-target one. Each configuration was run on its own simulated sample, so the values are not comparable with the length table below, which uses a different person distribution. The 12-item row sitting near the 20-item value there is an instance of that, not a property of test length.</p>
 <table class="caption-top table">
 <colgroup>
@@ -684,8 +698,8 @@ window.Quarto = {
 </table>
 <p>The exact values are perfectly symmetric. That is the expected result: under the null the two occasions are exchangeable, so <span class="math inline">\(\hat\theta_2 - \hat\theta_1\)</span> is symmetric about zero however skewed <span class="math inline">\(\hat\theta\)</span> itself is. The residual asymmetry in the simulated column is Monte Carlo noise. Asymmetry becomes real only when exchangeability fails, which in practice means the two occasions differing in which items were answered.</p>
 </section>
-<section id="sec-rci-length" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="sec-rci-length"><span class="header-section-number">4.5</span> The critical value tracks test information</h2>
+<section id="sec-rci-length" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="sec-rci-length"><span class="header-section-number">5.5</span> The critical value tracks test information</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -787,16 +801,16 @@ window.Quarto = {
 </table>
 </div>
 </div>
-<p>Reliability climbs steeply with categories, from about .60 at two to about .91 at seven. The critical value does not follow it. Almost all of its movement is the step from dichotomous to polytomous, after which it is close to flat. So categories add precision without much changing how far the null lies from 1.96, while items move both. Reliability and conditional reliability are discussed further in <a href="#sec-rci-reliability" class="quarto-xref"><span>Section 4.10</span></a>.</p>
+<p>Reliability climbs steeply with categories, from about .60 at two to about .91 at seven. The critical value does not follow it. Almost all of its movement is the step from dichotomous to polytomous, after which it is close to flat. So categories add precision without much changing how far the null lies from 1.96, while items move both. Reliability and conditional reliability are discussed further in <a href="#sec-rci-reliability" class="quarto-xref"><span>Section 5.10</span></a>.</p>
 </section>
-<section id="sec-rci-targeting" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="sec-rci-targeting"><span class="header-section-number">4.6</span> Skew and targeting</h2>
-<p>Sample skew on its own barely moves the pooled critical value: the skewed and symmetric rows above agree to the third decimal in five of seven configurations. Targeting is what matters. Pushing the same skewed distribution 2.2 logits off target, so that 39.5% of respondents are at an extreme score at one occasion or the other, drops the critical value from 1.695 to 1.522. The mechanism is the self-normalisation in <a href="#sec-rci-mechanisms" class="quarto-xref"><span>Section 4.2</span></a>: a floor-bound sample is located primarily where the statistic is most heavily damped.</p>
+<section id="sec-rci-targeting" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="sec-rci-targeting"><span class="header-section-number">5.6</span> Skew and targeting</h2>
+<p>Sample skew on its own barely moves the pooled critical value: the skewed and symmetric rows above agree to the third decimal in five of seven configurations. Targeting is what matters. Pushing the same skewed distribution 2.2 logits off target, so that 39.5% of respondents are at an extreme score at one occasion or the other, drops the critical value from 1.695 to 1.522. The mechanism is the self-normalisation in <a href="#sec-rci-mechanisms" class="quarto-xref"><span>Section 5.2</span></a>: a floor-bound sample is located primarily where the statistic is most heavily damped.</p>
 <p>This also means the pooled critical value is a property of the sample as well as the items, which is worth stating wherever it is reported.</p>
 <p>Recalibrating on each sample, which is what the function does, keeps the test close to its nominal level even when targeting is poor. <strong>Carrying a critical value across samples does not.</strong> Applying a value calibrated on a well-targeted sample to one sitting two logits off target gave a realised size of .028 against a nominal .05 on six items, where recalibrating on that sample held .042. Quote the value with the sample it came from, and recalibrate rather than reusing a published figure.</p>
 </section>
-<section id="sec-rci-conditional" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="sec-rci-conditional"><span class="header-section-number">4.7</span> Can the sample dependence be removed?</h2>
+<section id="sec-rci-conditional" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="sec-rci-conditional"><span class="header-section-number">5.7</span> Can the sample dependence be removed?</h2>
 <p>Conditioning on the total score is what removed the latent distribution from the subtest problem of the PCA/t-test chapter (<a href="ttest-protocol-exact-null.html#sec-tt-conditioning" class="quarto-xref"><span>Section 3.3</span></a>), and the same argument applies here. Under the null the two occasions are independent given <span class="math inline">\(\theta\)</span> and use the same items, so</p>
 <p><span class="math display">\[P(r_1 = a \mid r_1 + r_2 = s) = \frac{\gamma(a)\,\gamma(s-a)}{\gamma_2(s)}\]</span></p>
 <p>where <span class="math inline">\(\gamma_2\)</span> is the elementary symmetric function of the item set counted twice. The ratio is free of <span class="math inline">\(\theta\)</span>, verified to between 2.2e-16 and 3.9e-16 across four configurations including dichotomous and mixed-category scales. A per-respondent null is therefore available with no latent density and no plug-in person estimate.</p>
@@ -896,8 +910,8 @@ window.Quarto = {
 <p>The plug-in holds between .043 and .051 through the middle of the scale and turns conservative only in the tails, where the scale runs out of scores. Exact power at a true location of zero on twenty items tells the same story: at a change of one logit it is .618 for the plug-in, .626 for mid-p and .537 for strict, and mid-p’s small edge tracks its slightly larger size rather than any real gain.</p>
 <p>The negative result is worth recording because it accounts for something this note otherwise reports without explanation. The conditional null given the total does not depend on <span class="math inline">\(\theta\)</span> at all, so an error in a plug-in <span class="math inline">\(\hat\theta\)</span> reaches the critical value only through the weighting. That is why <code>conditional_crit = TRUE</code> performs as well as it does from a single respondent’s own two estimates, and why the pooled default survives poor targeting once it is recalibrated. The default is unchanged. Worked out in <code>scripts/rci/conditional_total_null.R</code>.</p>
 </section>
-<section id="sec-rci-ordering" class="level2" data-number="4.8">
-<h2 data-number="4.8" class="anchored" data-anchor-id="sec-rci-ordering"><span class="header-section-number">4.8</span> A consequence for the RCI as a statistic</h2>
+<section id="sec-rci-ordering" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="sec-rci-ordering"><span class="header-section-number">5.8</span> A consequence for the RCI as a statistic</h2>
 <p>Because the denominator is a function of the same scores as the numerator, the RCI does not order respondents by how much they changed. A concrete pair from the six-item scale above:</p>
 <table class="caption-top table">
 <thead>
@@ -926,8 +940,8 @@ window.Quarto = {
 <p>Respondent A moved the full width of the scale, 4.14 logits further than B, and scores lower on the RCI. Both are far past any critical value so nothing turns on it here, but it shows that the RCI is a standardised distance from the null rather than a measure of change, and should not be read as the latter.</p>
 <p>The constructive version: since the critical value has to be computed from the item parameters anyway, the normalisation adds nothing that a location-specific threshold on the raw change would not. The same enumeration gives the null of <span class="math inline">\(\hat\theta_2 - \hat\theta_1\)</span> directly, so a conditional critical <strong>change</strong>, in logits, is available at no extra cost and is monotone in what happened. That is the same object as a conditional minimal detectable change, and connects to the score-level MDC table parked as a possible sibling function.</p>
 </section>
-<section id="sec-rci-band" class="level2" data-number="4.9">
-<h2 data-number="4.9" class="anchored" data-anchor-id="sec-rci-band"><span class="header-section-number">4.9</span> The no-change band in the figure</h2>
+<section id="sec-rci-band" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="sec-rci-band"><span class="header-section-number">5.9</span> The no-change band in the figure</h2>
 <p>The scatter plot of occasion 1 against occasion 2 draws a band covering the changes that would not be flagged. That band was built from a smooth approximation, half-width <span class="math inline">\(c \cdot \sqrt{2/I(\theta)}\)</span>, which places <strong>both</strong> occasions at the baseline location. The test does not do that. It uses <span class="math inline">\(SE(r_1)\)</span> and <span class="math inline">\(SE(r_2)\)</span> at two different scores.</p>
 <p>On 300 respondents the two disagreed for 33 of them, 11 percent: 27 sat outside the drawn band without being flagged, and 6 sat inside it while flagged. The figure contradicted the table it accompanied.</p>
 <p>The mechanism shows in the worst case. A respondent moving from <span class="math inline">\(\theta_1 =
@@ -956,7 +970,7 @@ window.Quarto = {
 <img src="rci-exact-null_files/figure-html/fig-rci-change-1.png" class="img-fluid figure-img" alt="Scatter plot of person location at occasion 1 against occasion 2, both in logits from about -4 to 4. Points fall on a discrete grid because attainable scores are discrete. A grey stepped band runs along the diagonal, narrow near the centre of the scale and wider towards each end before narrowing again at the extremes. Points inside the band are grey and labelled as no detected change, points above it are green and labelled as an increase, and one point below it is orange and labelled as a decrease. Most points sit above the diagonal, reflecting the simulated improvement.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rci-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.1: Default <code>RMpersonChange()</code> figure. Three hundred respondents on a scale of six items with four response categories, generated with a true shift of 0.7 logits between occasions. The grey band covers the follow-up locations that would not be flagged from each baseline score, so a point lies outside it if and only if that respondent was flagged. Its steps are the attainable scores, and it is widest away from the centre.
+Figure&nbsp;5.1: Default <code>RMpersonChange()</code> figure. Three hundred respondents on a scale of six items with four response categories, generated with a true shift of 0.7 logits between occasions. The grey band covers the follow-up locations that would not be flagged from each baseline score, so a point lies outside it if and only if that respondent was flagged. Its steps are the attainable scores, and it is widest away from the centre.
 </figcaption>
 </figure>
 </div>
@@ -1122,8 +1136,8 @@ Figure&nbsp;4.1: Default <code>RMpersonChange()</code> figure. Three hundred res
 <p>The width is not monotone in distance from the centre, which is worth knowing before reading a figure. It peaks off centre, where the standard error is already large but the scale has not run out of room, and narrows again at the boundary itself because there are no further attainable scores to move to. For this scale, six items with four categories, the widest band is 3.62 logits at a baseline near <span class="math inline">\(\pm 1.2\)</span>, against 2.47 at the centre and 2.39 at the extremes.</p>
 <p>Two cases remain indicative rather than exact, and are documented as such: with mixed missingness the band is drawn for the most common pair of answered-item sets, and under <code>conditional_crit = TRUE</code> it uses the median critical values.</p>
 </section>
-<section id="sec-rci-reliability" class="level2" data-number="4.10">
-<h2 data-number="4.10" class="anchored" data-anchor-id="sec-rci-reliability"><span class="header-section-number">4.10</span> What the change figure is resting on</h2>
+<section id="sec-rci-reliability" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="sec-rci-reliability"><span class="header-section-number">5.10</span> What the change figure is resting on</h2>
 <p>A change verdict is only as good as the precision behind it, and the reader of the figure above has no way to judge that from the figure alone. The same scale, six items with four response categories, summarised the two ways the package offers.</p>
 <div class="cell">
 <details class="code-fold">
@@ -1197,16 +1211,16 @@ Figure&nbsp;4.1: Default <code>RMpersonChange()</code> figure. Three hundred res
 <img src="rci-exact-null_files/figure-html/fig-rci-relcurve-1.png" class="img-fluid figure-img" alt="Conditional reliability plotted against person location in logits. The curve is an inverted U, peaking a little above 0.85 near the centre of the scale and falling below 0.5 at both extremes. A shaded vertical band marks the region where reliability reaches 0.8, covering roughly the middle two thirds of the plotted range. A grey distribution along the bottom shows where respondents fall, concentrated near the centre.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rci-relcurve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.2: Conditional reliability across the scale for the same six items with four response categories, with the region reaching .8 shaded and the respondent distribution behind it.
+Figure&nbsp;5.2: Conditional reliability across the scale for the same six items with four response categories, with the region reaching .8 shaded and the respondent distribution behind it.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Read <a href="#fig-rci-change" class="quarto-xref">Figure&nbsp;<span>4.1</span></a> and <a href="#fig-rci-relcurve" class="quarto-xref">Figure&nbsp;<span>4.2</span></a> together. Where this curve is high the band in the change figure is narrow and a modest change is detectable. Where it falls away the band widens and only a large change clears it. The band narrowing again at the very extremes is not precision returning, it is the scale running out of scores.</p>
+<p>Read <a href="#fig-rci-change" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> and <a href="#fig-rci-relcurve" class="quarto-xref">Figure&nbsp;<span>5.2</span></a> together. Where this curve is high the band in the change figure is narrow and a modest change is detectable. Where it falls away the band widens and only a large change clears it. The band narrowing again at the very extremes is not precision returning, it is the scale running out of scores.</p>
 </section>
-<section id="sec-rci-carryover" class="level2" data-number="4.11">
-<h2 data-number="4.11" class="anchored" data-anchor-id="sec-rci-carryover"><span class="header-section-number">4.11</span> Response dependence between occasions</h2>
+<section id="sec-rci-carryover" class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="sec-rci-carryover"><span class="header-section-number">5.11</span> Response dependence between occasions</h2>
 <p>Everything above assumes the two occasions are independent given <span class="math inline">\(\theta\)</span>. That is a conditional statement, and it is compatible with the two estimates being strongly correlated marginally, which they are. Both measure the same person, and that shared <span class="math inline">\(\theta\)</span> is what makes their difference interpretable. The assumption concerns what is left once <span class="math inline">\(\theta\)</span> is accounted for.</p>
 <p>What it rules out is carry-over: a time-2 answer depending on the time-1 answer to the same item beyond what <span class="math inline">\(\theta\)</span> explains. Administering the occasions separately does not deliver conditional independence on its own. <span class="citation" data-cites="marais2009">Marais (<a href="../references.html#ref-marais2009" role="doc-biblioref">2009</a>)</span> models the failure by shifting the time-2 difficulty of item <span class="math inline">\(j\)</span> by <span class="math inline">\((1 - 2x_{j1})d\)</span>, so a positive response at time 1 makes that item easier at time 2 and a negative one makes it harder. <span class="citation" data-cites="marais2008a">Marais &amp; Andrich (<a href="../references.html#ref-marais2008a" role="doc-biblioref">2008</a>)</span> separate this <strong>response dependence</strong> from <strong>trait dependence</strong>, which is multidimensionality. Only the second is a failure of unidimensionality, and the two call for different remedies.</p>
 <p>This matters here in a way it does not for the PCA/t-test protocol (<a href="ttest-protocol-exact-null.html#sec-tt-statistic" class="quarto-xref"><span>Section 3.2</span></a>). There, conditional independence between the two item subsets is the null hypothesis, so a failure of it is what the test exists to detect. Here it is an auxiliary assumption: the null is that <span class="math inline">\(\theta\)</span> did not change, and carry-over can be present while <span class="math inline">\(\theta\)</span> is fixed.</p>
@@ -1360,8 +1374,8 @@ Figure&nbsp;4.2: Conditional reliability across the scale for the same six items
 </div>
 </div>
 <p>Carry-over produces an antisymmetric <strong>outward drift</strong>: zero at the item mean, pushing respondents further out the further out they already are, and reaching almost half a logit at the ends by <span class="math inline">\(d = 1.5\)</span>. This is the individual-level mechanism behind the group-level result Marais reports <span class="citation" data-cites="marais2009">(<a href="../references.html#ref-marais2009" role="doc-biblioref">Marais, 2009</a>)</span>, where easy items put the sample above the item mean, everyone drifts up, and a group mean shows change that did not happen.</p>
-<section id="what-it-does-to-the-test" class="level3" data-number="4.11.1">
-<h3 data-number="4.11.1" class="anchored" data-anchor-id="what-it-does-to-the-test"><span class="header-section-number">4.11.1</span> What it does to the test</h3>
+<section id="what-it-does-to-the-test" class="level3" data-number="5.11.1">
+<h3 data-number="5.11.1" class="anchored" data-anchor-id="what-it-does-to-the-test"><span class="header-section-number">5.11.1</span> What it does to the test</h3>
 <p>The remaining results come from <code>scripts/rci/carryover_dependence.R</code>, which is not run at render time. That script also validates the generator against Marais’s published Table 4, reproducing her mean same-item residual correlations of -0.01, 0.14, 0.31 and 0.47 as -0.02, 0.13, 0.28 and 0.44.</p>
 <p>With no true change, and critical values calibrated under independence as this note recommends, the test becomes conservative rather than liberal. The standard deviation of the RCI falls from about 0.97 to between 0.63 and 0.73, so the exact critical values are too wide for the null actually in force. Type I error against a nominal .05, on-target sample:</p>
 <table class="caption-top table">
@@ -1484,12 +1498,12 @@ Figure&nbsp;4.2: Conditional reliability across the scale for the same six items
 </table>
 <p>A flat treatment effect reads as a 0.41 logit gradient in baseline severity, and a reader with no access to <span class="math inline">\(d\)</span> has no way to tell that apart from a real interaction between treatment and baseline. Power falls at the same time, from .189 to .043 on twenty items and from .083 to .013 on six.</p>
 </section>
-<section id="why-null-retest-does-not-help" class="level3" data-number="4.11.2">
-<h3 data-number="4.11.2" class="anchored" data-anchor-id="why-null-retest-does-not-help"><span class="header-section-number">4.11.2</span> Why <code>null = "retest"</code> does not help</h3>
+<section id="why-null-retest-does-not-help" class="level3" data-number="5.11.2">
+<h3 data-number="5.11.2" class="anchored" data-anchor-id="why-null-retest-does-not-help"><span class="header-section-number">5.11.2</span> Why <code>null = "retest"</code> does not help</h3>
 <p><code>retest_sd</code> adds an independent occasion deviation at each administration. That is symmetric extra variance, and it widens an already conservative null. The drift above is an antisymmetric shift in the conditional mean, which extra variance does not touch. The two estimands in <code>RMpersonChange()</code> are both defined under conditional independence, so neither covers this.</p>
 </section>
-<section id="detecting-it" class="level3" data-number="4.11.3">
-<h3 data-number="4.11.3" class="anchored" data-anchor-id="detecting-it"><span class="header-section-number">4.11.3</span> Detecting it</h3>
+<section id="detecting-it" class="level3" data-number="5.11.3">
+<h3 data-number="5.11.3" class="anchored" data-anchor-id="detecting-it"><span class="header-section-number">5.11.3</span> Detecting it</h3>
 <p>Racking the two occasions into one analysis of <span class="math inline">\(2k\)</span> items and screening the same-item pairs against <code>RMlocdepQ3Cutoff()</code> finds it well below the level that does damage. Twenty items, four categories, <span class="math inline">\(n = 500\)</span>:</p>
 <table class="caption-top table">
 <thead>
@@ -1585,25 +1599,25 @@ Figure&nbsp;4.2: Conditional reliability across the scale for the same six items
 <p>Uniform change is absorbed into the time-2 item locations and leaves no trace, which is the property Marais relies on for the rack analysis. Change that varies between respondents is a second person dimension: it lifts the within-occasion pairs, depresses the cross-occasion block as a whole, and leaves the contrast flat. Carry-over lifts the same-item pairs and nothing else. When both are present the two signatures add without interfering. Screened against the simulated cutoff, no run out of five flagged a single pair under heterogeneous change at SD 0.6 or SD 1.0, so the screen does not confuse the two.</p>
 </section>
 </section>
-<section id="sec-rci-scope" class="level2" data-number="4.12">
-<h2 data-number="4.12" class="anchored" data-anchor-id="sec-rci-scope"><span class="header-section-number">4.12</span> Scope and limits</h2>
+<section id="sec-rci-scope" class="level2" data-number="5.12">
+<h2 data-number="5.12" class="anchored" data-anchor-id="sec-rci-scope"><span class="header-section-number">5.12</span> Scope and limits</h2>
 <ul>
 <li><strong>Complete data only.</strong> Missing data breaks sufficiency of a single sum score. Each distinct missingness pattern has its own score distribution and its own lookup, so the enumeration still works but per pattern.</li>
 <li><strong><code>null = "retest"</code> needs quadrature.</strong> The occasion deviations are continuous, so the joint becomes a double integral over <span class="math inline">\(u_1, u_2\)</span> rather than a pure sum. Still deterministic and cheap at, say, 21 nodes a side.</li>
 <li><strong>EAP is fine.</strong> On complete data an EAP estimate is also a function of the sum score.</li>
 <li>Validated here for WLE with CML thresholds. Not yet checked against MML item parameters.</li>
-<li><strong>Conditional independence between occasions is assumed, not tested.</strong> The enumeration is correct under it and says nothing about carry-over. See <a href="#sec-rci-carryover" class="quarto-xref"><span>Section 4.11</span></a>, and screen for it before relying on a change verdict.</li>
+<li><strong>Conditional independence between occasions is assumed, not tested.</strong> The enumeration is correct under it and says nothing about carry-over. See <a href="#sec-rci-carryover" class="quarto-xref"><span>Section 5.11</span></a>, and screen for it before relying on a change verdict.</li>
 </ul>
 </section>
-<section id="sec-rci-implemented" class="level2" data-number="4.13">
-<h2 data-number="4.13" class="anchored" data-anchor-id="sec-rci-implemented"><span class="header-section-number">4.13</span> Implemented</h2>
+<section id="sec-rci-implemented" class="level2" data-number="5.13">
+<h2 data-number="5.13" class="anchored" data-anchor-id="sec-rci-implemented"><span class="header-section-number">5.13</span> Implemented</h2>
 <p>Shipped as <code>critical = "exact"</code>, now the default in <code>RMpersonChange()</code>, in <code>R/person_change_exact.R</code>. Measured against a 4000-iteration simulation on the same data: critical values agree to within Monte Carlo error, p-values correlate at 0.9998, classifications are identical, and the exact path takes 0.08 s against 13.7 s. Incomplete data is enumerated within each missingness pattern, <code>null = "retest"</code> integrates the occasion deviations out by quadrature (they are independent, so the joint factorises and the retest null costs no more than the measurement null), and EAP is supported by holding the prior at the one the observed respondents were scored under.</p>
-<p>Having an exact reference immediately paid for itself twice. It exposed a bug in the simulation path, which had been re-estimating the EAP prior from each null dataset rather than holding it at the observed one. That is now fixed, and the two paths agree to four decimals under EAP. It also supplied the lookup needed to fix the figure, described in <a href="#sec-rci-band" class="quarto-xref"><span>Section 4.9</span></a>.</p>
+<p>Having an exact reference immediately paid for itself twice. It exposed a bug in the simulation path, which had been re-estimating the EAP prior from each null dataset rather than holding it at the observed one. That is now fixed, and the two paths agree to four decimals under EAP. It also supplied the lookup needed to fix the figure, described in <a href="#sec-rci-band" class="quarto-xref"><span>Section 5.9</span></a>.</p>
 <p>It also removes the one real objection to <code>conditional_crit = TRUE</code>: a per-respondent critical value from simulation rests on <code>sim_iter</code> draws, roughly 25 of which land in each tail at alpha = .05, whereas <span class="math inline">\(P(r \mid \theta_i)\)</span> is available per respondent for free.</p>
 <p>It would also improve the planned simulation study, whose first aim is the realised Type I error of the simulated critical value. Much of the noise in that comparison disappears if the reference is exact.</p>
 </section>
-<section id="sec-rci-reproduction" class="level2" data-number="4.14">
-<h2 data-number="4.14" class="anchored" data-anchor-id="sec-rci-reproduction"><span class="header-section-number">4.14</span> Reproduction</h2>
+<section id="sec-rci-reproduction" class="level2" data-number="5.14">
+<h2 data-number="5.14" class="anchored" data-anchor-id="sec-rci-reproduction"><span class="header-section-number">5.14</span> Reproduction</h2>
 <p>Scratch scripts used for the simulated column are not part of the package. The exact computation is self-contained in the <code>exact-fns</code> chunk above and needs only <code>easyRasch2:::.pcm_cat_probs()</code>, <code>:::.theta_wle()</code> and <code>:::.score_pattern()</code>.</p>
 </section>
 <section id="revision-history" class="level2 unnumbered">
@@ -1630,15 +1644,50 @@ Marais, I., &amp; Andrich, D. (2008). Formalizing dimension and response violati
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const toggle = window.document.createElement('button');
+      toggle.type = "button";
+      toggle.setAttribute("role", "switch");
+      toggle.setAttribute("aria-checked", "false");
+      toggle.classList.add('top-right');
+      toggle.classList.add('quarto-color-scheme-toggle');
+      toggle.setAttribute("aria-label", "Toggle dark mode");
+      toggle.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
       const i = window.document.createElement("i");
       i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
+      toggle.appendChild(i);
+      // Put the toggle in a landmark of its own, so that landmark navigation
+      // can reach it.
+      //
+      // The container is always a fresh direct child of body, and the toggle is
+      // never moved into page furniture that the theme or the author controls.
+      // The toggle is positioned against the page, so any ancestor that
+      // establishes a containing block captures it: a positioned element or a
+      // grid for position: absolute, and transform, filter, will-change or
+      // contain for position: fixed. A direct child of body has none of these
+      // to inherit, and the shift when one appears is silent and visual.
+      //
+      // ARIA says a document should have at most one banner, and axe reports a
+      // duplicate whether or not the banners carry distinct labels. So use a
+      // header when the page has no banner yet, and a named region otherwise.
+      //
+      // A header is a banner wherever it sits, unless it is inside sectioning
+      // content, so this cannot just look at the children of body: a custom
+      // page layout wraps the title block header in a plain div. An explicit
+      // role="banner" always counts.
+      const sectioning = 'article, aside, main, nav, section, [role="article"], [role="complementary"], [role="main"], [role="navigation"], [role="region"]';
+      const hasBanner = Array.from(
+        window.document.querySelectorAll('header:not([role]), [role="banner"]')
+      ).some(function(el) {
+        return el.hasAttribute("role") || el.closest(sectioning) === null;
+      });
+      const container = window.document.createElement(hasBanner ? "div" : "header");
+      if (hasBanner) {
+        container.setAttribute("role", "region");
+        container.setAttribute("aria-label", "Toggle dark mode");
+      }
+      container.classList.add('quarto-color-scheme-toggle-container');
+      container.appendChild(toggle);
+      window.document.body.appendChild(container);
     }
     setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
@@ -1768,7 +1817,8 @@ Marais, I., &amp; Andrich, D. (2008). Formalizing dimension and response violati
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -1777,8 +1827,69 @@ Marais, I., &amp; Andrich, D. (2008). Formalizing dimension and response violati
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+          if (!link.classList.contains('no-external-icon')) {
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -1792,6 +1903,7 @@ Marais, I., &amp; Andrich, D. (2008). Formalizing dimension and response violati
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -1954,44 +2066,54 @@ Marais, I., &amp; Andrich, D. (2008). Formalizing dimension and response violati
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -2090,10 +2212,13 @@ Marais, I., &amp; Andrich, D. (2008). Formalizing dimension and response violati
     }
   });
   </script>
-<nav class="page-navigation">
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/ttest-protocol-exact-null.html" class="pagination-link" aria-label="An exact null for the PCA/t-test unidimensionality protocol">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">An exact null for the PCA/t-test unidimensionality protocol</span></span>
+      <a href="../chapters/dif-anchor-tests.html" class="pagination-link" aria-label="Anchored DIF tests for two groups">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Anchored DIF tests for two groups</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
