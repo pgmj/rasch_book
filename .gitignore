@@ -7,3 +7,8 @@
 !_freeze/**
 
 **/*.quarto_ipynb
+
+# Simulation output: per-cell and smoke-test files are never tracked
+results/**/*cells*/
+results/**/*smoke*
+results/**/*.log

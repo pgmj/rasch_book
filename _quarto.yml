@@ -34,6 +34,9 @@ book:
       chapters:
         - chapters/restscore-asymptotic-null.qmd
         - chapters/sx2-infit.qmd
+    - part: "Ordered response categories"
+      chapters:
+        - chapters/category-fit.qmd
     - part: "Dimensionality"
       chapters:
         - chapters/ttest-protocol-exact-null.qmd
@@ -41,6 +44,7 @@ book:
     - part: "Differential item functioning"
       chapters:
         - chapters/dif-anchor-tests.qmd
+        - chapters/dif-impact.qmd
     # - part: "Reliability and targeting"
     - part: "Person-level change"
       chapters:

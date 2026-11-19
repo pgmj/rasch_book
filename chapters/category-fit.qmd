@@ -1,0 +1,880 @@
+---
+title: "Do the response categories work as scored?"
+subtitle: "A test and four plots of category functioning given the total score, with RMitemCatFit() and RMitemCatFitPlot()"
+author: "Magnus Johansson"
+date: 2026-11-19
+date-modified: 2026-11-19
+---
+
+```{r common}
+#| include: false
+source("_common.R")
+suppressMessages({
+  library(ggplot2)
+  library(dplyr)
+  library(tidyr)
+})
+```
+
+```{r prep}
+#| include: false
+# All results are read from the files in results/category-fit/. The
+# simulations are in scripts/category-fit/ (see @sec-cfit-reproduction).
+RES <- "results/category-fit"
+s <- readRDS(file.path(RES, "summary.rds"))
+alpha <- s$alpha
+d <- as.data.frame(s$reps) |>
+  mutate(evaluable = is.na(skipped) & !is.na(B_used) & B_used > 0,
+         cell = sprintf("n = %d, k = %d", n, k))
+ok <- filter(d, evaluable)
+
+cal <- readRDS(file.path(RES, "calibration_summary.rds"))$reps |>
+  mutate(evaluable = is.na(skipped) & !is.na(B_used) & B_used > 0,
+         cell = sprintf("n = %d, k = %d", n, k))
+cal_ok <- filter(cal, evaluable)
+# Item p (studentised max-T over the events) and its Westfall-Young
+# step-down, for every item of every dataset.
+cal_items <- readRDS(file.path(RES, "compare_combination.rds"))$items |>
+  transmute(cond, null, n, k, rep, item, p = p_max, padj = padj_max)
+b999 <- readRDS(file.path(RES, "calibration_b999_summary.rds"))$strict
+
+cond_labels <- c(
+  A0_pcm_ordered    = "PCM, ordered",
+  A1_pcm_disordered = "PCM, disordered",
+  S_outer_a0        = "Categories 0, 1 interchangeable",
+  S_inner_a0        = "Categories 1, 2 interchangeable",
+  S_inner_a05       = "Step 2 discrimination .5",
+  S_inner_a2        = "Step 2 discrimination 2",
+  SWAP_1_2          = "Categories 1, 2 swapped",
+  DK_wide_05        = "Don't know 5%, wide middle",
+  DK_wide_10        = "Don't know 10%, wide middle",
+  DK_wide_25        = "Don't know 25%, wide middle",
+  DK_narrow_05      = "Don't know 5%, narrow middle",
+  DK_narrow_10      = "Don't know 10%, narrow middle",
+  DK_narrow_25      = "Don't know 25%, narrow middle",
+  ERS_30            = "Extreme response style 30%")
+lab <- function(x) factor(cond_labels[as.character(x)], levels = cond_labels)
+
+# Per-category statistics: Okabe-Ito, validated for four nominal series
+# (all-pairs CVD dE 11.0). Every series also has its own shape and line type.
+pal_stat <- c(Mean = "#0072B2", SD = "#D55E00", Q = "#009E73", Tail = "#56B4E9")
+scale_stat <- list(
+  scale_colour_manual("Statistic", values = pal_stat),
+  scale_shape_manual("Statistic", values = c(Mean = 16, SD = 17, Q = 15, Tail = 1)),
+  scale_linetype_manual("Statistic", values = c(Mean = "solid", SD = "42",
+                                                Q = "dotdash", Tail = "dotted")))
+theme_set(theme_book(base_size = 10) +
+            theme(legend.position = "bottom", panel.spacing = unit(0.4, "cm")))
+
+stat_long <- ok |>
+  select(cond, null, n, k, cell, rep, matches("^p_(mean|sd|tail|Q)_\\d$")) |>
+  pivot_longer(matches("^p_"), names_to = c("stat", "category"),
+               names_pattern = "p_(mean|sd|tail|Q)_(\\d)", values_to = "p") |>
+  mutate(stat = factor(c(mean = "Mean", sd = "SD", tail = "Tail", Q = "Q")[stat],
+                       levels = names(pal_stat)),
+         category = as.integer(category))
+rej <- stat_long |>
+  group_by(cond, null, n, k, cell, stat, category) |>
+  summarise(rate = mean(p < alpha), reps = n(), .groups = "drop")
+idx <- ok |>
+  group_by(cond, null, n, k) |>
+  summarise(index = mean(p_index1 < alpha), wald = mean(disorder_any),
+            disordered = mean(disorder_pt), .groups = "drop")
+
+# Calibration test
+null_cell <- cal_items |>
+  filter(null) |>
+  group_by(cond, n, k) |>
+  summarise(r01 = mean(p < .01), r05 = mean(p < alpha), min_p = min(p),
+            .groups = "drop")
+null_all <- cal_items |>
+  filter(null) |>
+  group_by(k) |>
+  summarise(r05 = mean(p < alpha), .groups = "drop")
+fwer <- cal_items |>
+  filter(null) |>
+  group_by(cond, n, k, rep) |>
+  summarise(any = any(padj < alpha), .groups = "drop") |>
+  group_by(cond, n, k) |>
+  summarise(datasets = n(), fw = mean(any), .groups = "drop") |>
+  mutate(se = sqrt(.05 * .95 / datasets))
+fw_top <- slice_max(fwer, fw, n = 1, with_ties = FALSE)
+event_null <- cal_ok |>
+  filter(null) |>
+  group_by(cond, n, k) |>
+  summarise(across(all_of(paste0("p_raw_", 1:4)), ~ mean(.x < alpha)),
+            .groups = "drop")
+pow <- bind_rows(
+  cal_items |> filter(!null, item == 1) |> group_by(cond, n, k) |>
+    summarise(rate = mean(p < alpha), .groups = "drop") |>
+    mutate(test = "Calibration test"),
+  ok |> filter(!null) |> group_by(cond, n, k) |>
+    summarise(rate = mean(p_index1 < alpha), .groups = "drop") |>
+    mutate(test = "Item index"))
+pow_big <- pow |>
+  pivot_wider(names_from = test, values_from = rate) |>
+  mutate(d = `Calibration test` - `Item index`) |>
+  filter(pmax(`Calibration test`, `Item index`) > .2)
+pow_adj <- cal_items |>
+  filter(!null, item == 1) |>
+  group_by(cond, n, k) |>
+  summarise(adj = mean(padj < alpha), .groups = "drop")
+kept <- pow |>
+  filter(test == "Calibration test") |>
+  select(cond, n, k, before = rate) |>
+  inner_join(pow_adj, by = c("cond", "n", "k")) |>
+  filter(before > .2) |>
+  mutate(share = adj / before,
+         scale = cond %in% c("SWAP_1_2", "S_outer_a0", "S_inner_a0"))
+other_adj <- cal_items |>
+  filter(!null) |>
+  group_by(cond, n, k, rep) |>
+  summarise(any_other = any(padj[item > 1] < alpha), .groups = "drop") |>
+  group_by(cond, n, k) |>
+  summarise(rate = mean(any_other), .groups = "drop")
+
+# Inline helpers
+pct <- function(x) sprintf("%.0f%%", 100 * x)
+rng <- function(x, f = pct) paste(f(min(x)), "to", f(max(x)))
+f3 <- function(x) sub("^0", "", sprintf("%.3f", x))
+f2 <- function(x) sub("^(-?)0", "\\1", sprintf("%.2f", x))
+rr <- function(cnd, st, ct) rej$rate[rej$cond == cnd & rej$stat == st & rej$category == ct]
+pw <- function(cnd, nn, kk, tst = "Calibration test") {
+  pct(pow$rate[pow$cond == cnd & pow$n == nn & pow$k == kk & pow$test == tst])
+}
+pw_rng <- function(cnd, tst = "Calibration test") rng(pow$rate[pow$cond == cnd & pow$test == tst])
+pa <- function(cnd, nn, kk) pct(pow_adj$adj[pow_adj$cond == cnd & pow_adj$n == nn & pow_adj$k == kk])
+pa_rng <- function(cnd) rng(pow_adj$adj[pow_adj$cond == cnd])
+b9 <- function(cnd, col) b999[[col]][b999$cond == cnd]
+```
+
+::: {.callout-note appearance="simple" icon=false}
+## About this chapter
+
+**Status:** draft<br>
+**Simulated:** the category statistics on 2026-11-17, the calibration test on
+2026-11-18 and 2026-11-19, with psychotools 0.7-6 and R 4.6.1. The example in
+@sec-cfit-example is computed when the chapter is rendered, with
+`r computed_with()`.<br>
+**Cite as:** Johansson, M. (2026). Do the response categories work as scored?
+In *Rasch Measurement Explorations*`r modified_note()`.
+<https://pgmj.github.io/rasch_book/chapters/category-fit.html>
+:::
+
+::: {.callout-tip appearance="simple" icon=false}
+## Summary
+
+Disordered threshold estimates are often read as a sign that a response scale
+does not work, but the partial credit model (PCM) allows any threshold order.
+This chapter asks a different question: do the categories of an item work as
+the scoring 0, 1, ..., m says? Given a respondent's total score, the PCM
+predicts the probability of each category from the item parameters alone, so
+the observed responses can be compared with the model without estimating any
+person location. `RMitemCatFit()` turns this into one test per item. It
+compares the observed share of responses at or above each category with the
+predicted probability, and simulates the reference distribution given the
+observed total scores. When the PCM held, the item p-value rejected in
+`r rng(null_cell$r05, f3)` of items per condition at .05, and with the
+correction across items, at least one item was flagged in
+`r rng(fwer$fw, f3)` of datasets per condition. The test detected swapped
+categories (`r pw_rng("SWAP_1_2")` of datasets) and interchangeable categories
+(categories 0 and 1 in `r pw_rng("S_outer_a0")`, categories 1 and 2 in
+`r pw_rng("S_inner_a0")`), all with ordered threshold estimates, which a Wald
+test of threshold order flagged in at most
+`r sprintf("%.1f%%", 100 * max(idx$wald[idx$cond %in% c("SWAP_1_2", "S_outer_a0", "S_inner_a0")]))`
+of these datasets. With disordered thresholds and the PCM true, the Wald test
+flagged `r rng(idx$wald[idx$cond == "A1_pcm_disordered"])` of datasets and
+`RMitemCatFit()` close to its nominal rate. `RMitemCatFitPlot()` shows
+where an item departs, and the event that departs points to the step
+concerned.
+:::
+
+## Purpose {#sec-cfit-purpose}
+
+The categories of a polytomous item are scored 0, 1, ..., m and the scores
+are added. That scoring assumes that each category is a step up from the one
+below. Several things can make it wrong: two categories that respondents do
+not distinguish since category labels are too similar or nonexisting, a step
+that separates respondents much more or less than the others, or a neutral Likert-style middle
+category used as "don't know".
+
+Ordered response category thresholds are one of the basic psychometric
+criteria summarised by @christensen2021, and disordered threshold estimates
+are commonly taken as the signal that a response scale does not work as intended. The debate about
+what disordered thresholds mean is unresolved [@andrichExpandedDerivationThreshold2013;@adamsRaschRatingModel2012;@garciaperezAnalysisDisOrderedCategories2017;@wetzelReversedThresholdsPartial2014;@anselmiAssessingThresholdOrdering2026]. The PCM itself allows any threshold order, so a disordered
+estimate is not a departure from the model. And a scale can fail in the ways
+listed above with ordered thresholds. This chapter studies a test of the
+scoring that does not depend on the threshold order, and plots that show
+where an item departs. Both are in easyRasch2: `RMitemCatFit()` for the test
+and `RMitemCatFitPlot()` for the plots.
+
+## Background {#sec-cfit-background}
+
+### Category probabilities given the total score {#sec-cfit-conditional}
+
+Under the PCM the total score $r$ is sufficient for the person location. Given
+$r$, the probability that a respondent chose category $j$ of item $i$ depends
+only on the item parameters:
+
+$$P(X_i = j \mid r) = \frac{\varepsilon_{ij}\,\gamma^{(i)}_{r-j}}{\gamma_r},$$
+
+where $\varepsilon_{ij}$ is the category parameter and $\gamma_r$ and
+$\gamma^{(i)}_{r-j}$ are elementary symmetric functions of all items and of
+all items except $i$. The table of items and categories by total score
+therefore has expected counts that involve no person parameters. This table
+is the basis of Glas's tests for the Rasch model [@glas1988] and the PCM
+[@glas1989]. The item parameters are estimated by conditional maximum
+likelihood (CML), so the comparison is not affected by error in person
+estimates.
+
+Summed over the total scores, the expected count of each category equals the
+observed count, because the category counts are sufficient for the CML
+estimates. A plain comparison of observed and expected category frequencies
+therefore shows nothing. Differences appear only when respondents are split
+by total score, which both the test and the plots do.
+
+### Cumulative events and calibration {#sec-cfit-calibration}
+
+For each item and each category $k \ge 1$, the event $X_i \ge k$ has the
+predicted probability $p = P(X_i \ge k \mid r)$. If the categories work as
+scored, the observed share of respondents with $X_i \ge k$ follows $p$ across
+the score range. If two categories are not distinguished or are used in the
+wrong order, the event at the step between them depends less on the total
+score than predicted.
+
+The observed events are compared with $p$ by the pool-adjacent-violators
+(PAV) algorithm, which gives the best non-decreasing fit of the observed
+events to $p$, the conditional event probability (CEP). A plot of the CEP
+against $p$ is a PAV-adjusted reliability diagram [@dimitriadis2021], the
+calibration plot recommended for ordinal outcomes by @sailynoja2025. Here
+the prediction comes from the total score instead of a person estimate.
+Because CML reproduces each category's count, the curve cannot lie above or
+below the diagonal overall. It can only cross it. A curve flatter than the
+diagonal means that the event separates respondents less well than predicted,
+and a steeper one that it separates them better.
+
+### The test {#sec-cfit-test}
+
+The statistic for each event is the miscalibration component of the Brier
+score in the CORP decomposition [@dimitriadis2021]:
+
+$$\text{MCB} = \frac{1}{n}\sum_v (p_v - y_v)^2 - \frac{1}{n}\sum_v (\hat c_v - y_v)^2,$$
+
+where $y_v$ is 1 when respondent $v$ scored $k$ or higher and $\hat c_v$ is
+the CEP. MCB is zero when the curve lies on the diagonal and grows with its
+distance from it. Respondents with the lowest or highest possible total score
+are left out, since their responses are fixed by the score.
+
+The reference distribution is simulated given each respondent's observed total
+score. Response patterns are drawn from $P(\mathbf{x} \mid r)$ at the CML
+estimates, so no person location is drawn, and the item parameters are
+re-estimated in every simulated dataset. The fit of the prediction to the
+same data is therefore part of the reference distribution. Simulated datasets
+with an empty category in some item cannot be refitted and are dropped.
+
+For each event, p is the share of the observed MCB and the $B$ simulated ones
+that lie at or above the observed value. The events of an item are combined
+by a studentised maximum: each event's MCB is centred and scaled by the mean
+and SD of the observed and simulated values together, and the item statistic
+is the largest of the item's values. The item p is the share of the observed
+and simulated item statistics at or above the observed one, so the smallest
+attainable p is $1/(B + 1)$. Across items, the Westfall-Young step-down on the
+item statistics gives p-values corrected for the family-wise error rate
+[@ge2003]. `RMitemCatFit()` uses this correction by default and offers the
+false discovery rate corrections of @benjamini1995 as alternatives.
+
+## Using the functions {#sec-cfit-example}
+
+```{r example-data}
+#| include: false
+# Generators from the simulation study (scripts/category-fit/study_functions.R).
+source("scripts/category-fit/study_functions.R")
+set.seed(2026)
+n_ex <- 1000
+theta <- stats::rnorm(n_ex)
+q1 <- sim_steps(theta, WIDE)
+q1 <- c(0L, 2L, 1L, 3L, 4L)[q1 + 1L]              # categories 1 and 2 swapped
+q2 <- sim_steps(theta, WIDE, c(0, 1, 1, 1))       # categories 0 and 1 interchangeable
+ex <- as.data.frame(cbind(q1, q2, sim_pcm(theta, other_items(7))))
+names(ex) <- paste0("Q", seq_len(ncol(ex)))
+```
+
+The example has `r n_ex` simulated respondents and `r ncol(ex)` items with
+five categories (0 to 4). Items Q3 to Q8 follow the PCM. Q1 follows the PCM
+with ordered thresholds, but categories 1 and 2 are swapped, as when the
+second and third response options are in the wrong order. In Q2, categories
+0 and 1 are interchangeable: the first step does not depend on the person
+location.
+
+```{r example-thresholds}
+#| include: false
+thr_ex <- easyRasch2:::.fit_cml_thresholds(ex)
+thr_txt <- function(it) paste(sub("^(-?)0", "\\1", sprintf("%.2f", thr_ex[[it]])), collapse = ", ")
+all_ordered <- all(vapply(thr_ex, function(t) !is.unsorted(t), logical(1L)))
+```
+
+The usual first look at the response categories is a plot of the category
+probability curves against the person location (@fig-cfit-example-catprob).
+In these data the threshold estimates of every item are
+`r if (all_ordered) "ordered" else "not all ordered"`, Q1 at
+(`r thr_txt("Q1")`) and Q2 at (`r thr_txt("Q2")`), and the curves of Q1 and
+Q2 look like those of the PCM items. Nothing in this plot shows that two of
+the items do not work as scored.
+
+```{r fig-cfit-example-catprob}
+#| label: fig-cfit-example-catprob
+#| fig-height: 7
+#| fig-cap: "Category probability curves of the example data, from RMitemCatProb(). The thresholds of every item, including Q1 and Q2, are estimated in order."
+RMitemCatProb(ex)
+```
+
+```{r example-fit}
+fit <- RMitemCatFit(ex, seed = 1, output = "list")
+```
+
+```{r example-numbers}
+#| include: false
+tb <- fit$table
+cal_ex <- RMitemCatFitPlot(ex, type = "calibration", fit = fit, output = "dataframe")
+out_share <- cal_ex |>
+  mutate(out = cep < lower | cep > upper) |>
+  group_by(item, event) |>
+  summarise(share = mean(out), .groups = "drop")
+os <- function(it, ev) pct(out_share$share[out_share$item == it & out_share$event == ev])
+os_pcm <- out_share$share[!out_share$item %in% c("Q1", "Q2")]
+res_ex <- RMitemCatFitPlot(ex, type = "residuals", output = "dataframe")
+n_beyond <- tapply(abs(res_ex$z) > 1.96, res_ex$item, sum, na.rm = TRUE)
+n_cells <- tapply(!is.na(res_ex$z), res_ex$item, sum)
+rs_ex <- RMitemCatFitPlot(ex, type = "restscore", fit = fit, output = "dataframe")
+rs_out <- with(rs_ex, tapply(observed < lower | observed > upper, item, sum, na.rm = TRUE))
+# "< .001" or "= .027", for "p < .001" / "p = .027" in the text
+pq <- function(it, col = "p") {
+  v <- tb[[col]][tb$item == it]
+  if (v < .001) "< .001" else paste("=", f3(v))
+}
+# Slope of the observed and expected share in the upper category against the
+# total score, weighted by the respondents in the pair
+adj_ex <- RMitemCatFitPlot(ex, type = "adjacent", output = "dataframe")
+slope <- function(it, pr, col) {
+  a <- adj_ex[adj_ex$item == it & adj_ex$pair == pr, ]
+  unname(stats::coef(stats::lm(a[[col]] ~ a$score, weights = a$n_pair))[2])
+}
+q2_ratio <- slope("Q2", "1 vs 0", "observed") / slope("Q2", "1 vs 0", "expected")
+```
+
+The test table has one row per item with the p for each event, the item p and
+the item p corrected across items (@tbl-cfit-example in the appendix). For
+Q1 the item p is the smallest attainable with `r fit$iterations_used`
+simulated datasets (p `r pq("Q1")`, corrected p `r pq("Q1", "padj")`), and
+its event $X \ge 2$, the step between the swapped categories, has
+p `r pq("Q1", "p_2")`. For Q2, p `r pq("Q2")` and corrected
+p `r pq("Q2", "padj")`, with p `r pq("Q2", "p_1")` for $X \ge 1$, the step
+between the interchangeable categories. For the PCM item Q3, p `r pq("Q3")`
+and corrected p `r pq("Q3", "padj")`. With eight items, an item
+p near .02 for some item is not unusual when the model holds, which is what
+the correction accounts for. In these data the correction leaves Q2's
+departure undetected as well.
+
+The calibration plot (@fig-cfit-example-calibration) shows each item's
+corrected p under its label when the result of `RMitemCatFit()` is passed as
+`fit`, so the simulations are not repeated.
+
+```{r fig-cfit-example-calibration}
+#| label: fig-cfit-example-calibration
+#| fig-height: 11
+#| fig-cap: "Calibration plot of the example data, from RMitemCatFitPlot(type = \"calibration\", fit = fit). One row per item, one column per cumulative event. Under each item label: its p corrected across items."
+RMitemCatFitPlot(ex, type = "calibration", fit = fit)
+```
+
+For Q1 the curve for $X \ge 2$ is much flatter than the diagonal, and
+`r os("Q1", "X ≥ 2")` of its points lie outside the band. For Q2 it is the
+curve for $X \ge 1$ that is flatter (`r os("Q2", "X ≥ 1")` of the points
+outside). For the six PCM items, `r rng(os_pcm)` of the points per event lie
+outside. The band is pointwise, so with many points some fall outside it when
+the model holds, and the plot shows where to look rather than whether an item
+fits.
+
+```{r fig-cfit-example-residuals}
+#| label: fig-cfit-example-residuals
+#| fig-height: 11
+#| fig-cap: "Standardised residuals of the category counts within five groups of total scores, from RMitemCatFitPlot(type = \"residuals\", fit = fit)."
+RMitemCatFitPlot(ex, type = "residuals", fit = fit)
+```
+
+The residual plot (@fig-cfit-example-residuals) splits the respondents into
+groups of total scores. For Q1, category 2 is chosen more often than expected
+in the low score groups and category 1 in the high groups, with
+`r n_beyond["Q1"]` of `r n_cells["Q1"]` residuals beyond ±1.96, against
+`r rng(n_beyond[3:8], function(x) x)` per PCM item.
+
+```{r fig-cfit-example-adjacent}
+#| label: fig-cfit-example-adjacent
+#| fig-height: 11
+#| fig-cap: "Share of respondents in the upper of two adjacent categories at each total score, among respondents in either, from RMitemCatFitPlot(type = \"adjacent\", fit = fit). Line: expected under the PCM. Band: pointwise 95% binomial range."
+RMitemCatFitPlot(ex, type = "adjacent", fit = fit)
+```
+
+Under the PCM, the share in the upper of two adjacent categories rises with
+the total score (@fig-cfit-example-adjacent). For Q1 the share in category 2
+among respondents in categories 1 or 2 falls instead. For Q2 the share in
+category 1 among respondents in 0 or 1 rises with the score, but at about
+`r sprintf("%.0f%%", 100 * q2_ratio)` of the expected slope.
+
+```{r fig-cfit-example-restscore}
+#| label: fig-cfit-example-restscore
+#| fig-height: 11
+#| fig-cap: "Rest-score mean and SD per category, observed minus expected, against the pointwise 95% range in the simulated datasets, from RMitemCatFitPlot(type = \"restscore\", fit = fit)."
+RMitemCatFitPlot(ex, type = "restscore", fit = fit)
+```
+
+The rest-score plot (@fig-cfit-example-restscore) compares the rest score (total
+score minus the item's score) of the respondents in each category with its
+expected value. These are the statistics studied in @sec-cfit-categories. For
+Q1, `r rs_out["Q1"]` of the 10 statistics lie outside their range. The
+plot is most useful for "don't know" use, which shows as a wider spread of
+the rest score in the middle category (@sec-cfit-categories).
+
+## Simulation study {#sec-cfit-study}
+
+### Design {#sec-cfit-design}
+
+**Data.** $\theta \sim N(0, 1)$. One focus item (item 1) and $k - 1$ other
+items, each with five categories scored 0 to 4. The other items follow the
+PCM, with locations spread evenly over $[-1, 1]$, thresholds
+$(-1.5, -0.5, 0.5, 1.5)$ around the location and a fixed jitter (SD 0.2).
+Sample sizes n = 250, 500 and 1000, with k = 5 or 10 items.
+
+**Conditions for the focus item** (location 0).
+
+- *PCM, ordered:* thresholds $(-1.5, -0.5, 0.5, 1.5)$.
+- *PCM, disordered:* thresholds $(-1.5, 0.4, -0.4, 1.5)$, in which the
+  middle category is rare and never the most probable.
+- *Step discriminations* [@glas1989, section 7]:
+  $P(X = j \mid \theta) \propto \exp\{\sum_{l \le j} a_l(\theta - \delta_l)\}$
+  with the ordered thresholds. $a_1 = 0$ makes categories 0 and 1
+  interchangeable, $a_2 = 0$ makes 1 and 2 interchangeable, and
+  $a_2 = 0.5$ or $2$ makes step 2 flatter or steeper than the scoring
+  assumes.
+- *Swapped categories:* responses generated under the ordered PCM, then
+  categories 1 and 2 relabelled as each other.
+- *"Don't know" use:* with probability .05, .10 or .25, the middle category
+  is chosen whatever $\theta$, on the ordered (wide middle) or the
+  disordered (narrow middle) thresholds.
+- *Extreme response style:* 30% of respondents answer every item with
+  thresholds compressed towards the item location (factor 0.3).
+
+**Tests.** Two sets of tests used the same conditions on separate datasets.
+The first is a set of per-category statistics, each tested against the same
+simulated reference distribution as `RMitemCatFit()`: for each category $j$
+of the focus item, the mean and SD of the rest score among respondents in
+that category, the number of them with a total score in the lowest or
+highest 10% (tail), each as observed minus expected, and $Q_j$, the sum over
+score levels of the squared standardised deviations for that category. The
+item index is the sum of $Q_j$ over $j \ge 1$. As comparisons, a Wald test of
+threshold order flags an item when any adjacent pair of threshold estimates
+is disordered with $z < -1.645$, using the CML covariance matrix. The second
+is the calibration test of @sec-cfit-test, for every item.
+
+**Replication.** Datasets with the PCM true: 500 per cell with $B = 199$.
+Other conditions: 200 per cell with $B = 99$. The Monte Carlo SE of a rate of
+.05 is .010 and .015. The condition with the highest family-wise rate was run
+again with $B = 999$ and 1000 new datasets per cell. A dataset with an empty
+category in the observed data was skipped, and one in which no simulated
+dataset could be refitted was left out of the rates (@tbl-cfit-evaluable).
+
+### Threshold order {#sec-cfit-order}
+
+With the PCM true and ordered thresholds, the Wald test never flagged
+disorder. With the disordered thresholds, which the PCM fits, it flagged
+`r rng(idx$wald[idx$cond == "A1_pcm_disordered"])` of datasets. In the
+conditions in which the scale does not work as scored, the estimates stayed
+ordered. With categories 1 and 2 swapped, the mean threshold estimates of
+steps 2 and 3 at n = 1000 and k = 10 were
+`r f2(mean(ok$t2[ok$cond == "SWAP_1_2" & ok$n == 1000 & ok$k == 10]))` and
+`r f2(mean(ok$t3[ok$cond == "SWAP_1_2" & ok$n == 1000 & ok$k == 10]))`,
+ordered but close (@tbl-cfit-thresholds). For swapped and interchangeable
+categories, the Wald test flagged at most
+`r sprintf("%.1f%%", 100 * max(idx$wald[idx$cond %in% c("SWAP_1_2", "S_outer_a0", "S_inner_a0")]))`
+of datasets. "Don't know" use at 10% or 25% on the narrow middle removed the
+disorder: the Wald test then flagged at most
+`r pct(max(idx$wald[idx$cond %in% c("DK_narrow_10", "DK_narrow_25")]))`. In
+these data, disordered threshold estimates were neither necessary nor
+sufficient for a response scale that does not work as scored.
+
+### Per-category statistics {#sec-cfit-categories}
+
+```{r fig-cfit-cat-null}
+#| label: fig-cfit-cat-null
+#| fig-height: 7.5
+#| fig-cap: "Rejection rate at .05 of each per-category statistic when the PCM holds, by condition and number of items (rows) and sample size (columns). The grey band is .05 plus or minus two Monte Carlo SEs."
+rej |>
+  filter(null) |>
+  mutate(row = paste0(lab(cond), ", k = ", k)) |>
+  ggplot(aes(category, rate, colour = stat, shape = stat, linetype = stat)) +
+  annotate("rect", xmin = -Inf, xmax = Inf, ymin = .05 - 2 * .0097,
+           ymax = .05 + 2 * .0097, fill = "grey85") +
+  geom_hline(yintercept = .05, colour = "grey40", linetype = "dotted") +
+  geom_line() + geom_point(size = 2) +
+  facet_grid(row ~ factor(paste("n =", n), levels = paste("n =", c(250, 500, 1000)))) +
+  scale_stat +
+  scale_y_continuous(limits = c(0, .1)) +
+  labs(x = "Category of the focus item", y = "Rejection rate") +
+  theme(strip.text.y = element_text(size = 7))
+```
+
+With the PCM true, each of the 20 per-category statistics and the item index
+rejected in `r rng(c(rej$rate[rej$null], idx$index[idx$null]), f3)` of
+datasets per cell, a little under .05 on average (@fig-cfit-cat-null). The
+same held with disordered thresholds.
+
+```{r fig-cfit-cat-power}
+#| label: fig-cfit-cat-power
+#| fig-height: 8
+#| fig-cap: "Rejection rate at .05 of each per-category statistic at n = 500 and k = 10, by condition. Dotted line at .05."
+rej |>
+  filter(!null, n == 500, k == 10) |>
+  ggplot(aes(category, rate, colour = stat, shape = stat, linetype = stat)) +
+  geom_hline(yintercept = .05, colour = "grey40", linetype = "dotted") +
+  geom_line() + geom_point(size = 2) +
+  facet_wrap(~ lab(cond), ncol = 3) +
+  scale_stat +
+  scale_y_continuous(limits = c(0, 1)) +
+  labs(x = "Category of the focus item", y = "Rejection rate") +
+  theme(strip.text = element_text(size = 7.5))
+```
+
+Each kind of departure showed in a particular statistic
+(@fig-cfit-cat-power).
+
+- **Swapped categories.** The rest-score means of categories 1 and 2
+  rejected in every dataset at every sample size.
+- **Interchangeable categories.** With categories 1 and 2 interchangeable, the
+  category 1 mean rejected in `r rng(rr("S_inner_a0", "Mean", 1))` of
+  datasets. With categories 0 and 1 interchangeable, $Q_0$ and the category 1
+  mean rejected in `r rng(c(rr("S_outer_a0", "Q", 0), rr("S_outer_a0", "Mean", 1)))`.
+- **Step discriminations.** A step 2 that discriminated twice as strongly or
+  half as strongly showed mainly in the category means.
+- **"Don't know" use** showed as a wider spread of the middle category, not
+  as a shifted mean. At 25%, the SD of category 2 rejected in
+  `r rng(rr("DK_wide_25", "SD", 2))` of datasets with the wide middle and
+  `r rng(rr("DK_narrow_25", "SD", 2))` with the narrow middle. At 5%, it
+  rejected in `r rng(c(rr("DK_wide_05", "SD", 2), rr("DK_narrow_05", "SD", 2)))`.
+- **An extreme response style shared by all items** was not detected
+  (`r rng(c(rej$rate[rej$cond == "ERS_30"], idx$index[idx$cond == "ERS_30"]))`
+  for every statistic). The test compares the focus item with the other
+  items, and a style that affects every item alike leaves that comparison
+  unchanged.
+
+The item index, the sum of the $Q_j$, was weak for several of these
+departures: `r rng(idx$index[idx$cond == "S_outer_a0"])` for categories 0 and
+1 interchangeable and `r rng(idx$index[idx$cond == "S_inner_a2"])` for a step
+that discriminated twice as strongly (@tbl-cfit-calibration). Each
+per-category statistic is calibrated on its own, but a reader who looks at
+all 20 and acts on any p < .05 would reject in about half of the datasets
+when the PCM holds. The per-category statistics therefore describe a
+departure once it is found, which is how `RMitemCatFitPlot(type = "restscore")`
+shows them, and the calibration test serves as the single test per item.
+
+### The calibration test when the PCM holds {#sec-cfit-cal-null}
+
+```{r fig-cfit-cal-null}
+#| label: fig-cfit-cal-null
+#| fig-height: 5
+#| fig-cap: "Share of item p-values at or below α when the PCM holds, over all items of every dataset, by condition (rows), sample size (columns) and number of items. Points at α = .01, .025, .05 and .10. Dotted diagonal: a calibrated p-value. B = 199."
+a_grid <- seq(0, .1, by = .0025)
+pal_k <- c("k = 5" = "#0072B2", "k = 10" = "#D55E00")
+cal_items |>
+  filter(null) |>
+  group_by(cond, n, k) |>
+  reframe(a = a_grid, rate = ecdf(p)(a_grid)) |>
+  mutate(k = factor(paste("k =", k), levels = names(pal_k)),
+         n = factor(paste("n =", n), levels = paste("n =", c(250, 500, 1000)))) |>
+  ggplot(aes(a, rate, colour = k, linetype = k, shape = k)) +
+  geom_abline(slope = 1, intercept = 0, colour = "grey40", linetype = "dotted") +
+  geom_step() +
+  geom_point(data = \(d) filter(d, round(a, 4) %in% c(.01, .025, .05, .1)),
+             size = 2) +
+  facet_grid(lab(cond) ~ n) +
+  scale_colour_manual("Items", values = pal_k) +
+  scale_linetype_manual("Items", values = c("solid", "42")) +
+  scale_shape_manual("Items", values = c(16, 17)) +
+  scale_x_continuous(breaks = c(0, .05, .1), labels = c("0", ".05", ".10")) +
+  scale_y_continuous(breaks = c(0, .05, .1), labels = c("0", ".05", ".10")) +
+  coord_equal(xlim = c(0, .1), ylim = c(0, .1)) +
+  labs(x = "α", y = "Share of p ≤ α")
+```
+
+The item p was close to uniform in its lower tail (@fig-cfit-cal-null). Over
+all items it rejected at .05 in `r f3(null_all$r05[null_all$k == 5])` of
+items at k = 5 and `r f3(null_all$r05[null_all$k == 10])` at k = 10, between
+`r f3(min(null_cell$r05))` and `r f3(max(null_cell$r05))` per cell, and at
+.01 between `r f3(min(null_cell$r01))` and `r f3(max(null_cell$r01))` per
+cell. At B = 199 the item p rejects slightly less often than nominal at .01,
+because only a few p-values below .01 are attainable. The p of each single
+event rejected at .05 in
+`r rng(unlist(event_null[, paste0("p_raw_", 1:4)]), f3)` of datasets per
+cell.
+
+With the correction across items, at least one item was flagged in
+`r rng(fwer$fw, f3)` of datasets per cell (@tbl-cfit-cal-null). The highest
+rate, `r f3(fw_top$fw)`, was in the `r as.character(lab(fw_top$cond))`
+condition at n = `r fw_top$n` and k = `r fw_top$k`, and every other cell was
+at or below `r f3(sort(fwer$fw, decreasing = TRUE)[2])`. With $B = 999$ and
+`r b999$datasets[1]` new datasets, the family-wise rate at n = 1000 and
+k = 5 was `r f3(b9("A0_pcm_ordered", "fwer"))` with ordered and
+`r f3(b9("A1_pcm_disordered", "fwer"))` with disordered thresholds (Monte
+Carlo SE `r f3(b999$se[1])`), and the item p rejected at .05 in
+`r f3(b9("A0_pcm_ordered", "item_05"))` and
+`r f3(b9("A1_pcm_disordered", "item_05"))` of items. The first 199 simulated
+datasets of the same runs gave family-wise rates of
+`r f3(b9("A0_pcm_ordered", "sub199_fwer"))` and
+`r f3(b9("A1_pcm_disordered", "sub199_fwer"))`, so the smaller B did not
+raise the rate, and the `r f3(fw_top$fw)` is most likely chance.
+
+### Detection {#sec-cfit-cal-power}
+
+```{r fig-cfit-cal-power}
+#| label: fig-cfit-cal-power
+#| fig-height: 7
+#| fig-cap: "Rejection rate at .05 for the focus item of the calibration test (item p before the correction across items) and of the item index, by condition, sample size and number of items. The two tests were run on different datasets from the same conditions. Dotted line at .05."
+pal_test <- c("Calibration test" = "#0072B2", "Item index" = "#D55E00")
+pow |>
+  mutate(test = paste0(test, ", k = ", k)) |>
+  ggplot(aes(n, rate, colour = test, shape = test, linetype = test)) +
+  geom_hline(yintercept = .05, colour = "grey40", linetype = "dotted") +
+  geom_line() + geom_point(size = 2) +
+  facet_wrap(~ lab(cond), ncol = 3) +
+  scale_colour_manual("Test", values = rep(pal_test, each = 2)) +
+  scale_shape_manual("Test", values = c(16, 1, 17, 2)) +
+  scale_linetype_manual("Test", values = c("solid", "42", "solid", "42")) +
+  scale_x_continuous(breaks = c(250, 500, 1000), trans = "log10",
+                     expand = expansion(mult = .12)) +
+  scale_y_continuous(limits = c(0, 1)) +
+  labs(x = "Sample size", y = "Rejection rate") +
+  guides(colour = guide_legend(nrow = 2)) +
+  theme(strip.text = element_text(size = 7.5),
+        panel.spacing.x = unit(1.2, "lines"))
+```
+
+In every cell where either test rejected in more than 20% of datasets, the
+calibration test rejected
+`r if (min(pow_big$d) >= 0) "at least as often as the item index" else sprintf("about as often as the item index or more often, at most %.1f percentage points less", -100 * min(pow_big$d))`
+(@fig-cfit-cal-power). The largest differences:
+
+- Categories 0 and 1 interchangeable: `r pw_rng("S_outer_a0")` against
+  `r pw_rng("S_outer_a0", "Item index")` for the item index.
+- Step 2 discrimination 2: `r pw("S_inner_a2", 1000, 10)` against
+  `r pw("S_inner_a2", 1000, 10, "Item index")` at n = 1000 and k = 10.
+- Categories 1 and 2 interchangeable at k = 10: `r pw("S_inner_a0", 250, 10)`
+  against `r pw("S_inner_a0", 250, 10, "Item index")` at n = 250.
+- Categories 1 and 2 swapped at n = 250 and k = 10:
+  `r pw("SWAP_1_2", 250, 10)` against `r pw("SWAP_1_2", 250, 10, "Item index")`.
+
+Both tests rarely detected "don't know" use at 5 or 10% (at most
+`r pct(max(pow$rate[pow$test == "Calibration test" & grepl("DK_(wide|narrow)_(05|10)", pow$cond)]))`
+for the calibration test), and the calibration test did not detect the
+extreme response style (`r pw_rng("ERS_30")`).
+
+After the correction across the k items, the focus item was flagged in
+`r pa_rng("SWAP_1_2")` of datasets with swapped categories,
+`r pa_rng("S_outer_a0")` with categories 0 and 1 interchangeable and
+`r pa_rng("S_inner_a0")` with categories 1 and 2 interchangeable
+(@tbl-cfit-cal-adj). Compared with the rate before the correction, this keeps
+`r rng(kept$share[kept$scale])` of the rejections for these three conditions
+and `r rng(kept$share[!kept$scale])` for the weaker departures, in the cells
+where the test rejected in more than 20% of datasets before the correction.
+For example, step 2 discrimination 2 at n = 1000 and k = 10 went from
+`r pw("S_inner_a2", 1000, 10)` to `r pa("S_inner_a2", 1000, 10)`. When the
+focus item departed from the PCM, at least one of the other items was flagged
+after the correction in at most `r pct(max(other_adj$rate))` of datasets per
+cell.
+
+```{r fig-cfit-cal-events}
+#| label: fig-cfit-cal-events
+#| fig-height: 6
+#| fig-cap: "Rejection rate at .05 of the p for each cumulative event of the focus item at n = 1000 and k = 10, by condition. Dotted line at .05."
+cal_ok |>
+  filter(!null, n == 1000, k == 10) |>
+  group_by(cond) |>
+  summarise(across(all_of(paste0("p_raw_", 1:4)), ~ mean(.x < alpha)), .groups = "drop") |>
+  pivot_longer(all_of(paste0("p_raw_", 1:4)), names_to = "event", names_prefix = "p_raw_",
+               values_to = "rate") |>
+  mutate(event = paste0("X ≥ ", event)) |>
+  ggplot(aes(event, rate, group = 1)) +
+  geom_hline(yintercept = .05, colour = "grey40", linetype = "dotted") +
+  geom_line(colour = "#0072B2") +
+  geom_point(colour = "#0072B2", size = 2) +
+  facet_wrap(~ lab(cond), ncol = 3) +
+  scale_y_continuous(limits = c(0, 1)) +
+  labs(x = "Event", y = "Rejection rate") +
+  theme(strip.text = element_text(size = 7.5))
+```
+
+The event that rejects points to the step concerned (@fig-cfit-cal-events).
+Interchangeable categories 0 and 1 were found through $X \ge 1$, swapped or
+interchangeable categories 1 and 2 and a step 2 that discriminated too much
+or too little through $X \ge 2$, and "don't know" use in the middle category
+through $X \ge 2$ and $X \ge 3$.
+
+## Discussion {#sec-cfit-discussion}
+
+The categories of an item can fail to work as scored while the threshold
+estimates are ordered, and the estimates can be disordered while the PCM
+fits. A test of the scoring therefore needs to compare the responses with
+the model, not inspect the threshold order. `RMitemCatFit()` does this with
+one p-value per item that held its level when the PCM was true, also with
+disordered thresholds, and detected swapped and interchangeable categories
+and steps that discriminate differently from the others. With its default
+correction across items, the family-wise rate stayed close to .05.
+
+`RMitemCatFitPlot()` shows where an item departs. The calibration plot points
+to the step concerned, the residual and adjacent-category plots show which
+categories are used by respondents with too low or too high scores, and the
+rest-score plot shows the mean and spread of the rest score in each category, the most
+sensitive view of "don't know" use.
+
+Use and limits:
+
+- **Iterations.** The default of 1000 simulated datasets took about a minute
+  for 1000 respondents and eight items. With few iterations the p-values are
+  coarse, and fewer than 400 give a notice.
+- **"Don't know" use and response styles.** "Don't know" use in up to 10% of
+  responses was rarely detected by any test, and a response style shared by
+  all items is out of reach of a test that compares items. A mixture Rasch
+  model or an IRTree model would be needed for the latter.
+- **One departing item.** Only item 1 departed from the PCM in the study, and
+  it was located at the centre of the person distribution. Departures in
+  several items at once, and in items off target, were not studied.
+- **Small samples.** At n = 250 some simulated datasets lose a category and
+  cannot be refitted. The test then conditions on every category being
+  observed, as it was in the observed data.
+- **Pointwise bands.** The bands and intervals of `RMitemCatFitPlot()` are
+  pointwise, a guide to where to look and not a test.
+
+## Reproduction {#sec-cfit-reproduction}
+
+The scripts are in `scripts/category-fit/` and are run from the book root.
+They use their own implementation of the conditional probabilities and the
+sampler (`functions.R`, `study_functions.R`, `calibration_functions.R`), with
+psychotools for the CML estimates. The results the chapter reads are in
+`results/category-fit/`. The per-cell files with one result per dataset are
+not kept.
+
+- **Per-category statistics.** `run_study.R`, 2 h 16 min on 10 cores.
+  `summarise.R` writes `summary.rds`. The run computed the elementary
+  symmetric functions by FFT convolution, and `functions.R` now uses direct
+  polynomial multiplication, which is exact. In 60 datasets the difference
+  moved $Q_j$ by at most 0.007 and the other statistics by at most 0.0001.
+- **Calibration test.** `run_calibration_study.R`, about 6 h on 4 cores.
+  `summarise_calibration.R` writes `calibration_summary.rds`, and
+  `compare_combination.R` computes the item p-values and the correction
+  across items from the stored simulated MCB values
+  (`compare_combination.rds`, about 20 s).
+- **Calibration test, B = 999.** `run_calibration_B999.R`, 81 min on 10
+  cores. `summarise_calibration_B999.R` writes
+  `calibration_b999_summary.rds`.
+
+Seeds are fixed per cell, and the random-number streams depend on the number
+of cores, so a run with another number of cores gives other datasets.
+
+## Appendix: result tables {#sec-cfit-appendix}
+
+```{r tbl-cfit-example}
+#| label: tbl-cfit-example
+#| tbl-cap: "RMitemCatFit() on the example data: p for each cumulative event, the item p and the item p corrected across items (Westfall-Young)."
+fp <- easyRasch2:::.format_p_table
+tb |>
+  transmute(Item = item,
+            `X ≥ 1` = fp(p_1), `X ≥ 2` = fp(p_2),
+            `X ≥ 3` = fp(p_3), `X ≥ 4` = fp(p_4),
+            `Item p` = fp(p), `Corrected p` = fp(padj)) |>
+  kable()
+```
+
+```{r tbl-cfit-evaluable}
+#| label: tbl-cfit-evaluable
+#| tbl-cap: "Datasets per sample size and number of items in the study of the per-category statistics, all conditions together."
+d |>
+  group_by(Cell = cell) |>
+  summarise(Datasets = n(),
+            Skipped = sum(!is.na(skipped)),
+            `No simulated dataset kept` = sum(is.na(skipped) & B_used == 0),
+            `Kept < 90% of B` = sum(evaluable & B_used / B < .9),
+            .groups = "drop") |>
+  kable()
+```
+
+```{r tbl-cfit-thresholds}
+#| label: tbl-cfit-thresholds
+#| tbl-cap: "Mean CML threshold estimates of the focus item at n = 1000 and k = 10, and the rejection rate of the Wald test of threshold order."
+ok |>
+  filter(n == 1000, k == 10) |>
+  group_by(Condition = lab(cond)) |>
+  summarise(across(t1:t4, mean), `Wald, disorder` = mean(disorder_any)) |>
+  kable(digits = 2)
+```
+
+```{r tbl-cfit-calibration}
+#| label: tbl-cfit-calibration
+#| tbl-cap: "Rejection rate at .05 for the focus item: calibration test (item p before the correction) and the p for each cumulative event, item index, and the Wald test of threshold order. The calibration test and the other two were run on different datasets."
+cal_items |>
+  filter(item == 1) |>
+  group_by(cond, n, k) |>
+  summarise(`Item p` = mean(p < alpha), .groups = "drop") |>
+  left_join(cal_ok |>
+              group_by(cond, n, k) |>
+              summarise(`X ≥ 1` = mean(p_raw_1 < alpha), `X ≥ 2` = mean(p_raw_2 < alpha),
+                        `X ≥ 3` = mean(p_raw_3 < alpha), `X ≥ 4` = mean(p_raw_4 < alpha),
+                        .groups = "drop"),
+            by = c("cond", "n", "k")) |>
+  left_join(select(idx, cond, n, k, `Item index` = index, `Wald` = wald),
+            by = c("cond", "n", "k")) |>
+  mutate(Condition = lab(cond), Cell = sprintf("n = %d, k = %d", n, k)) |>
+  arrange(Condition, k, n) |>
+  select(Condition, Cell, `Item p`, starts_with("X"), `Item index`, Wald) |>
+  kable(digits = 2)
+```
+
+```{r tbl-cfit-cal-null}
+#| label: tbl-cfit-cal-null
+#| tbl-cap: "Calibration test when the PCM holds (B = 199): rejection rate of the item p over all items at .01 and .05, and the share of datasets with at least one item flagged after the Westfall-Young correction (family-wise rate)."
+null_cell |>
+  left_join(fwer, by = c("cond", "n", "k")) |>
+  mutate(Condition = lab(cond), Cell = sprintf("n = %d, k = %d", n, k)) |>
+  arrange(Condition, k, n) |>
+  select(Condition, Cell, Datasets = datasets, `Item p < .01` = r01,
+         `Item p < .05` = r05, `Family-wise rate` = fw) |>
+  kable(digits = 3)
+```
+
+```{r tbl-cfit-cal-adj}
+#| label: tbl-cfit-cal-adj
+#| tbl-cap: "Calibration test: rejection rate at .05 for the focus item before and after the Westfall-Young correction across items (B = 99), and the share of datasets with at least one of the other items flagged after the correction."
+pow |>
+  filter(test == "Calibration test") |>
+  select(cond, n, k, Before = rate) |>
+  left_join(rename(pow_adj, After = adj), by = c("cond", "n", "k")) |>
+  left_join(rename(other_adj, `Other item flagged` = rate), by = c("cond", "n", "k")) |>
+  mutate(Condition = lab(cond), Cell = sprintf("n = %d, k = %d", n, k)) |>
+  arrange(Condition, k, n) |>
+  select(Condition, Cell, Before, After, `Other item flagged`) |>
+  kable(digits = 2)
+```
+
+```{r tbl-cfit-cat-all}
+#| results: asis
+# Rejection rate at .05 per category of the focus item, every statistic and
+# cell. Null cells have 500 datasets, the others 200.
+for (st in names(pal_stat)) {
+  tab <- rej |>
+    filter(stat == st) |>
+    mutate(Condition = lab(cond)) |>
+    arrange(Condition, k, n) |>
+    select(Condition, Cell = cell, category, rate) |>
+    pivot_wider(names_from = category, values_from = rate)
+  print(kable(tab, digits = 2,
+              caption = paste0("Rejection rate at .05 of the per-category statistic ",
+                               st, " for categories 0 to 4 of the focus item.")))
+  cat("\n\n")
+}
+```
