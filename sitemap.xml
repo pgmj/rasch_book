@@ -2,34 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pgmj.github.io/rasch_book/index.html</loc>
-    <lastmod>2026-11-17T20:11:46.573Z</lastmod>
+    <lastmod>2026-11-19T21:31:30.673Z</lastmod>
   </url>
   <url>
     <loc>https://pgmj.github.io/rasch_book/chapters/restscore-asymptotic-null.html</loc>
-    <lastmod>2026-11-17T20:11:46.573Z</lastmod>
+    <lastmod>2026-11-19T21:31:30.673Z</lastmod>
   </url>
   <url>
     <loc>https://pgmj.github.io/rasch_book/chapters/sx2-infit.html</loc>
-    <lastmod>2026-11-17T20:11:46.573Z</lastmod>
+    <lastmod>2026-11-19T21:31:30.673Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pgmj.github.io/rasch_book/chapters/category-fit.html</loc>
+    <lastmod>2026-11-19T21:31:30.672Z</lastmod>
   </url>
   <url>
     <loc>https://pgmj.github.io/rasch_book/chapters/ttest-protocol-exact-null.html</loc>
-    <lastmod>2026-11-17T20:11:46.573Z</lastmod>
+    <lastmod>2026-11-19T21:31:30.673Z</lastmod>
   </url>
   <url>
     <loc>https://pgmj.github.io/rasch_book/chapters/dif-anchor-tests.html</loc>
-    <lastmod>2026-11-17T20:11:46.572Z</lastmod>
+    <lastmod>2026-11-19T21:31:30.673Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pgmj.github.io/rasch_book/chapters/dif-impact.html</loc>
+    <lastmod>2026-11-19T21:31:30.673Z</lastmod>
   </url>
   <url>
     <loc>https://pgmj.github.io/rasch_book/chapters/rci-exact-null.html</loc>
-    <lastmod>2026-11-17T20:11:46.573Z</lastmod>
+    <lastmod>2026-11-19T21:31:30.673Z</lastmod>
   </url>
   <url>
     <loc>https://pgmj.github.io/rasch_book/presentations.html</loc>
-    <lastmod>2026-11-17T20:11:46.573Z</lastmod>
+    <lastmod>2026-11-19T21:31:30.673Z</lastmod>
   </url>
   <url>
     <loc>https://pgmj.github.io/rasch_book/references.html</loc>
-    <lastmod>2026-11-17T20:11:46.573Z</lastmod>
+    <lastmod>2026-11-19T21:31:30.673Z</lastmod>
   </url>
 </urlset>
