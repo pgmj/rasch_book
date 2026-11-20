@@ -12,3 +12,4 @@
 results/**/*cells*/
 results/**/*smoke*
 results/**/*.log
+*_cache/
